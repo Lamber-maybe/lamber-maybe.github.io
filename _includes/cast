@@ -1,0 +1,17 @@
+{% capture cast_name %}{{ include.name | strip }}{% endcapture %}
+
+{% capture cast_src %}
+  /assets/casts/{{ cast_name }}.cast
+{% endcapture %}
+{% assign cast_src = cast_src | strip %}
+
+{% unless cast_name == "" %}
+<div id="cast-{{ cast_name }}"></div>
+<script src="/assets/js/asciinema-player.min.js"></script>
+<script>
+    AsciinemaPlayer.create('{{ cast_src }}', document.getElementById('cast-{{ cast_name }}'), {
+    preload: true,
+});
+</script>
+{% endunless %}
+

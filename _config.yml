@@ -11,12 +11,12 @@
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
 # theme                  : "minimal-mistakes-jekyll"
-remote_theme           : "mmistakes/minimal-mistakes"
+remote_theme             : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "default" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "zh-CN"
-title                    : "南柯一梦"
+title                    : "Lamber's Blog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Lamber Maybe"
@@ -26,10 +26,11 @@ baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "Lamber-maybe/Lamber-maybe.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
+masthead_title           : "南柯一梦" # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
-enable_copy_code_button  : # true, false (default)
+enable_copy_code_button  : true # true, false (default)
+date_format              : "%Y/%m/%d"
 copyright                : # "copyright" name, defaults to site.title
 copyright_url            : # "copyright" URL, defaults to site.url
 comments:
@@ -114,8 +115,8 @@ analytics:
 author:
   name             : "Lamber Maybe"
   avatar           : "/assets/images/xiaolin.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Something for nothing"
-  location         : "Somewhere"
+  bio              : "终生学习"
+  location         : "Eorzea"
   email            :
   links:
     - label: "Email"
@@ -126,16 +127,19 @@ author:
       # url: "https://your-website.com"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
+      url: "https://twitter.com/Lamber28793923"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/Lamber-maybe"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
+    - label: "QQ"
+      icon: "fab fa-fw fa-qq"
+      url: "https://wpa.qq.com/msgrd?v=3&uin=957742501&site=qq&menu=yes"
 
 # Site Footer
 footer:
@@ -315,11 +319,13 @@ defaults:
       type: posts
     values:
       layout: single
+      classes: # wide
       author_profile: true
       read_time: true
       comments: # true
       share: true
       related: true
+      show_date: true
 
   # _pages
   - scope:
