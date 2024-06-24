@@ -60,6 +60,13 @@ Vim 将所有打开的文件作为一组，叫做 `buffer`。在一次 Vim Sessi
   - `,` / `;` for navigating matches
 - Search: `/{regex}`, `n` / `N` for navigating matches
 
+## Selection
+
+Visual modes:
+
+- Visual: `v`
+- Visual Line: `V`
+
 Q:如何将光标移动到行尾怎么办？
 
 A: `A` 表示将光标移动到行尾并进入 `Insert` 模式
