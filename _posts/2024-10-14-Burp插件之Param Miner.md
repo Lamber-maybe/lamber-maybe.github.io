@@ -3,6 +3,40 @@ title: "Burp插件之 Param Miner"
 toc: true
 ---
 
+# 自用配置
+
+| timeout: 120,000 | Add 'fcbz' cachebuster | Add dynamic cachebuster: [开] |
+| --- | --- | --- |
+| learn observed words | enable auto-mine | auto-mine headers |
+| auto-mine cookies | auto-mine params | auto-nest params  |
+| quantitative diff keys: time  | skip boring words | only report unique params |
+| response-headers: [开] | response-body: [开] | request: [开] |
+| use basic wordlist: [开] | use bonus wordlist | use assetnote params |
+| use custom wordlist: [开] | custom wordlist path: extension/dict/words | bruteforce |
+| skip uncacheable | dynamic keyload: [开] | max one per host |
+| max one per host+status | probe identified params: [开] | scan identified params |
+| fuzz detect: [开] | carpet bomb: [针对性测试外带的情况下开] | try cache poison: [开] |
+| twitchy cache poison | identify smuggle mutations | try -_ bypass |
+| rotation interval | rotation increment | force bucketsize： -1 |
+| max bucketsize: 65,536 | max param length: 32 | lowercase headers: [开] |
+| name in issue | canary | force canary: [配合 carpet bomb] |
+| poison only | tunnelling retry count: 20 | abort on tunnel failure: [开] |
+| baseline size: 4 | thread pool size: 8 | per-thread throttle: 0 |
+| use key: [开] | key method: [开] | key path |
+| key status: [开] | key content-type: [开] | key server: [开] |
+| key input name: [开] | key header names | filter  |
+| mimetype-filter | resp-filter | filter HTTP |
+| skip vulnerable hosts | skip flagged hosts | flag new domains |
+| report to organizer: [开] | confirmations: 5 | require consistent evidence: [开] |
+| quantile factor: 2 | quantitative confirmations: 50 | include query-param in cachebusters: [开] |
+| include origin in cachebusters: [开] | include path in cachebusters | include via in cachebusters: [开] |
+| misc header cachebusters | custom header cachebusters | overlong-detection: [开] |
+| auto-scan for proxyable destinations: [开] | mining: filter 500s | subdomains-builtin: [开] |
+| subdomains-generic | subdomains-specific: 见文档，开 | external subdomain lookup: [开] |
+| I read the docs | params: dummy: 特殊情况开 | dummy param name |
+| params: query: [开] | params: body: [开] | params: xff |
+| params: cookie | params: rest | params: scheme |
+| params: scheme-host | params: scheme-path |  |
 
 # 配置详解
 
