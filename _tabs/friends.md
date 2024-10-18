@@ -5,8 +5,10 @@ icon: fas fa-user-friends
 order: 5
 ---
 
-
+## HackMD 
 - [Dante](https://hackmd.io/@Lamber/SyByM1y10)
+
+## SRC
 - [EvilChen](https://gh0st.cn/)
   - [WebFuzzing方法和漏洞案例总结](https://gh0st.cn/archives/2019-11-11/1)
   - [我的Web应用安全模糊测试之路](https://gh0st.cn/archives/2018-07-25/1)
@@ -26,3 +28,8 @@ order: 5
   - [CSRF Bypass Using Domain Confusion Leads To ATO](https://medium.com/bugbountywriteup/csrf-bypass-using-domain-confusion-leads-to-ato-ac682dd17722)
 - [ott3rly](https://ott3rly.com/)
   - [The Introduction to Axiom tool](https://ott3rly.com/axiom-tool-part-1/)
+
+## 红队
+- [Vincent Van Mieghem](https://vanmieghem.io/)
+  - [A blueprint for evading industry leading endpoint protection in 2022](https://vanmieghem.io/blueprint-for-evading-edr-in-2022/)
+  - [Process injection in 2023, evading leading EDRs](https://vanmieghem.io/process-injection-evading-edr-in-2023/)
