@@ -6,9 +6,9 @@ categories: [HackTheBox]
 ---
 
 
-# 方案一: Clash
+## 方案一: Clash
 
-## 1. 本机作为攻击机（openvpn开在本机上）
+### 1. 本机作为攻击机（openvpn开在本机上）
 直接在 openvpn 文件中添加
 ```text
 socks-proxy 127.0.0.1 7890
@@ -16,7 +16,7 @@ socks-proxy 127.0.0.1 7890
 
 注: 7890代表 Clash 的端口
 
-## 2. kali虚拟机作为攻击机（openvpn开在kali上）
+### 2. kali虚拟机作为攻击机（openvpn开在kali上）
 在本机上打开 Clash，并打开Clash设置中的 `Allow LAN`
 
 然后找到本机和kali虚拟机同网段的ip地址，如
@@ -30,7 +30,7 @@ kali ip: 192.168.40.128
 socks-proxy 192.168.40.1 7890
 ```
 
-# 方案二: Zerotire组网
+## 方案二: Zerotire组网
 
 1. 首先整一个英国伦敦的vps（离HackTheBox机房近）
 2. 在vps上运行openvpn（这时会看到多出来一张网卡 `tun0` 记住这个网卡名字）

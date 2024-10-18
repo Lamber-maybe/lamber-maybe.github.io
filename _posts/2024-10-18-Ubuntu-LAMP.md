@@ -6,7 +6,7 @@ date: 2024-10-18 01:10:00 +0800
 
 > LAMP 环境即 （Linux + Apache + Mysql + PHP）集成环境
 
-# 1. 更新源
+## 1. 更新源
 首先更新 Ubuntu22.04 中的所有东西
 ```bash=
 # 1. 备份
@@ -37,7 +37,7 @@ sudo apt-get upgrade
 sudo apt-get dist-upgrade
 ```
 
-# 2. 安装Apache2
+## 2. 安装Apache2
 ```bash=
 # 1. 安装
 sudo apt install apache2 -y
@@ -46,7 +46,7 @@ sudo apt install apache2 -y
 systemctl status apache2
 ```
 
-# 3. 安装MySQL
+## 3. 安装MySQL
 ```bash=
 # 1. 安装
 sudo apt install mysql-server mysql-client
@@ -55,7 +55,7 @@ sudo apt install mysql-server mysql-client
 sudo mysql
 ```
 
-# 4. 安装PHP
+## 4. 安装PHP
 ```bash=
 # 1. 安装 PHP
 sudo apt-get install php
@@ -64,7 +64,7 @@ sudo apt-get install php
 sudo php -v
 ```
 
-# 5. 将PHP与Apache2和MySQL关联
+## 5. 将PHP与Apache2和MySQL关联
 ```bash=
 # 1. 与 Apache2 关联
 $ sudo apt-get install libapache2-mod-php
@@ -73,7 +73,7 @@ $ sudo apt-get install libapache2-mod-php
 $ sudo apt-get install php-mysql
 ```
 
-# 6. 修改Apache2配置文件
+## 6. 修改Apache2配置文件
 ```bash=
 # 第一步 打开Apache2配置文件(不熟悉vim操作的情况下, 可以先查一下vim的基础用法)
 sudo vim /etc/apache2/mods-available/phpX.X.conf  
@@ -90,7 +90,7 @@ sudo vim /etc/apache2/mods-available/phpX.X.conf
 sudo service apache2 restart
 ```
 
-# 7. 测试环境是否搭建成功
+## 7. 测试环境是否搭建成功
 ```bash=
 # 1. 切换到 html 目录下
 cd /var/www/html
@@ -108,7 +108,7 @@ vim test.html
 保存之后, 通过浏览器访问 `http://<your_ip>/index.php` 如果看到phpinfo界面，则说明php环境正常。
 通过浏览器访问 `http://<your_ip>/index.html` 如果看到phpinfo界面，则说明LAMP环境正常。
 
-# 附: 一些常用命令
+## 附: 一些常用命令
 ```bash=
 # Apache相关
 sudo apache2 start      # 开启 Apache2

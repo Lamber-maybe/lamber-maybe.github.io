@@ -3,7 +3,7 @@ title: "Burp插件之 Param Miner"
 toc: true
 ---
 
-# 自用配置
+## 自用配置
 
 | timeout: 120,000 | Add 'fcbz' cachebuster | Add dynamic cachebuster: [开] |
 | --- | --- | --- |
@@ -38,7 +38,7 @@ toc: true
 | params: cookie | params: rest | params: scheme |
 | params: scheme-host | params: scheme-path |  |
 
-# 配置详解
+## 配置详解
 
 - [ ]  timeout — 超时时间，保持默认就行
 - [ ]  Add 'fcbz' cachebuster — 向所有出站请求添加静态缓存破坏器，以避免手动探测`缓存中毒漏洞`的时候影响其他用户（选了这个就可以放心大胆的直接测缓存中毒）— 感觉最好是忽略，使用纯粹的手动探测

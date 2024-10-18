@@ -6,7 +6,7 @@ tags: [Windows, 靶场, Easy]
 
 ---
 
-# 概述
+## 概述
 1. 端口扫描
 2. Guest账户访问smb服务, 对 `IPC$` 和 `HR` 文件共享有读权限
     1. `IPC$` 可读, 使用 RID 爆破得到用户名
@@ -19,7 +19,7 @@ tags: [Windows, 靶场, Easy]
 7. 拿到 Administrator 账户的 hash, PTH登录winrm, 得到 `root flag`
 
 
-# 细节 
+## 细节 
 端口扫描与服务识别
 ```bash
 $ docker run -it --rm --name rustscan rustscan/rustscan:2.1.1 -u 70000 -b 65535 -a 10.10.11.35 -- -Pn -sC -sV -T4
