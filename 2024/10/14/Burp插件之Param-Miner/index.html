@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lamber-maybe.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="自用配置   timeout: 120,000 Add ‘fcbz’ cachebuster Add dynamic cachebuster: [开]    learn observed words enable auto-mine auto-mine headers   auto-mine cookies auto-mine params auto-nest params   quantitat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Burp插件之Param-Miner">
+<meta property="og:url" content="https://lamber-maybe.com/2024/10/14/Burp%E6%8F%92%E4%BB%B6%E4%B9%8BParam-Miner/index.html">
+<meta property="og:site_name" content="Lamber&#39;s Blog">
+<meta property="og:description" content="自用配置   timeout: 120,000 Add ‘fcbz’ cachebuster Add dynamic cachebuster: [开]    learn observed words enable auto-mine auto-mine headers   auto-mine cookies auto-mine params auto-nest params   quantitat">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-14T09:32:53.000Z">
+<meta property="article:modified_time" content="2024-10-24T17:42:52.000Z">
+<meta property="article:author" content="Lamber">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lamber-maybe.com/2024/10/14/Burp%E6%8F%92%E4%BB%B6%E4%B9%8BParam-Miner/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lamber-maybe.com/2024/10/14/Burp%E6%8F%92%E4%BB%B6%E4%B9%8BParam-Miner/","path":"2024/10/14/Burp插件之Param-Miner/","title":"Burp插件之Param-Miner"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Burp插件之Param-Miner | Lamber's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Lamber's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">自用配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">配置详解</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lamber"
+      src="/uploads/xiaolin.jpg">
+  <p class="site-author-name" itemprop="name">Lamber</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Lamber-maybe" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Lamber-maybe" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://lamber-maybe.com/2024/10/14/Burp%E6%8F%92%E4%BB%B6%E4%B9%8BParam-Miner/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/xiaolin.jpg">
+      <meta itemprop="name" content="Lamber">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lamber's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Burp插件之Param-Miner | Lamber's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Burp插件之Param-Miner
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-14 17:32:53" itemprop="dateCreated datePublished" datetime="2024-10-14T17:32:53+08:00">2024-10-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-25 01:42:52" itemprop="dateModified" datetime="2024-10-25T01:42:52+08:00">2024-10-25</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="自用配置"><a href="#自用配置" class="headerlink" title="自用配置"></a>自用配置</h2><table>
+<thead>
+<tr>
+<th>timeout: 120,000</th>
+<th>Add ‘fcbz’ cachebuster</th>
+<th>Add dynamic cachebuster: [开]</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>learn observed words</td>
+<td>enable auto-mine</td>
+<td>auto-mine headers</td>
+</tr>
+<tr>
+<td>auto-mine cookies</td>
+<td>auto-mine params</td>
+<td>auto-nest params</td>
+</tr>
+<tr>
+<td>quantitative diff keys: time</td>
+<td>skip boring words</td>
+<td>only report unique params</td>
+</tr>
+<tr>
+<td>response-headers: [开]</td>
+<td>response-body: [开]</td>
+<td>request: [开]</td>
+</tr>
+<tr>
+<td>use basic wordlist: [开]</td>
+<td>use bonus wordlist</td>
+<td>use assetnote params</td>
+</tr>
+<tr>
+<td>use custom wordlist: [开]</td>
+<td>custom wordlist path: extension&#x2F;dict&#x2F;words</td>
+<td>bruteforce</td>
+</tr>
+<tr>
+<td>skip uncacheable</td>
+<td>dynamic keyload: [开]</td>
+<td>max one per host</td>
+</tr>
+<tr>
+<td>max one per host+status</td>
+<td>probe identified params: [开]</td>
+<td>scan identified params</td>
+</tr>
+<tr>
+<td>fuzz detect: [开]</td>
+<td>carpet bomb: [针对性测试外带的情况下开]</td>
+<td>try cache poison: [开]</td>
+</tr>
+<tr>
+<td>twitchy cache poison</td>
+<td>identify smuggle mutations</td>
+<td>try -_ bypass</td>
+</tr>
+<tr>
+<td>rotation interval</td>
+<td>rotation increment</td>
+<td>force bucketsize： -1</td>
+</tr>
+<tr>
+<td>max bucketsize: 65,536</td>
+<td>max param length: 32</td>
+<td>lowercase headers: [开]</td>
+</tr>
+<tr>
+<td>name in issue</td>
+<td>canary</td>
+<td>force canary: [配合 carpet bomb]</td>
+</tr>
+<tr>
+<td>poison only</td>
+<td>tunnelling retry count: 20</td>
+<td>abort on tunnel failure: [开]</td>
+</tr>
+<tr>
+<td>baseline size: 4</td>
+<td>thread pool size: 8</td>
+<td>per-thread throttle: 0</td>
+</tr>
+<tr>
+<td>use key: [开]</td>
+<td>key method: [开]</td>
+<td>key path</td>
+</tr>
+<tr>
+<td>key status: [开]</td>
+<td>key content-type: [开]</td>
+<td>key server: [开]</td>
+</tr>
+<tr>
+<td>key input name: [开]</td>
+<td>key header names</td>
+<td>filter</td>
+</tr>
+<tr>
+<td>mimetype-filter</td>
+<td>resp-filter</td>
+<td>filter HTTP</td>
+</tr>
+<tr>
+<td>skip vulnerable hosts</td>
+<td>skip flagged hosts</td>
+<td>flag new domains</td>
+</tr>
+<tr>
+<td>report to organizer: [开]</td>
+<td>confirmations: 5</td>
+<td>require consistent evidence: [开]</td>
+</tr>
+<tr>
+<td>quantile factor: 2</td>
+<td>quantitative confirmations: 50</td>
+<td>include query-param in cachebusters: [开]</td>
+</tr>
+<tr>
+<td>include origin in cachebusters: [开]</td>
+<td>include path in cachebusters</td>
+<td>include via in cachebusters: [开]</td>
+</tr>
+<tr>
+<td>misc header cachebusters</td>
+<td>custom header cachebusters</td>
+<td>overlong-detection: [开]</td>
+</tr>
+<tr>
+<td>auto-scan for proxyable destinations: [开]</td>
+<td>mining: filter 500s</td>
+<td>subdomains-builtin: [开]</td>
+</tr>
+<tr>
+<td>subdomains-generic</td>
+<td>subdomains-specific: 见文档，开</td>
+<td>external subdomain lookup: [开]</td>
+</tr>
+<tr>
+<td>I read the docs</td>
+<td>params: dummy: 特殊情况开</td>
+<td>dummy param name</td>
+</tr>
+<tr>
+<td>params: query: [开]</td>
+<td>params: body: [开]</td>
+<td>params: xff</td>
+</tr>
+<tr>
+<td>params: cookie</td>
+<td>params: rest</td>
+<td>params: scheme</td>
+</tr>
+<tr>
+<td>params: scheme-host</td>
+<td>params: scheme-path</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="配置详解"><a href="#配置详解" class="headerlink" title="配置详解"></a>配置详解</h2><ul>
+<li><input disabled="" type="checkbox"> timeout — 超时时间，保持默认就行</li>
+<li><input disabled="" type="checkbox"> Add ‘fcbz’ cachebuster — 向所有出站请求添加静态缓存破坏器，以避免手动探测<code>缓存中毒漏洞</code>的时候影响其他用户（选了这个就可以放心大胆的直接测缓存中毒）— 感觉最好是忽略，使用纯粹的手动探测</li>
+<li><input disabled="" type="checkbox"> Add dynamic cachebuster — 将动态缓存破坏器添加到所有请求，以避免看到缓存响应（测的时候不确定是否缓存成功，可以把上面那个设置取消勾选，然后勾这个，就可以生成一个新的缓存参数，这样就能看到未缓存的响应）— 感觉最好是忽略，使用纯粹的手动探测</li>
+<li><input disabled="" type="checkbox"> learn observed words — 在 Burp 的 <code>passive scanning</code> 期间，记录 <code>response</code> 中看到的所有词，并在猜测参数时使用它们。（建议长期开启）</li>
+<li><input disabled="" type="checkbox"> enable auto-mine — 自动对通过 <code>proxy</code> 的流量发起参数猜测攻击（推荐在目标不存在waf，且足够稳定不怕被打卦的时候启用）<ul>
+<li><input disabled="" type="checkbox"> auto-mine headers — 猜测 headers</li>
+<li><input disabled="" type="checkbox"> auto-mine cookies — 猜测 cookies</li>
+<li><input disabled="" type="checkbox"> auto-mine params — 猜测 params</li>
+<li><input disabled="" type="checkbox"> auto-nest params — 当猜测 JSON 中的参数时，尝试在嵌套结构中更深入地猜测。可能不起作用。</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> quantitative diff keys — 使用时间信息来检测参数。禁用此功能以使参数挖掘器更快。&#x2F;&#x2F; 这会覆盖 bulkScan 的设置。</li>
+<li><input disabled="" type="checkbox"> skip boring words — 猜测 headers 的时候，跳过检查知名且通常不太令人兴奋的 header（不建议跳过，它的 boring words 里面包含了太多出过漏洞的 header）</li>
+<li><input disabled="" type="checkbox"> only report unique params — 如果参数重复出现，仅报告参数一次，无论扫描了多少个端点（不建议开启，虽然参数名相同，但是在不同路由可能有不同功能）</li>
+<li><input disabled="" type="checkbox"> response-headers — 从目标响应头中提取单词，并使用这些单词来猜测参数。（建议长期开启）</li>
+<li><input disabled="" type="checkbox"> response-body — 从目标响应体中提取单词，并使用这些单词来推测参数。（建议长期开启）</li>
+<li><input disabled="" type="checkbox"> request — 从目标请求中提取单词，并使用这些单词来猜测参数。强烈推荐。（建议长期开启）</li>
+<li><input disabled="" type="checkbox"> use basic wordlist — 在猜测参数时，使用核心字典。（建议长期开启）</li>
+<li><input disabled="" type="checkbox"> use bonus wordlist — 在猜测参数时，也使用通用字典。</li>
+<li><input disabled="" type="checkbox"> use assetnote params — 在猜测参数时，也使用 assetnote 字典。（不建议开启，太大了，性能消耗严重）</li>
+<li><input disabled="" type="checkbox"> use custom wordlist — 在猜测参数时，也使用自定义字典。（推荐 basic + custom，自定义字典可以从各路神仙的 github 以及公开漏洞报告中去提取收集）</li>
+<li><input disabled="" type="checkbox"> custom wordlist path — 设置自定义字典的路径</li>
+<li><input disabled="" type="checkbox"> bruteforce — 当所有字典用尽时，切换到无尽的纯暴力猜测。</li>
+<li><input disabled="" type="checkbox"> skip uncacheable — 拒绝在不可缓存的响应上猜测参数。（不建议开启，开了之后只能挖掘缓存欺骗或者缓存污染了）</li>
+<li><input disabled="" type="checkbox"> dynamic keyload — 在猜测参数时，从每个响应中提取单词加入到字典并继续猜测。非常强大但有点 bug。（建议长期开启）</li>
+<li><input disabled="" type="checkbox"> max one per host — 每个主机只处理一个请求，不会进入多线程中。（建议在极端受限环境下使用）</li>
+<li><input disabled="" type="checkbox"> max one per host+status — 当主机和状态码已经出现过一次的情况下，不会继续攻击。（建议在极端受限环境下启用）</li>
+<li><input disabled="" type="checkbox"> probe identified params — 尝试识别发现的参数期望的输入类型。（建议长期开启）</li>
+<li><input disabled="" type="checkbox"> scan identified params — 对每个发现的参数启动 <code>active scan</code> 。（不建议开启，性能消耗严重，而且动静太大了）</li>
+<li><input disabled="" type="checkbox"> fuzz detect — 使用特殊字符fuzz参数值，尝试触发报错。（建议长期开启）</li>
+<li><input disabled="" type="checkbox"> carpet bomb — 单纯的发送参数，但不要试图识别或者报告有效的参数。这对 OAST 技术很有用。（测带外无敌了）</li>
+<li><input disabled="" type="checkbox"> try cache poison — 在发现一个参数后，测试它是否可以用于缓存中毒。(建议长期开启)</li>
+<li><input disabled="" type="checkbox"> twitchy cache poison — 使缓存中毒检测能够检测非反射输入（但更容易产生误报）。</li>
+<li><input disabled="" type="checkbox"> identify smuggle mutations — Try using desync-style mutations to bypass header rewriting by front-ends</li>
+<li><input disabled="" type="checkbox"> try -_ bypass — 将 header 名称中的所有 - 转换为 _ ，以绕过某些前端重写</li>
+<li><input disabled="" type="checkbox"> rotation interval — This doesn’t work</li>
+<li><input disabled="" type="checkbox"> rotation increment — This doesn’t work</li>
+<li><input disabled="" type="checkbox"> force bucketsize — 指定单个请求中允许的参数数量。将此设置为 -1，以便 Param Miner 根据每个目标自动确定此值。</li>
+<li><input disabled="" type="checkbox"> max bucketsize — 在服务器允许的情况下，Param Miner在单个请求中放入的最大参数数量。</li>
+<li><input disabled="" type="checkbox"> max param length — 这与 bucketsize 检测一起使用</li>
+<li><input disabled="" type="checkbox"> lowercase headers — 发送小写的 header 名称。对效率有好处。</li>
+<li><input disabled="" type="checkbox"> name in issue — 在 issue 标题中包含参数名称</li>
+<li><input disabled="" type="checkbox"> canary — 固定前缀用来检测输入反射</li>
+<li><input disabled="" type="checkbox"> force canary — 覆盖canary的值，强制让每个参数都能带上指定的值 - 配合 <code>carpet bomb</code> 模式使用。（测带外无敌了）</li>
+<li><input disabled="" type="checkbox"> poison only — 只报告可以 cache poisoning 的参数</li>
+<li><input disabled="" type="checkbox"> tunnelling retry count — When attempting to mine a tunelled request, give up after this many consecutive failures to get a nested response</li>
+<li><input disabled="" type="checkbox"> abort on tunnel failure — When attempting to mine a tunelled request, give up if the tunnel retry count is exceeded</li>
+<li><input disabled="" type="checkbox"> baseline size — Number of requests sent to build the normal-response fingerprint</li>
+<li><input disabled="" type="checkbox"> thread pool size — 线程数量，相当于并发HTTP请求数。</li>
+<li><input disabled="" type="checkbox"> per-thread throttle — 发送每个HTTP请求前暂停 X 毫秒。（建议在极端受限环境下使用，不过感觉可以用代理池避免这个问题，burp能够和代理池联动吗？）</li>
+<li><input disabled="" type="checkbox"> use key — 通过生成一个独特的 key，来避免连续扫描相同的 endpoint<ul>
+<li><input disabled="" type="checkbox"> key method — 将 request method 添加到 key 中</li>
+<li><input disabled="" type="checkbox"> key path — 将 request path 添加到 key 中</li>
+<li><input disabled="" type="checkbox"> key status — 将 response status code 添加到 key 中</li>
+<li><input disabled="" type="checkbox"> key content-type — 将 response content-type 添加到 key 中</li>
+<li><input disabled="" type="checkbox"> key server — 将 response Server header 添加到 key 中</li>
+<li><input disabled="" type="checkbox"> key input name — 将 扫描过的参数名 添加到 key 中</li>
+<li><input disabled="" type="checkbox"> key header names — 将 所有的response header name 添加到 key 中（不包括 value）</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> filter — 只扫描包含指定字段的HTTP请求</li>
+<li><input disabled="" type="checkbox"> mimetype-filter — 只扫描mimitype中包含指定字段的HTTP请求</li>
+<li><input disabled="" type="checkbox"> resp-filter — 只扫描response中包含指定字段的HTTP请求</li>
+<li><input disabled="" type="checkbox"> filter HTTP — 只扫描 HTTPS 请求</li>
+<li><input disabled="" type="checkbox"> skip vulnerable hosts — 对于已经被标记为存在漏洞的host，跳过扫描（修改该配置的时候需要重新加载插件才会生效）</li>
+<li><input disabled="" type="checkbox"> skip flagged hosts — 对于已经被标记为存在漏洞的host，跳过报告issue</li>
+<li><input disabled="" type="checkbox"> flag new domains — adjust the title of issues reported on hosts that don’t have any other issues listed in the sitemap (调整站点地图中未列出任何其他问题的主机所报告问题的标题)</li>
+<li><input disabled="" type="checkbox"> report to organizer — 将检测到的漏洞发送到 Organizer</li>
+<li><input disabled="" type="checkbox"> confirmations — 使用repeat确认响应是否一致的次数从而验证猜测出的参数是否真实有效，这个选项可以减少误报。（默认5次已经很够用了）</li>
+<li><input disabled="" type="checkbox"> require consistent evidence — 忽略不太可靠的 issue。（默认打开降低误报）</li>
+<li><input disabled="" type="checkbox"> quantile factor — 1-10，越大意味着误报越少，越小意味着误报越多。（默认是2）</li>
+<li><input disabled="" type="checkbox"> quantitative confirmations — 使用repeat确认quantitative behaviour is consistent（貌似是最新研究成果时间攻击对应的配置）</li>
+<li><input disabled="" type="checkbox"> include query-param in cachebusters</li>
+<li><input disabled="" type="checkbox"> include origin in cachebusters</li>
+<li><input disabled="" type="checkbox"> include path in cachebusters</li>
+<li><input disabled="" type="checkbox"> include via in cachebusters</li>
+<li><input disabled="" type="checkbox"> misc header cachebusters</li>
+<li><input disabled="" type="checkbox"> custom header cachebusters</li>
+<li><input disabled="" type="checkbox"> overlong-detection — use overlong dns labels for detection（使用超长的 DNS 标签进行检测）</li>
+<li><input disabled="" type="checkbox"> auto-scan for proxyable destinations — If wildcard-routing is detected, try to enumerate accessible domains. To configure related settings, run ‘ldentify proxyable destinations’</li>
+<li><input disabled="" type="checkbox"> mining: filter 500s — Don’t report hostnames that return a 50X status。（默认开启，感觉可以关闭）</li>
+<li><input disabled="" type="checkbox"> subdomains-builtin — 使用内置字典来发现 proxyable destinations</li>
+<li><input disabled="" type="checkbox"> subdomains-generic — 使用自定义字典来发现 proxyable destinations</li>
+<li><input disabled="" type="checkbox"> subdomains-specific — 直接使用准备好的域名列表（强烈推荐配置上，会有超大范围的隐藏攻击面）</li>
+<li><input disabled="" type="checkbox"> external subdomain lookup — 使用 columbus.elmasy.com 发现子域名</li>
+<li><input disabled="" type="checkbox"> I read the docs — 确保看过文档 <a target="_blank" rel="noopener" href="https://github.com/PortSwigger/param-miner/blob/master/proxy.md">https://github.com/PortSwigger/param-miner/blob/master/proxy.md</a></li>
+<li><input disabled="" type="checkbox"> params: dummy — 进行基于参数的扫描时，向每个请求添加一个虚拟参数<ul>
+<li><input disabled="" type="checkbox"> dummy param name — 感觉可以结合类似于 debug&#x3D;1 这种手法，来探测</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> params: query — 进行基于参数的扫描时，扫描query params</li>
+<li><input disabled="" type="checkbox"> params: body — 进行基于参数的扫描时，扫描body params</li>
+<li><input disabled="" type="checkbox"> params: xff — 进行基于参数的扫描时，扫描xff</li>
+<li><input disabled="" type="checkbox"> params: cookie — 进行基于参数的扫描时，扫描cookie</li>
+<li><input disabled="" type="checkbox"> params: rest — 进行基于参数的扫描时，扫描潜在的REST parameters</li>
+<li><input disabled="" type="checkbox"> params: scheme — 进行基于HTTP&#x2F;2的参数的扫描时，扫描 <code>:scheme header</code></li>
+<li><input disabled="" type="checkbox"> params: scheme-host — 进行基于HTTP&#x2F;2的参数的扫描时，在 :scheme 里面创建一个假的 host 并扫描</li>
+<li><input disabled="" type="checkbox"> params: scheme-path — 进行基于HTTP&#x2F;2的参数的扫描时，在 :scheme 里面创建一个假的 path 并扫描</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/07/10/Kali%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%A6%82%E4%BD%95%E4%BC%98%E9%9B%85%E7%BF%BB%E5%A2%99/" rel="prev" title="Kali虚拟机如何优雅翻墙">
+                  <i class="fa fa-angle-left"></i> Kali虚拟机如何优雅翻墙
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/10/17/HTB-Machines-Cicada/" rel="next" title="HTB-Machines-Cicada">
+                  HTB-Machines-Cicada <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Lamber</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">6k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">22 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
