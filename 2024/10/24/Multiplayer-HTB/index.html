@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"lamber-maybe.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="HTB pro labs限制了靶场的openvpn代理只能在一台机器上开启，如果有第二台机器尝试连接靶场的openvpn文件，就会连接不上。那我如果要和朋友们一起打HTB pro labs要怎么办呢？">
+    <meta name="description" content="HTB pro labs限制了靶场的openvpn代理只能在一台机器上开启，如果有第二台机器尝试连接靶场的openvpn文件，就会连接不上。那我如果要和朋友们一起打HTB pro labs要怎么办呢？ 方案一、在 vps 上连接靶场，玩家登上 vps 进行游玩最初的方案，是在 vps 连接靶场的openvpn代理，每个玩家直接登录该 vps 游玩。 但是这个方案很快就否决了，原因如下：  vps">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Multiplayer-HTB">
+<meta property="og:title" content="如何多人一起打HackTheBox">
 <meta property="og:url" content="https://lamber-maybe.com/2024/10/24/Multiplayer-HTB/index.html">
 <meta property="og:site_name" content="Lamber&#39;s Blog">
-<meta property="og:description" content="HTB pro labs限制了靶场的openvpn代理只能在一台机器上开启，如果有第二台机器尝试连接靶场的openvpn文件，就会连接不上。那我如果要和朋友们一起打HTB pro labs要怎么办呢？">
+<meta property="og:description" content="HTB pro labs限制了靶场的openvpn代理只能在一台机器上开启，如果有第二台机器尝试连接靶场的openvpn文件，就会连接不上。那我如果要和朋友们一起打HTB pro labs要怎么办呢？ 方案一、在 vps 上连接靶场，玩家登上 vps 进行游玩最初的方案，是在 vps 连接靶场的openvpn代理，每个玩家直接登录该 vps 游玩。 但是这个方案很快就否决了，原因如下：  vps">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/chisel_collaboration_1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/chisel_collaboration_2.png">
@@ -33,8 +33,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/kali-to-vps.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/kali-to-htb.jpg">
 <meta property="article:published_time" content="2024-10-24T08:33:14.000Z">
-<meta property="article:modified_time" content="2024-10-24T11:47:21.933Z">
+<meta property="article:modified_time" content="2024-10-24T16:22:57.560Z">
 <meta property="article:author" content="Lamber">
+<meta property="article:tag" content="Google,Sitemap,SEO,Hexo,Security,HackThebox,Tryhackme,Hackerone,Red Team,Blue Team">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/chisel_collaboration_1.png">
 
@@ -43,10 +44,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lamber-maybe.com/2024/10/24/Multiplayer-HTB/","path":"2024/10/24/Multiplayer-HTB/","title":"Multiplayer-HTB"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://lamber-maybe.com/2024/10/24/Multiplayer-HTB/","path":"2024/10/24/Multiplayer-HTB/","title":"如何多人一起打HackTheBox"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Multiplayer-HTB | Lamber's Blog</title>
+<title>如何多人一起打HackTheBox | Lamber's Blog</title>
   
 
 
@@ -69,6 +70,9 @@
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -79,6 +83,7 @@
       <p class="site-title">Lamber's Blog</p>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">终身学习</p>
   </div>
 
   <div class="site-nav-right">
@@ -89,6 +94,10 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
 
 
 
@@ -129,6 +138,16 @@
           <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -172,12 +191,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Multiplayer-HTB | Lamber's Blog">
+      <meta itemprop="name" content="如何多人一起打HackTheBox | Lamber's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Multiplayer-HTB
+          如何多人一起打HackTheBox
         </h1>
 
         <div class="post-meta-container">
@@ -187,9 +206,28 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-10-24 16:33:14 / 修改时间：19:47:21" itemprop="dateCreated datePublished" datetime="2024-10-24T16:33:14+08:00">2024-10-24</time>
+      <time title="创建时间：2024-10-24 16:33:14" itemprop="dateCreated datePublished" datetime="2024-10-24T16:33:14+08:00">2024-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-25 00:22:57" itemprop="dateModified" datetime="2024-10-25T00:22:57+08:00">2024-10-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/HackTheBox/" itemprop="url" rel="index"><span itemprop="name">HackTheBox</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/HackTheBox/Machines/" itemprop="url" rel="index"><span itemprop="name">Machines</span></a>
+        </span>
     </span>
 
   
@@ -217,8 +255,6 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>HTB pro labs限制了靶场的openvpn代理只能在一台机器上开启，<br>如果有第二台机器尝试连接靶场的openvpn文件，就会连接不上。那我如果要和朋友们一起打HTB pro labs要怎么办呢？</p>
-<span id="more"></span>
-
 <h2 id="方案一、在-vps-上连接靶场，玩家登上-vps-进行游玩"><a href="#方案一、在-vps-上连接靶场，玩家登上-vps-进行游玩" class="headerlink" title="方案一、在 vps 上连接靶场，玩家登上 vps 进行游玩"></a>方案一、在 vps 上连接靶场，玩家登上 vps 进行游玩</h2><p>最初的方案，是在 vps 连接靶场的openvpn代理，每个玩家直接登录该 vps 游玩。</p>
 <p>但是这个方案很快就否决了，原因如下：</p>
 <ol>
@@ -274,13 +310,47 @@
     
 
     <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Lamber
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://lamber-maybe.com/2024/10/24/Multiplayer-HTB/" title="如何多人一起打HackTheBox">https://lamber-maybe.com/2024/10/24/Multiplayer-HTB/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Lamber28793923">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+      </div>
+  </div>
+</div>
+
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/10/19/Ubuntu-LAMP/" rel="prev" title="Ubuntu-LAMP">
-                  <i class="fa fa-angle-left"></i> Ubuntu-LAMP
+                <a href="/2024/10/19/Ubuntu-LAMP/" rel="prev" title="Ubuntu22.04搭建WEB环境(LAMP环境)">
+                  <i class="fa fa-angle-left"></i> Ubuntu22.04搭建WEB环境(LAMP环境)
                 </a>
             </div>
             <div class="post-nav-item">
