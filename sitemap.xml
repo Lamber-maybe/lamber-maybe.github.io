@@ -85,7 +85,7 @@
 
   <url>
     <loc>https://lamber-maybe.com/</loc>
-    <lastmod>2024-10-24</lastmod>
+    <lastmod>2024-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -93,14 +93,14 @@
   
   <url>
     <loc>https://lamber-maybe.com/tags/Windows/</loc>
-    <lastmod>2024-10-24</lastmod>
+    <lastmod>2024-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lamber-maybe.com/tags/%E9%9D%B6%E5%9C%BA/</loc>
-    <lastmod>2024-10-24</lastmod>
+    <lastmod>2024-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -109,14 +109,14 @@
   
   <url>
     <loc>https://lamber-maybe.com/categories/HackTheBox/</loc>
-    <lastmod>2024-10-24</lastmod>
+    <lastmod>2024-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lamber-maybe.com/categories/HackTheBox/Machines/</loc>
-    <lastmod>2024-10-24</lastmod>
+    <lastmod>2024-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
