@@ -1252,7 +1252,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #880d05;
+    background: #ace0ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2477,6 +2477,9 @@ ul.breadcrumb li:last-child {
 .tag-cloud-10 {
   border-bottom-color: #111;
   color: #111;
+}
+.utterances {
+  max-width: unset;
 }
 mark.search-keyword {
   background: transparent;
