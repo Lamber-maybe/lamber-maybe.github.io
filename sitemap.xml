@@ -2,24 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lamber-maybe.com/links/index.html</loc>
-    
-    <lastmod>2024-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://lamber-maybe.com/2024/10/24/HTB-Pro-Labs-Dante/</loc>
-    
-    <lastmod>2024-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://lamber-maybe.com/2024/10/28/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E7%BA%A2%E6%A1%A5%E6%9D%AF%E5%9F%9F%E6%B8%97%E9%80%8F%E6%8C%91%E6%88%98%E8%B5%9BWP/</loc>
     
     <lastmod>2024-11-01</lastmod>
@@ -39,6 +21,24 @@
   
   <url>
     <loc>https://lamber-maybe.com/2024/10/24/Multiplayer-HTB/</loc>
+    
+    <lastmod>2024-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lamber-maybe.com/2024/10/24/HTB-Pro-Labs-Dante/</loc>
+    
+    <lastmod>2024-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lamber-maybe.com/links/index.html</loc>
     
     <lastmod>2024-11-01</lastmod>
     
