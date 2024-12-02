@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lamber-maybe.com/links/index.html</loc>
+    
+    <lastmod>2024-12-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lamber-maybe.com/2024/10/14/Burp%E6%8F%92%E4%BB%B6%E4%B9%8BParam-Miner/</loc>
+    
+    <lastmod>2024-11-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://lamber-maybe.com/2024/10/28/%E7%AC%AC%E4%BA%8C%E5%B1%8A%E7%BA%A2%E6%A1%A5%E6%9D%AF%E5%9F%9F%E6%B8%97%E9%80%8F%E6%8C%91%E6%88%98%E8%B5%9BWP/</loc>
     
     <lastmod>2024-11-01</lastmod>
@@ -30,15 +48,6 @@
   
   <url>
     <loc>https://lamber-maybe.com/2024/10/24/HTB-Pro-Labs-Dante/</loc>
-    
-    <lastmod>2024-11-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://lamber-maybe.com/links/index.html</loc>
     
     <lastmod>2024-11-01</lastmod>
     
@@ -92,15 +101,6 @@
   </url>
   
   <url>
-    <loc>https://lamber-maybe.com/2024/10/14/Burp%E6%8F%92%E4%BB%B6%E4%B9%8BParam-Miner/</loc>
-    
-    <lastmod>2024-10-24</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://lamber-maybe.com/2024/10/19/Ubuntu-LAMP/</loc>
     
     <lastmod>2024-10-24</lastmod>
@@ -112,7 +112,7 @@
 
   <url>
     <loc>https://lamber-maybe.com/</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2024-12-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -120,28 +120,28 @@
   
   <url>
     <loc>https://lamber-maybe.com/tags/Windows/</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2024-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lamber-maybe.com/tags/%E9%9D%B6%E5%9C%BA/</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2024-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lamber-maybe.com/tags/%E5%9F%9F/</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2024-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lamber-maybe.com/tags/%E7%BA%A2%E6%A1%A5%E6%9D%AF/</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2024-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -150,21 +150,21 @@
   
   <url>
     <loc>https://lamber-maybe.com/categories/HackTheBox/</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2024-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lamber-maybe.com/categories/HackTheBox/Machines/</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2024-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://lamber-maybe.com/categories/HackTheBox/Pro-Labs/</loc>
-    <lastmod>2024-11-01</lastmod>
+    <lastmod>2024-12-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
