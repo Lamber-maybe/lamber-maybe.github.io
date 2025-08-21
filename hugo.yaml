@@ -1,5 +1,18 @@
 # Hugo configuration file
-title: My Site
+title: Lamber's Blog
+
+
+defaultContentLanguage: zh-CN
+languages:
+  en:
+    languageName: English
+    weight: 1
+    title: Lamber's Blog
+  zh-cn:
+    languageName: 简体中文
+    languageCode: zh-CN
+    weight: 4
+    title: Lamber的博客
 
 # import hextra as module
 module:
@@ -21,11 +34,15 @@ menu:
     - name: Docs
       pageRef: /docs
       weight: 1
+    - identifier: blog
+      name: Blog
+      pageRef: /blog
+      weight: 3
     - name: About
       pageRef: /about
       weight: 2
     - name: Contact ↗
-      url: "https://github.com/imfing"
+      url: "https://github.com/Lamber-maybe"
       weight: 3
     - name: Search
       weight: 4
@@ -33,7 +50,7 @@ menu:
         type: search
     - name: GitHub
       weight: 5
-      url: "https://github.com/imfing/hextra-starter-template"
+      url: "https://github.com/Lamber-maybe/lamber-maybe.github.io"
       params:
         icon: github
     - name: Twitter
@@ -54,3 +71,24 @@ params:
   editURL:
     enable: true
     base: "https://github.com/imfing/hextra-starter-template/edit/main/content"
+
+  blog:
+    list:
+      displayTags: true
+      # date | lastmod | publishDate | title | weight
+      sortBy: date
+      sortOrder: desc # or "asc"
+      # Pagination
+      pagerSize: 20
+
+    article:
+      displayPagination: true
+
+  toc:
+    displayTags: true
+
+  highlight:
+    copy:
+      enable: true
+      # hover | always
+      display: hover
