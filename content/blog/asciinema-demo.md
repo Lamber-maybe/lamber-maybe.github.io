@@ -89,7 +89,7 @@ tags: ["asciinema", "demo", "terminal"]
 在你的Markdown文件中，使用以下语法：
 
 ```markdown
-{{< asciinema file="your-file.cast" >}}
+{{</* asciinema file="your-file.cast" */>}}
 ```
 
 ### 可用参数
