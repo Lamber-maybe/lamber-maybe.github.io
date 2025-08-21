@@ -14,6 +14,8 @@ tags:
 
 > 关键词：Guest账户、RID 爆破、MSSQL xp_dirtree、ESC7提权
 
+<!--more-->
+
 1. 使用 `Guest` 账户枚举 SMB 服务，发现受害机启用了 `Guest` 账户，但没有找到有价值的文件共享。
 2. 使用 `Guest` 账户进行 RID 爆破，拿到域用户清单。
 3. 使用常见弱密码进行爆破，拿到 `Operator` 账户的密码。
@@ -21,6 +23,8 @@ tags:
 5. 在网站备份文件中找到 `raven` 账户
 6. 使用 `raven` 账户枚举 ADCS 服务，发现存在 `ESC7` 漏洞。
 7. 使用 `ESC7` 漏洞提权到 `Administrator`
+
+
 
 ## 01. 信息收集
 

@@ -7,12 +7,12 @@ languages:
   en:
     languageName: English
     weight: 1
-    title: Lamber's Blog
+    title: Lamber
   zh-cn:
     languageName: 简体中文
     languageCode: zh-CN
     weight: 4
-    title: Lamber的博客
+    title: Lamber
 
 # import hextra as module
 module:
@@ -29,20 +29,21 @@ markup:
   highlight:
     noClasses: false
 
+enableInlineShortcodes: true
+
 menu:
   main:
-    - name: Docs
+    - identifier: documentation
+      name: Docs
       pageRef: /docs
       weight: 1
     - identifier: blog
       name: Blog
       pageRef: /blog
-      weight: 3
-    - name: About
-      pageRef: /about
       weight: 2
-    - name: Contact ↗
-      url: "https://github.com/Lamber-maybe"
+    - identifier: about
+      name: About
+      pageRef: /about
       weight: 3
     - name: Search
       weight: 4
@@ -53,16 +54,22 @@ menu:
       url: "https://github.com/Lamber-maybe/lamber-maybe.github.io"
       params:
         icon: github
-    - name: Twitter
-      weight: 6
-      url: "https://twitter.com/"
-      params:
-        icon: x-twitter
 
 params:
   navbar:
     displayTitle: true
-    displayLogo: false
+    displayLogo: true
+    logo:
+      path: /images/xiaolin.jpg
+      # width: 40
+      # height: 20
+      # link: /
+    width: wide
+
+  theme:
+    # light | dark | system
+    default: system
+    displayToggle: true
 
   footer:
     displayCopyright: false
@@ -92,3 +99,9 @@ params:
       enable: true
       # hover | always
       display: hover
+
+  page:
+    # full (100%), wide (90rem), normal (80rem)
+    width: normal
+    # tabs:
+    #   sync: true
