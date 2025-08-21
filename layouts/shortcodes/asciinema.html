@@ -15,7 +15,7 @@
 {{- $labeledMarkers := .Get "labeledMarkers" | default "" -}}
 {{- $fontSize := .Get "fontSize" | default "15px" -}}
 {{- $lineHeight := .Get "lineHeight" | default "1.33333334" -}}
-{{- $width := .Get "width" | default "auto" -}}
+{{- $width := .Get "width" | default "100%" -}}
 {{- $height := .Get "height" | default "auto" -}}
 
 {{- /* 构建marker配置 */ -}}
@@ -57,7 +57,23 @@
        data-font-size="{{ $fontSize }}"
        data-line-height="{{ $lineHeight }}"
        {{- if $startAt -}}data-start-at="{{ $startAt }}"{{- end -}}
-       {{- if $poster -}}data-poster="{{ $poster }}"{{- end -}}
+       {{- if ne $poster "" -}}data-poster="{{ $poster | safeURL }}"{{- end -}}
        {{- if $markerConfig -}}data-markers="{{ $markerConfig | safeJS }}"{{- end -}}>
   </div>
 </div>
+
+<style>
+.ap-player .ap-overlay-start .ap-play-button {
+    font-size: 0px;
+    position: relative;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    color: white;
+    height: 80px;
+    max-height: 66%;
+    margin: auto;
+}
+</style>

