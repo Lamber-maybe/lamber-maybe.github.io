@@ -13,13 +13,13 @@ tags: ["asciinema", "demo", "terminal"]
 
 最简单的用法，只需要指定cast文件路径：
 
-{{< asciinema file="/cast/demo.cast" >}}
+{{< asciinema file="demo.cast" >}}
 
 ## 带主题的播放器
 
 你可以指定不同的主题：
 
-{{< asciinema file="/cast/demo.cast" theme="dracula" >}}
+{{< asciinema file="demo.cast" theme="dracula" >}}
 
 ## Marker点功能
 
@@ -27,38 +27,38 @@ tags: ["asciinema", "demo", "terminal"]
 
 在特定时间点添加标记，用于导航：
 
-{{< asciinema file="/cast/demo.cast" markers="2.0,4.0,6.0,8.0" >}}
+{{< asciinema file="demo.cast" markers="2.0,4.0,6.0,8.0" >}}
 
 ### 带标签的Marker点
 
 在特定时间点添加带标签的标记：
 
-{{< asciinema file="/cast/demo.cast" labeledMarkers="2.0:ls命令,4.0:查看文件,6.0:执行命令,8.0:显示路径" >}}
+{{< asciinema file="demo.cast" labeledMarkers="2.0:ls命令,4.0:查看文件,6.0:执行命令,8.0:显示路径" >}}
 
 ### 混合Marker点
 
 同时使用普通marker和labeled marker：
 
-{{< asciinema file="/cast/demo.cast" markers="1.0,3.0,5.0" labeledMarkers="2.0:ls命令,4.0:查看文件,6.0:执行命令" >}}
+{{< asciinema file="demo.cast" markers="1.0,3.0,5.0" labeledMarkers="2.0:ls命令,4.0:查看文件,6.0:执行命令" >}}
 
 ## 自定义播放设置
 
 你可以调整播放速度、字体大小等：
 
-{{< asciinema file="/cast/demo.cast" speed="2" fontSize="18px" theme="monokai" >}}
+{{< asciinema file="demo.cast" speed="2" fontSize="18px" theme="monokai" >}}
 
 ## 自动播放和循环
 
-{{< asciinema file="/cast/demo.cast" autoplay="true" loop="true" >}}
+{{< asciinema file="demo.cast" autoplay="true" loop="true" >}}
 
 ## 从特定时间开始播放
 
-{{< asciinema file="/cast/demo.cast" startAt="3.0" >}}
+{{< asciinema file="demo.cast" startAt="3.0" >}}
 
 ## 完整配置示例
 
 {{< asciinema 
-    file="/cast/demo.cast" 
+    file="demo.cast" 
     theme="solarized-dark" 
     speed="1.5" 
     fontSize="16px" 
@@ -74,7 +74,7 @@ tags: ["asciinema", "demo", "terminal"]
 这是一个更复杂的示例，展示了如何设置一个Node.js项目：
 
 {{< asciinema 
-    file="/cast/advanced-demo.cast" 
+    file="advanced-demo.cast" 
     theme="dracula" 
     speed="2" 
     fontSize="14px" 
@@ -89,7 +89,7 @@ tags: ["asciinema", "demo", "terminal"]
 在你的Markdown文件中，使用以下语法：
 
 ```markdown
-\{\{< asciinema file="/cast/your-file.cast" >\}\}
+{{< asciinema file="your-file.cast" >}}
 ```
 
 ### 可用参数

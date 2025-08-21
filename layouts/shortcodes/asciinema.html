@@ -1,5 +1,9 @@
 {{- /* 获取参数 */ -}}
 {{- $castFile := .Get "file" | default (.Get 0) -}}
+{{- /* 处理cast文件路径，确保使用static目录 */ -}}
+{{- if not (hasPrefix $castFile "/") -}}
+  {{- $castFile = printf "/casts/%s" $castFile -}}
+{{- end -}}
 {{- $id := .Get "id" | default (printf "asciinema-%d" (now.Unix)) -}}
 {{- $theme := .Get "theme" | default "asciinema" -}}
 {{- $speed := .Get "speed" | default 1 -}}
