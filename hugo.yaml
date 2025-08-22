@@ -1,6 +1,9 @@
 # Hugo configuration file
 title: Lamber's Blog
 
+# services:
+#   googleAnalytics:
+#     ID: G-MEASUREMENT_ID
 
 defaultContentLanguage: zh-CN
 languages:

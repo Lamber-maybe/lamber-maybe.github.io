@@ -11,7 +11,7 @@ layout: hextra-home
 
 <div class="hx:mt-6 hx:mb-6">
 {{< hextra/hero-headline >}}
-  你所热爱的&nbsp;<br class="hx:sm:block hx:hidden" />就是你的生活
+  “现在”&nbsp;<br class="hx:sm:block hx:hidden" />永远都是开始的最好时机
 {{< /hextra/hero-headline >}}
 </div>
 
