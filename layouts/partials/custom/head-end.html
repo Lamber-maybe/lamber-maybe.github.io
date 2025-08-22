@@ -1,16 +1,8 @@
-{{/* 加载asciinema player的CSS和JS文件 */}}
+{{/* 加载asciinema player资源 */}}
 {{ $asciinemaCSS := resources.Get "css/asciinema-player.css" }}
 {{ $asciinemaJS := resources.Get "js/asciinema-player.min.js" }}
 {{ $asciinemaInitJS := resources.Get "js/asciinema-init.js" }}
 
-{{ if $asciinemaCSS }}
-<link rel="stylesheet" type="text/css" href="{{ $asciinemaCSS.RelPermalink }}" />
-{{ end }}
-
-{{ if $asciinemaJS }}
-<script src="{{ $asciinemaJS.RelPermalink }}"></script>
-{{ end }}
-
-{{ if $asciinemaInitJS }}
-<script src="{{ $asciinemaInitJS.RelPermalink }}"></script>
-{{ end }}
+{{ if $asciinemaCSS }}<link rel="stylesheet" href="{{ $asciinemaCSS.RelPermalink }}" />{{ end }}
+{{ if $asciinemaJS }}<script src="{{ $asciinemaJS.RelPermalink }}"></script>{{ end }}
+{{ if $asciinemaInitJS }}<script src="{{ $asciinemaInitJS.RelPermalink }}"></script>{{ end }}

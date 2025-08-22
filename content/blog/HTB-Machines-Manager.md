@@ -82,7 +82,7 @@ Open 10.10.11.236:52587
 
 攻击过程如下
 
-{{< asciinema file="HTB-Machines-Manager/rid_cycling.cast" poster="npt:0:24" labeledMarkers="0.5:探测匿名账户是否启用,11.1:探测来宾账户是否启用,24.3:RID爆破拿到用户名"  >}}
+{{< asciinema file="HTB-Machines-Manager/rid_cycling.cast" poster="npt:0:24" markers="0.5: 探测匿名账户是否启用, 11.1: 探测来宾账户是否启用, 24.3:RID爆破拿到用户名, 15"  >}}
 
 其中 `SidTypeUser` 代表用户，我们可以得到一份用户清单 `usernames.txt`
 

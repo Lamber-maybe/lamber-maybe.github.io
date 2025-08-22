@@ -33,27 +33,29 @@ tags: ["asciinema", "demo", "terminal"]
 
 在特定时间点添加带标签的标记：
 
-{{< asciinema file="demo.cast" labeledMarkers="2.0:ls命令,4.0:查看文件,6.0:执行命令,8.0:显示路径" >}}
+{{< asciinema file="demo.cast" markers="2.0:ls命令,4.0:查看文件,6.0:执行命令,8.0:显示路径" >}}
 
 ### 混合Marker点
 
-同时使用普通marker和labeled marker：
+在同一个参数中混合使用普通marker和带标签的marker：
 
-{{< asciinema file="demo.cast" markers="1.0,3.0,5.0" labeledMarkers="2.0:ls命令,4.0:查看文件,6.0:执行命令" >}}
+{{< asciinema file="demo.cast" markers="1.0,3.0,5.0,2.0:ls命令,4.0:查看文件,6.0:执行命令" >}}
+
+### 空格处理测试
+
+测试各种空格情况，确保解析正确：
+
+{{< asciinema file="demo.cast" markers="2.0 , 4.0 , 6.0 , 1.0 : 开始 , 3.0 : 执行 , 5.0 : 结束" >}}
 
 ## 自定义播放设置
 
-你可以调整播放速度、字体大小等：
+你可以调整播放速度等：
 
-{{< asciinema file="demo.cast" speed="2" fontSize="18px" theme="monokai" >}}
+{{< asciinema file="demo.cast" speed="2" theme="monokai" >}}
 
 ## 自动播放和循环
 
 {{< asciinema file="demo.cast" autoplay="true" loop="true" >}}
-
-## 从特定时间开始播放
-
-{{< asciinema file="demo.cast" startAt="3.0" >}}
 
 ## 完整配置示例
 
@@ -61,12 +63,7 @@ tags: ["asciinema", "demo", "terminal"]
     file="demo.cast" 
     theme="solarized-dark" 
     speed="1.5" 
-    fontSize="16px" 
-    lineHeight="1.4" 
-    markers="2.0,4.0,6.0" 
-    labeledMarkers="3.0:文件列表,5.0:文件内容,7.0:命令执行" 
-    width="90%" 
-    height="400px" 
+    markers="2.0,4.0,6.0,3.0:文件列表,5.0:文件内容,7.0:命令执行" 
 >}}
 
 ## 高级示例 - Node.js项目设置
@@ -77,11 +74,7 @@ tags: ["asciinema", "demo", "terminal"]
     file="advanced-demo.cast" 
     theme="dracula" 
     speed="2" 
-    fontSize="14px" 
-    markers="4.0,7.0,10.0,12.0,14.0,17.0,19.0" 
-    labeledMarkers="2.0:开始设置,4.0:创建项目目录,7.0:初始化npm项目,10.0:安装依赖,12.0:查看文件结构,14.0:创建服务器代码,17.0:启动服务器,19.0:测试API" 
-    width="95%" 
-    height="500px" 
+    markers="4.0,7.0,10.0,12.0,14.0,17.0,19.0,2.0:开始设置,4.0:创建项目目录,7.0:初始化npm项目,10.0:安装依赖,12.0:查看文件结构,14.0:创建服务器代码,17.0:启动服务器,19.0:测试API" 
 >}}
 
 ## 使用方法
@@ -99,14 +92,12 @@ tags: ["asciinema", "demo", "terminal"]
 - `speed`: 播放速度（默认：1）
 - `autoplay`: 是否自动播放（默认：false）
 - `loop`: 是否循环播放（默认：false）
-- `startAt`: 开始播放的时间点
 - `poster`: 海报图片URL
-- `markers`: 普通marker点，用逗号分隔的时间点
-- `labeledMarkers`: 带标签的marker点，格式为"时间:标签,时间:标签"
-- `fontSize`: 字体大小（默认：15px）
-- `lineHeight`: 行高（默认：1.33333334）
-- `width`: 容器宽度（默认：100%）
-- `height`: 容器高度（默认：auto）
+- `markers`: marker点，支持混合格式：
+  - 普通marker：`2.0,4.0,6.0`
+  - 带标签marker：`2.0:ls命令,4.0:查看文件`
+  - 混合格式：`2.0,4.0,6.0,1.0:开始,3.0:执行,5.0:结束`
+  - **支持空格**：`2.0 , 4.0 , 1.0 : 开始 , 3.0 : 执行`
 
 ### 支持的主题
 
