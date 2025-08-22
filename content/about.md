@@ -1,6 +1,7 @@
 ---
 title: whoami
 type: about
+toc: false
 ---
 
 #### 关于我
