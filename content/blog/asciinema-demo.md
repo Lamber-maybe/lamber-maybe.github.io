@@ -1,6 +1,6 @@
 ---
 title: "Asciinema Player 演示"
-date: 2025-01-01T12:00:00+08:00
+date: 2025-08-21
 description: "演示如何在Hugo博客中使用asciinema player播放终端录制文件"
 tags: ["asciinema", "demo", "terminal"]
 ---

@@ -1,6 +1,6 @@
 ---
 title: HTB-Machines-Manager
-date: 2025-01-01
+date: 2025-08-21
 authors:
   - name: Lamber
     link: https://github.com/Lamber-maybe
