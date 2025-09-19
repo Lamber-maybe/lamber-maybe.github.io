@@ -36,9 +36,9 @@ enableInlineShortcodes: true
 
 menu:
   main:
-    - identifier: documentation
-      name: Docs
-      pageRef: /docs
+    - identifier: hackthebox
+      name: HackTheBox
+      pageRef: /hackthebox
       weight: 1
     - identifier: blog
       name: Blog
@@ -109,6 +109,6 @@ params:
 
   page:
     # full (100%), wide (90rem), normal (80rem)
-    width: normal
+    width: wide
     # tabs:
     #   sync: true
