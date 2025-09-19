@@ -7,11 +7,11 @@ authors:
     link: https://github.com/Lamber-maybe
     image: https://github.com/Lamber-maybe.png
 tags:
-  - HackTheBox
   - Windows
   - RID Cycling
   - ESC7
   - MSSQL
+  - Medium
 ---
 
 ## 00. 摘要
