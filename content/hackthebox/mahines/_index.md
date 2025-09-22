@@ -1,8 +1,8 @@
 ---
 title: Machines
 type: docs
-prev: docs/first-page
-next: docs/folder/leaf
+prev: hackthebox/
+next: hackthebox/mahines/granny/
 sidebar:
   open: true
 ---
@@ -20,12 +20,21 @@ sidebar:
 
 {{< cards >}}
   {{< card link="/tags/windows" title="Windows">}}
+  {{< card link="/tags/winrm" title="WINRM">}}
   {{< card link="/tags/mssql" title="MSSQL">}}
 {{< /cards >}}
 
 ## 攻击方式
 
 {{< cards >}}
+  {{< card link="/tags/adcs-esc1" title="ADCS ESC1">}}
+  {{< card link="/tags/adcs-esc7" title="ADCS ESC7">}}
+  {{< card link="/tags/asreproast" title="ASREPRoast">}}
+  {{< card link="/tags/dcsync" title="DCSync">}}
+  {{< card link="/tags/group-policy-preferences" title="Group Policy Preferences">}}
+  {{< card link="/tags/kerberoast" title="Kerberoast">}}
+  {{< card link="/tags/pass-the-certificate" title="Pass The Certificate">}}
   {{< card link="/tags/rid-cycling" title="RID Cycling">}}
-  {{< card link="/tags/esc7" title="ADCS ESC7">}}
+  {{< card link="/tags/shadow-credentials" title="Shadow Credentials">}}
+  {{< card link="/tags/targeted-kerberoasting" title="Targeted Kerberoasting">}}
 {{< /cards >}}

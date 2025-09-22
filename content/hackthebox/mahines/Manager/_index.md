@@ -1,17 +1,13 @@
 ---
 title: Manager
 date: 2025-08-21
-type: docs
-authors:
-  - name: Lamber
-    link: https://github.com/Lamber-maybe
-    image: https://github.com/Lamber-maybe.png
+weight: 572
 tags:
-  - Windows
-  - RID Cycling
-  - ESC7
-  - MSSQL
-  - Medium
+  - medium
+  - windows
+  - rid-cycling
+  - adcs-esc7
+  - mssql
 ---
 
 ## 00. 摘要
