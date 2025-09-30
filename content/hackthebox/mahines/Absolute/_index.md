@@ -16,7 +16,7 @@ tags:
 > 关键词：信息泄露、ASREProast、LDAP侦察、Shadow Credentials、Kerberos Relay
 
 1. 从网站的图片EXIF数据中提取出用户名清单
-2. 使用 ASREProast攻击，获得有效的域用户，并获得 `d.klay` 用户的 TGT
+2. 使用 ASREProast 攻击，获得有效的域用户，并获得 `d.klay` 用户的 TGT
 3. 爆破该 TGT 得到 `d.klay` 的密码
 4. 信息收集，得到 `svc_smb` 账户，并使用 `d.klay` 账户收集Bloodhound数据备用
 5. 信息收集，得到 `test.exe`

@@ -169,7 +169,7 @@ password: GPPstillStandingStrong2k18
 
 ![Active-bloodhound.png](Active-bloodhound.png)
 
-拿到账户密码之后，使用 [[RustHound]] 收集域信息，然后用 [[BloodHound]] 分析，发现可以对Administrator账户进行 [[Kerberoast]] 攻击
+拿到账户密码之后，使用 [[RustHound]] 收集域信息，然后用 [[../../../blog/BloodHound-Tips]] 分析，发现可以对Administrator账户进行 [[Kerberoast]] 攻击
 # 04. Kerberoast攻击提权到Administrator
 
 接下来我们来利用 Kerberoast 攻击获取 `Administrator` 权限
