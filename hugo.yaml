@@ -40,6 +40,8 @@ menu:
       name: HackTheBox
       pageRef: /hackthebox
       weight: 1
+      params:
+        type: docs
     - identifier: blog
       name: Blog
       pageRef: /blog

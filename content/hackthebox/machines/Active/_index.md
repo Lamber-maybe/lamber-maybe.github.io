@@ -7,7 +7,8 @@ tags:
   - group-policy-preferences
   - kerberoast
 ---
-# 00. 摘要
+
+## 00. 摘要
 
 > 关键词：匿名账户、组策略首选项攻击、Kerberoast攻击
 
@@ -16,7 +17,7 @@ tags:
 3. 分析Bloodhound数据，发现可以使用Kerberoast攻击 `Administrator` 账户
 4. 使用Kerberoast攻击得到ST，然后使用 john 爆破该ST获得 `Administrator` 账户的明文密码
 
-# 01. 信息收集
+## 01. 信息收集
 
 使用 `rustscan` 进行端口扫描，发现如下开放端口
 
@@ -57,7 +58,7 @@ Open 10.10.10.100:49168
 Open 10.10.10.100:49165
 ```
 
-# 02. 使用匿名账户枚举 SMB服务
+## 02. 使用匿名账户枚举 SMB服务
 
 在没有任何账户的情况下，尝试使用Windows内置的Guest账户枚举SMB文件共享
 
@@ -165,12 +166,13 @@ username: SVC_TGS
 password: GPPstillStandingStrong2k18
 ```
 
-# 03. 使用Bloodhound收集域信息
+## 03. 使用Bloodhound收集域信息
 
 ![Active-bloodhound.png](Active-bloodhound.png)
 
 拿到账户密码之后，使用 [[RustHound]] 收集域信息，然后用 [[../../../blog/BloodHound-Tips]] 分析，发现可以对Administrator账户进行 [[Kerberoast]] 攻击
-# 04. Kerberoast攻击提权到Administrator
+
+## 04. Kerberoast攻击提权到Administrator
 
 接下来我们来利用 Kerberoast 攻击获取 `Administrator` 权限
 
@@ -230,7 +232,7 @@ active\administrator
 ```
 
 ---
-# 参考链接
+## 参考链接
 1. 文章：使用匿名账户访问SMB
    https://book.hacktricks.wiki/en/network-services-pentesting/pentesting-smb/index.html#list-shared-folders
 2. 文章：组策略首选项攻击

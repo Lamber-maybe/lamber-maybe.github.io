@@ -1,6 +1,5 @@
 ---
 title: Expressway
-date: 2025-09-19
 weight: 736
 tags:
   - linux
@@ -8,6 +7,12 @@ tags:
   - ike-scan
   - cve-2025-32463
 ---
+
+## 00. 摘要
+
+> 关键词：UDP Scan、IKE Scan、CVE-2025-32463
+
+1. 端口扫描
 
 
 端口扫描：
@@ -38,3 +43,5 @@ hashcat -m 5400 hash.txt /usr/share/wordlists/rockyou.txt
 信息收集，`sudo -V` 发现 sudo 版本是 1.9.17
 
 网上搜索，发现可以用 [CVE-2025-32463](https://www.exploit-db.com/exploits/52352) 提权 
+
+

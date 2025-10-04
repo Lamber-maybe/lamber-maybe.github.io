@@ -1,6 +1,5 @@
 ---
 title: Intelligence
-date: 2025-08-21
 weight: 357
 tags:
   - medium

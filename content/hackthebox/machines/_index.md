@@ -1,8 +1,8 @@
 ---
 title: Machines
-type: docs
-prev: hackthebox/
-next: hackthebox/mahines/granny/
+weight: 1
+prev: /hackthebox
+next: /hackthebox/machines/granny
 sidebar:
   open: true
 ---

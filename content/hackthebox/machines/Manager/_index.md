@@ -1,6 +1,5 @@
 ---
 title: Manager
-date: 2025-08-21
 weight: 572
 tags:
   - medium
