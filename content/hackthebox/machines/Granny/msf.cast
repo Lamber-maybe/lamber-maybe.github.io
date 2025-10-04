@@ -1,4 +1,4 @@
-{"version":3,"term":{"cols":132,"rows":24,"type":"xterm-256color","theme":{"fg":"#cccccc","bg":"#141d2b","palette":"#141d2b:#ff3e3e:#6fa700:#b57c00:#0086ff:#9f00ff:#00d49c:#a4b1cd:#181f2b:#ff5d5d:#9fef00:#ffaf00:#2c9bff:#ac23ff:#2ee7b6:#b5bfd5"}},"timestamp":1759569640,"env":{"SHELL":"/bin/bash"}}
+{"version":3,"term":{"cols":160,"rows":48,"type":"xterm-256color","theme":{"fg":"#cccccc","bg":"#141d2b","palette":"#141d2b:#ff3e3e:#6fa700:#b57c00:#0086ff:#9f00ff:#00d49c:#a4b1cd:#181f2b:#ff5d5d:#9fef00:#ffaf00:#2c9bff:#ac23ff:#2ee7b6:#b5bfd5"}},"timestamp":1759569640,"env":{"SHELL":"/bin/bash"}}
 [0.511834, "o", "\u001b[0m\u001b[0m\u001b[0m"]
 [0.000126, "o", "\u001b[0m"]
 [0.038901, "o", "\u001b[0m"]

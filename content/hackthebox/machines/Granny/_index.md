@@ -23,3 +23,5 @@ tags:
 {{< asciinema file="msf.cast" poster="npt:0:10.5" markers="7.0:搜索IIS相关漏洞, 12.0:CVE-2017-7269, 51.0:检索提权方式, 95.0:MS15-051, 116.0:迁移到高权限进程进行提权, 140.0:提权成功" >}}
 
 本质是HTTP的 PUT、MOVE请求方法没禁用。先 PUT 方法上传一个 txt 文件，然后通过 MOVE 方法将该文件后缀修改为 asp。
+
+
