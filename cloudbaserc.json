@@ -4,7 +4,7 @@
   "functionRoot": "functions",
   "functions": [
     {
-      "name": "app",
+      "name": "cloud1",
       "timeout": 5,
       "envVariables": {
         "key": "value"
