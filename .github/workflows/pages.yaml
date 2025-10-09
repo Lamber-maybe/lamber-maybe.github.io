@@ -62,22 +62,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
-            
-      - name: install nodejs
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: install tencent cloud cloudbase
-        shell: bash
-        run: npm i -g @cloudbase/cli
-
-      - name: publish blog to tencent static site
-        working-directory: ./public
-        shell: bash
-        run: |
-          tcb login --apiKeyId ${{ secrets.QCLOUDAPIKEYID }} --apiKey ${{ secrets.QCLOUDAPIKEY }}
-          tcb hosting deploy ./ -e ${{ secrets.QCLOUDENVID }}
 
   # Deployment job
   deploy:
