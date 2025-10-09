@@ -1,0 +1,14 @@
+{
+  "version": "2.0",
+  "envId": "cloud1-1ga1b4178cfe9d0f",
+  "functionRoot": "functions",
+  "functions": [
+    {
+      "name": "app",
+      "timeout": 5,
+      "envVariables": {
+        "key": "value"
+      }
+    }
+  ]
+}
