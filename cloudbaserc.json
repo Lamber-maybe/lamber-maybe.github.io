@@ -2,13 +2,9 @@
   "version": "2.0",
   "envId": "cloud1-1ga1b4178cfe9d0f",
   "functionRoot": "functions",
-  "functions": [
+  "framework": [
     {
-      "name": "cloud1",
-      "timeout": 5,
-      "envVariables": {
-        "key": "value"
-      }
+      "name": "cloud1"
     }
   ]
 }
