@@ -62,14 +62,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
-      - name: Deploy static to Tencent CloudBase
-        id: deployStatic
-        uses: TencentCloudBase/cloudbase-action@v2.0.1
-        with:
-          secretId: ${{ secrets.QCLOUDAPIKEYID }}
-          secretKey: ${{ secrets.QCLOUDAPIKEY }}
-          envId: ${{ secrets.QCLOUDENVID }}
-          staticSrcPath: public
 
   # Deployment job
   deploy:
