@@ -6,9 +6,4 @@ tags:
   - kud
 ---
 
-
-
-
-```
-asciinema-automation -aa "--cols 160 --rows 24"  test.sh test1.cast
-```
+## 00. 施工中...
