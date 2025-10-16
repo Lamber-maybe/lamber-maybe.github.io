@@ -1,6 +1,10 @@
 ---
 title: 环境搭建之使用uv管理Python工具包
 date: 2025-10-15
+authors:
+  - name: Lamber
+    link: https://github.com/Lamber-maybe
+    image: https://github.com/Lamber-maybe.png
 tags:
   - uv
 ---
@@ -8,8 +12,6 @@ tags:
 ## 01. 安装
 
 > An extremely fast Python package and project manager, written in Rust.
-
-<!-- more -->
 
 ### 01.01 安装uv
 

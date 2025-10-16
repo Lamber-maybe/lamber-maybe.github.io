@@ -4,9 +4,10 @@ type: about
 toc: false
 ---
 
-#### 关于我
 
-<script src="https://tryhackme.com/badge/1490973"></script>
+![Lamber](https://www.hackthebox.eu/badge/image/697550)
+
+#### 关于我
 
 * {{< icon "github" >}}[github](https://github.com/Lamber-maybe/)
 * {{< icon "twitter" >}}[twitter](https://x.com/Lamber28793923)

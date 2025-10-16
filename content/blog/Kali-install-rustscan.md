@@ -1,6 +1,10 @@
 ---
 title: 在Kali中安装最新版的rustscan
 date: 2025-10-12
+authors:
+  - name: Lamber
+    link: https://github.com/Lamber-maybe
+    image: https://github.com/Lamber-maybe.png
 ---
 
 直接使用 `apt install` 安装的 rust 会存在版本老旧的问题，一些新的工具可能不兼容老版本rust。

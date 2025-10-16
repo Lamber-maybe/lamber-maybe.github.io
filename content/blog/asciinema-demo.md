@@ -2,10 +2,12 @@
 title: "Asciinema Player 演示"
 date: 2025-08-21
 description: "演示如何在Hugo博客中使用asciinema player播放终端录制文件"
+authors:
+  - name: Lamber
+    link: https://github.com/Lamber-maybe
+    image: https://github.com/Lamber-maybe.png
 tags: ["asciinema", "demo", "terminal"]
 ---
-
-# Asciinema Player 演示
 
 这篇文章演示了如何在Hugo博客中使用asciinema player来播放终端录制文件。
 

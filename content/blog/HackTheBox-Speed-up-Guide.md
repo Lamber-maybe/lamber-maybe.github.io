@@ -1,6 +1,10 @@
 ---
 title: HackTheBox提速指南
 date: 2024-10-18
+authors:
+  - name: Lamber
+    link: https://github.com/Lamber-maybe
+    image: https://github.com/Lamber-maybe.png
 tags:
   - HackTheBox
 ---

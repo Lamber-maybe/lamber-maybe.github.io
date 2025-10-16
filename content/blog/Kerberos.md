@@ -1,6 +1,10 @@
 ---
 title: Kerberos认证解读
 date: 2025-09-23
+authors:
+  - name: Lamber
+    link: https://github.com/Lamber-maybe
+    image: https://github.com/Lamber-maybe.png
 tags:
   - kerberos
 ---
