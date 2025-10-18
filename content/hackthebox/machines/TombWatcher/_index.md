@@ -1,3 +1,14 @@
+---
+title: TombWatcher
+date: 2024-07-09
+weight: 664
+tags:
+  - windows
+  - easy
+  - group-policy-preferences
+  - kerberoast
+---
+
 
 cred
 ```
@@ -15,6 +26,25 @@ HENRY@TOMBWATCHER.HTB
 
 ```
 
+
+```
+        WriteSPN                        
+henry ───────────► Alfred               
+                     │                  
+                     │                  
+                     │                  
+                     │  AddSelf         
+                     │                  
+                     │                  
+                     ▼                  
+               INFRASTRUCTURE           
+                     │                  
+                     │                  
+                     │  ReadGMSAPassword
+                     │                  
+                     ▼                  
+               ANSIBLE_DEV$             
+```
 
 ```bash
 ┌──(kali㉿kali)-[~]
