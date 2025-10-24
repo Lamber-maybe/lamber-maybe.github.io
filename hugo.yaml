@@ -1,6 +1,8 @@
 # Hugo configuration file
 title: Lamber's Blog
 
+enableGitInfo: true
+
 # services:
 #   googleAnalytics:
 #     ID: G-MEASUREMENT_ID
@@ -114,3 +116,14 @@ params:
     width: wide
     # tabs:
     #   sync: true
+
+  comments:
+    enable: false
+    type: giscus
+    
+    giscus:
+      repo: Lamber-maybe/lamber-maybe.github.io
+      repoId: R_kgDOPhm0mw
+      category: Announcements
+      categoryId: DIC_kwDOPhm0m84CxAWC
+      lang: zh-CN
