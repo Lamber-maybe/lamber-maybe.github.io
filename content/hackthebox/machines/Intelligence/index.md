@@ -1,12 +1,24 @@
 ---
 title: Intelligence
+date: 2025-01-08
 weight: 357
 tags:
-  - medium
   - windows
+  - medium
   - readgmsapassword
   - rbcd
 ---
+
+![intelligence_rank.png](intelligence_rank.png)
+
+## 00. 摘要
+
+> 关键词：ReadGMSAPassword
+
+1. 使用匿名账户枚举SMB服务，从组策略首选项中拿到 `SVC_TGS` 账户
+2. 使用 `SVC_TGS` 账户收集Bloodhound数据
+3. 分析Bloodhound数据，发现可以使用Kerberoast攻击 `Administrator` 账户
+4. 使用Kerberoast攻击得到ST，然后使用 john 爆破该ST获得 `Administrator` 账户的明文密码
 
 爆破得到隐藏文件
 
