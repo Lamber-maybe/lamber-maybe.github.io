@@ -11,6 +11,20 @@ tags:
 
 ![hercules_rank.png](hercules_rank.png)
 
+## 00. 摘要
+
+1. 扫目录
+2. 利用kerberos pre_auth进行用户名枚举
+3. LDAP注入
+4. 任意文件读取
+5. Cookie伪造越权
+6. 文件上传+NTLM反射
+7. Shadow Credential
+8. ACL滥用
+9. ADCS ESC3
+10. 恶意利用运维脚本
+11. 使用无SPN的账户进行基于资源的约束性委派
+
 ```bash
 $ rustscan -u 5000 -a 10.129.162.185   
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
