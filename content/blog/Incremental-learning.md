@@ -1,5 +1,6 @@
 ---
 title: 渐进学习
+weight: 1
 date: 2025-11-05
 authors:
   - name: Lamber
@@ -49,9 +50,9 @@ tags:
 在渐进学习中，您通过以下步骤获取和维护知识：
 
 - 从各种电子和非电子来源导入知识（例如，网页上的文章、YouTube 视频、音乐文件、相机中的图片、电子邮件、扫描的纸质笔记等）
-- [知识优先级排序](#8-优先级队列)以进行增量处理（例如，物理学[优先级高](https://help.supermemo.org/wiki/Glossary:Priority "Glossary:Priority") ，电影琐事[优先级低](https://help.supermemo.org/wiki/Glossary:Priority "Glossary:Priority")等）。增量方法意味着以小块、小步骤处理知识。
+- [知识优先级排序](#priority_queue)以进行渐进式处理（例如，物理学[优先级高](https://help.supermemo.org/wiki/Glossary:Priority "Glossary:Priority") ，电影琐事[优先级低](https://help.supermemo.org/wiki/Glossary:Priority "Glossary:Priority")等）。渐进式方法意味着以小块、小步骤处理知识。
 - 逐渐将学习资料转化为记忆中持久的知识。这种转化也可能产生一个易于搜索、注释良好的计算机媒体档案，甚至不需要成为学习过程的一部分。
-- 在已获得的知识基础上进行创造性拓展（例如，在[增量写作](https://help.supermemo.org/wiki/Incremental_learning#Incremental_writing) 、 [解决问题](https://help.supermemo.org/wiki/Incremental_learning#Incremental_problem_solving)等过程中）
+- 在已获得的知识基础上进行创造性拓展（例如，在[渐进式写作](#incremental_writing) 、 [问题解决](#incremental_problem_solving)等过程中）
 
 **通过渐进式学习，您可以整合所有知识来源，并以选定的时间成本，按照严格定义的目标和优先级，将信息转化为终生记忆。**
 
@@ -59,20 +60,20 @@ tags:
 
 渐进学习工具因学习材料、媒体和目标的各种形式而有显著差异。以下是渐进学习的主要组成部分：
 
-- [渐进阅读](https://help.supermemo.org/wiki/Incremental_learning#Incremental_reading)
-- 增量图像学习（或视觉学习）
-- [渐进视频](https://help.supermemo.org/wiki/Incremental_learning#Incremental_video)
-- [渐进音频](https://help.supermemo.org/wiki/Incremental_learning#Incremental_audio)
-- [增量邮件处理](https://help.supermemo.org/wiki/Incremental_learning#Incremental_mail_processing)
-- 渐进式创意阐述（包括渐进式问题解决、渐进式写作等）
+- [渐进式阅读](#incremental_reading)
+- [渐进式图像学习](#visual_learning)（或视觉学习）
+- [渐进式视频](#incremental_video)
+- [渐进式音频](#incremental_audio)
+- [渐进式邮件处理](#incremental_mail_processing)
+- 渐进式创造性阐述（包括[渐进式问题解决](#incremental_problem_solving)、[渐进式写作](#incremental_writing)等）
 
 借助渐进学习提供的丰富工具集，所有阅读、学习、观看、归档和注释功能都可以委托给 SuperMemo。这远远超出了标准的学习范畴，涵盖了个人笔记、家庭视频、音频和视频格式的讲座、YouTube 内容、家庭相册、日记、音频文件、扫描的纸质材料等。
 
 渐进学习最古老、最流行、最成熟的组成部分是**渐进阅读** 。我们将以渐进阅读作为对其他形式渐进学习的全面介绍。
 
-### 1.3 打断在学习中的价值
+### 1.3 中断在学习中的价值
 
-在渐进学习中，我们经常从一个主题快速切换到另一个主题。在一次学习日中，这种打断可能会发生很多次。当人们第一次了解到这种增量方法时，他们会立刻问：“为什么要打断？难道彻底、坚持、把事情做完不是人类努力的首要原则吗？”
+在渐进学习中，我们经常从一个主题快速切换到另一个主题。在一次学习日中，这种中断可能会发生很多次。当人们第一次了解到这种渐进式方法时，他们会立刻问：“为什么要中断？难道彻底、坚持、把事情做完不是人类努力的首要原则吗？”
 
 学习中断的 3 个主要优点是：
 
@@ -82,7 +83,7 @@ tags:
 
 至于缺点……根本没有！简单来说：**中断是可选的！** 诚然，渐进学习可能会导致“学习不耐烦”和“渴望中断”，然而，这些从未被证明是有害的，除了表明一旦你采用渐进学习，你可能再也不想回到传统的“一次读完一本书”的学习方式。尽管如此，你不应忘记学校也是增量式的。只是规模稍显适中。学校会在孩子们从地理课转到物理课时，或者在他们结束一天的学习合上书本时采用中断。
 
-一旦掌握了渐进式学习的艺术，其优势将远远超出中断式学习或[间隔重复](https://help.supermemo.org/wiki/Glossary:Spaced_repetition "Glossary:Spaced repetition")的优势。以下是简要列表（详细讨论请参阅： [渐进式学习的优势](https://help.supermemo.org/wiki/Incremental_learning#Advantages_of_incremental_reading) ）。
+一旦掌握了渐进式学习的艺术，其优势将远远超出中断式学习或[间隔重复](https://help.supermemo.org/wiki/Glossary:Spaced_repetition "Glossary:Spaced repetition")的优势。以下是简要列表（详细讨论请参阅： [渐进式学习的优势](#advantages_of_incremental_reading) ）。
 
 - **海量学习** - 你能学到比你想象中记忆力所能容纳的更多的知识
 - **95% 知识保留率** - 您几乎消除了遗忘的问题
@@ -91,7 +92,7 @@ tags:
 - **更好的理解**所学主题，需要适度摄入细节，并轻松地纳入解释性材料（例如，来自词典和/或百科全书）。
 - 通过渐进学习、中断式学习、间隔重复和新知识的插入，**更好地巩固知识结构**。与普遍看法相反，渐进学习有助于你把握全局。
 - **更好的注意力**，一次只专注于一个问题，永不遗漏细节，并通过不断更换学习材料来弥补注意力缺陷
-- **创造力** - 通过以不可预测的顺序接触不同的主题，您的创造力会飙升。例如，您可以在[增量问题解决](https://help.supermemo.org/wiki/Incremental_learning#Incremental_problem_solving)或[增量写作](https://help.supermemo.org/wiki/Incremental_learning#Incremental_writing)的过程中运用它（本文是使用 SuperMemo 中的增量写作工具编写的）
+- **创造力** - 通过以不可预测的顺序接触不同的主题，您的创造力会飙升。例如，您可以在[渐进式问题解决](#incremental_problem_solving)或[渐进式写作](#incremental_writing)的过程中运用它（本文是使用 SuperMemo 中的增量写作工具编写的）
 - **对抗混乱** - 在 SuperMemo 中解决矛盾更容易，例如在处理具有矛盾主张和发现的新研究时。与“现实生活中”的记忆不同，你的记忆会在矛盾之间摇摆不定，而 SuperMemo 则不容忍信息差异。矛盾的材料会收敛，直到你意识到需要决定真相的本质。
 - **所有知识都经过了良好的优先级排序**
 - **所有知识都易于搜索**
@@ -99,13 +100,13 @@ tags:
 - **无压力** - 没有什么比“不会遗漏任何细节”的感觉更能让你的思维专注于高效学习了，你可以一次只专注于一个问题，而将其他问题留待以后处理
 - **有趣** - 一旦你掌握了渐进学习，它就能真正成为你一天中最美好的时光，很少有其他世俗的乐趣能带给你像新知识一样的满足感
 
-简而言之，通过渐进学习，你可以快速学习，获取海量知识，终生记忆，几乎记住所有学过的东西，更好地理解事物，全方位和谐发展，提高创造力，而且这一切都充满乐趣！如果这听起来好得令人难以置信，请继续阅读下文或亲自尝试一下。详细解释请参阅： [渐进学习的优势](https://help.supermemo.org/wiki/Incremental_learning#Advantages_of_incremental_learning) 。
+简而言之，通过渐进学习，你可以快速学习，获取海量知识，终生记忆，几乎记住所有学过的东西，更好地理解事物，全方位和谐发展，提高创造力，而且这一切都充满乐趣！如果这听起来好得令人难以置信，请继续阅读下文或亲自尝试一下。详细解释请参阅： [渐进学习的优势](#advantages_of_incremental_reading) 。
 
-### 1.4 打断不是问题
+### 1.4 中断不是问题
 
 在学习中，选择正确的学习来源是成功的第一步。一篇写得好的文章，从第一段甚至第一句话就能让你掌握基本概念。渐进阅读最适合超文本或百科全书式的文章。理想情况下，你读的每一句话都能为你的知识做出贡献，并且在没有后续句子的情况下也不会变得毫无意义。
 
-想象一下，你想了解一些关于 [Gamal Abdel Nasser](https://en.wikipedia.org/wiki/Gamal_Abdel_Nasser) 的知识。例如，你可能会从 [Wikipedia](https://en.wikipedia.org/) 导入一篇关于 Nasser 的文章到 SuperMemo。在第一句话中，你会发现“_Gamal Abdel Nasser（1918-1970），埃及第二任总统_ ”。如果你对 Nasser 不熟悉，你可能会满足于只知道他是埃及总统，然后安全地去阅读其他文章。这样，你就可以推迟了解 Nasser 的历史地位，并节省时间去了解，例如，[Shimon Peres](https://en.wikipedia.org/wiki/Shimon_Peres) 是谁。当你第二次看到 Nasser 的文章时，你可能会发现“ _他接替了 Muhammad Naguib 总统，并被认为是历史上最重要的阿拉伯领导人之一_ ”。这些知识也是独立的，你可以耐心等待第三次遇到 Nasser。下次回来时，你可能会认为关于 Nasser 的另一条信息优先级较低：“_Nasser 出生在亚历山大_ ”。你可以安排在 2-3 年后复习这条信息。 也许你对纳赛尔或对[亚历山大港](https://en.wikipedia.org/wiki/Alexandria)的兴趣会增长到使这些知识变得相关的程度。如果不是，你随时可以[忽略](https://help.supermemo.org/wiki/Glossary:Dismiss "Glossary:Dismiss")或删除这样的[摘录](https://help.supermemo.org/wiki/Glossary:Extract "Glossary:Extract") 。或者，你可以跳过几段， [摘录](https://help.supermemo.org/wiki/Glossary:Extract "Glossary:Extract")一个更重要的句子：“_1952 年，纳赛尔领导了反对埃及法鲁克一世国王的军事政变_ ”。即使你以数月为[间隔](https://help.supermemo.org/wiki/Glossary:Interval "Glossary:Interval")阅读关于纳赛尔的个别句子，你的知识也会逐步扩展并日益巩固（特别是如果你使用[填空删除](https://help.supermemo.org/wiki/Glossary:Cloze_deletion "Glossary:Cloze deletion") ，这对于更长的[间隔](https://help.supermemo.org/wiki/Glossary:Interval "Glossary:Interval")是强制性的）。
+想象一下，你想了解一些关于 [Gamal Abdel Nasser](https://en.wikipedia.org/wiki/Gamal_Abdel_Nasser) 的知识。例如，你可能会从 [Wikipedia](https://en.wikipedia.org/) 导入一篇关于 Nasser 的文章到 SuperMemo。在第一句话中，你会发现“_Gamal Abdel Nasser（1918-1970），埃及第二任总统_ ”。如果你对 Nasser 不熟悉，你可能会满足于只知道他是埃及总统，然后安全地去阅读其他文章。这样，你就可以推迟了解 Nasser 的历史地位，并节省时间去了解，例如，[Shimon Peres](https://en.wikipedia.org/wiki/Shimon_Peres) 是谁。当你第二次看到 Nasser 的文章时，你可能会发现“ _他接替了 Muhammad Naguib 总统，并被认为是历史上最重要的阿拉伯领导人之一_ ”。这些知识也是独立的，你可以耐心等待第三次遇到 Nasser。下次回来时，你可能会认为关于 Nasser 的另一条信息优先级较低：“_Nasser 出生在亚历山大_ ”。你可以安排在 2-3 年后复习这条信息。 也许你对纳赛尔或对[亚历山大港](https://en.wikipedia.org/wiki/Alexandria)的兴趣会增长到使这些知识变得相关的程度。如果不是，你随时可以[忽略](https://help.supermemo.org/wiki/Glossary:Dismiss "Glossary:Dismiss")或删除这样的[摘录](https://help.supermemo.org/wiki/Glossary:Extract "Glossary:Extract") 。或者，你可以跳过几段， [摘录](https://help.supermemo.org/wiki/Glossary:Extract "Glossary:Extract")一个更重要的句子：“_1952 年，纳赛尔领导了反对埃及法鲁克一世国王的军事政变_ ”。即使你以数月为[间隔](https://help.supermemo.org/wiki/Glossary:Interval "Glossary:Interval")阅读关于纳赛尔的个别句子，你的知识也会逐步扩展并日益巩固（特别是如果你使用[完形填空](https://help.supermemo.org/wiki/Glossary:Cloze_deletion "Glossary:Cloze deletion") ，这对于更长的[间隔](https://help.supermemo.org/wiki/Glossary:Interval "Glossary:Interval")是强制性的）。
 
 当然，并非所有文本都如此适合渐进阅读。例如，一篇研究论文可能会详细介绍方法，而将结果和结论留到最后。在这种情况下，您可以[提取](https://help.supermemo.org/wiki/Glossary:Extract "Glossary:Extract")摘要，并将论文主体推迟一段时间，这段时间足以让您认为摘要已得到充分处理。然后，如果您仍然对文章感兴趣，可以将方法安排在较远的将来（您是否会阅读这些方法取决于文章的结论）。您可以将结果和讨论安排在不太遥远的时间点，然后继续阅读结论。
 
@@ -119,9 +120,9 @@ tags:
 
 渐进学习是近三十年来一直在发展的技术的整合。它仍处于成熟过程中，而且仍然相当复杂。它需要花费数月时间才能掌握的技能。它需要你自己的、可能需要数年才能成熟的策略。此外，渐进学习需要掌握 SuperMemo，而 SuperMemo 已针对专业用途进行了优化。因此，它对初学者并不友好。
 
-用户抱怨说 SuperMemo 的学习曲线很陡峭。他们说得对。SuperMemo 经过优化，旨在让专业人士的生活轻松。它让初学者的生活变得困难，因为它从不为了简洁或营销价值而妥协学习效率。以[优先级队列](https://help.supermemo.org/wiki/Incremental_learning#Priority_queue)为例。几乎每个人都问，为什么价值最高的文章的[优先级](https://help.supermemo.org/wiki/Glossary:Priority "Glossary:Priority")是 0%，而不是显而易见的 100%。他们问：“*为什么 SuperMemo 总是颠倒黑白？*”他们说得有道理。然而，没有专业用户会愿意用输入 1、2、3 来代替他们最重要的资料，而不是 99、98 或 97。这些困境减缓了 SuperMemo 的普及。然而，一旦你成为专业人士，你就会欣赏这种方法，并且更有可能成为终身拥护者。
+用户抱怨说 SuperMemo 的学习曲线很陡峭。他们说得对。SuperMemo 经过优化，旨在让专业人士的生活轻松。它让初学者的生活变得困难，因为它从不为了简洁或营销价值而妥协学习效率。以[优先级队列](#priority_queue)为例。几乎每个人都问，为什么价值最高的文章的[优先级](https://help.supermemo.org/wiki/Glossary:Priority "Glossary:Priority")是 0%，而不是显而易见的 100%。他们问：“*为什么 SuperMemo 总是颠倒黑白？*”他们说得有道理。然而，没有专业用户会愿意用输入 1、2、3 来代替他们最重要的资料，而不是 99、98 或 97。这些困境减缓了 SuperMemo 的普及。然而，一旦你成为专业人士，你就会欣赏这种方法，并且更有可能成为终身拥护者。
 
-## 2. 渐进阅读
+## 2. 渐进阅读 {#incremental_reading}
 
 ### 2.1 渐进阅读入门
 
@@ -129,7 +130,7 @@ tags:
 
 ### 2.2 什么是渐进阅读？
 
-渐进阅读是一种学习技巧，它使得[同时阅读数千篇文章](https://help.supermemo.org/wiki/Incremental_learning#Can_you_really_read_thousands_of_articles_at_the_same_time?)成为可能，而不会迷失方向。渐进阅读始于从电子来源（例如互联网）导入文章。然后，学生提取单篇文章中最重要的片段以供进一步复习。提取的片段随后被转换为问题和答案。这些反过来又会受到系统性复习和重复的约束，从而最大限度地提高长期记忆。复习过程由久经考验的_[间隔重复算法](http://super-memory.com/english/ol/background.htm)_处理，该算法被称为 [**SuperMemo 方法**](https://help.supermemo.org/wiki/SuperMemo "SuperMemo") 。
+渐进阅读是一种学习技巧，它使得[同时阅读数千篇文章](#can_you_really_read_thousands_of_articles_at_the_same_time)成为可能，而不会迷失方向。渐进阅读始于从电子来源（例如互联网）导入文章。然后，学生提取单篇文章中最重要的片段以供进一步复习。提取的片段随后被转换为问题和答案。这些反过来又会受到系统性复习和重复的约束，从而最大限度地提高长期记忆。复习过程由久经考验的 _[间隔重复算法](http://super-memory.com/english/ol/background.htm)_ 处理，该算法被称为 [**SuperMemo 方法**](https://help.supermemo.org/wiki/SuperMemo "SuperMemo") 。
 
 **渐进阅读将电子文章转化为您记忆中持久的知识。** 这种转化只需最少的键盘和鼠标操作：
 
@@ -144,13 +145,13 @@ tags:
 
 渐进阅读需要技巧，而这些技巧需要数月甚至数年的实践才能完善。本概述仅能帮助您掌握基本技能，并为您开始渐进阅读提供指引。五项基本技能是：
 
-- [导入文章](https://help.supermemo.org/wiki/Incremental_learning#Skill_1:_Importing_articles)到 [SuperMemo](https://help.supermemo.org/wiki/SuperMemo "SuperMemo")
+- [导入文章](#skill_1_importing_articles)到 [SuperMemo](https://help.supermemo.org/wiki/SuperMemo "SuperMemo")
 - [阅读文章](https://help.supermemo.org/wiki/Incremental_learning#Skill_2:_Reading_articles)并将文章分解成易于管理的部分
 - [将最重要的知识点转换为问答材料](https://help.supermemo.org/wiki/Incremental_learning#Skill_3:_Extracting_fragments,_questions_and_answers)
 - [复习资料](https://help.supermemo.org/wiki/Incremental_learning#Skill_4:_Repetition_and_review)以确保良好记忆
 - [处理信息不可避免的过载](https://help.supermemo.org/wiki/Incremental_learning#Skill_5:_Handling_large_volumes_of_knowledge)
 
-#### 2.3.1 技能 1：导入文章
+#### 2.3.1 技能 1：导入文章 {#skill_1_importing_articles}
 
 ##### 五种文章导入方法
 
@@ -170,7 +171,7 @@ SuperMemo 中有 5 种主要的文章导入方法：
 
 - 在您的网页浏览器中选择导入的文本，并将其复制到剪贴板（例如使用 _Ctrl+C_）
 - 切换到 SuperMemo（例如使用 _Alt+Tab_）
-- 在 SuperMemo 中，按下 _Ctrl+N_（这等同于主菜单上的 **[编辑](https://help.supermemo.org/wiki/Edit_menu "Edit menu")  : [添加新条目](https://help.supermemo.org/wiki/Edit_menu#Add_a_new_article "Edit menu")** ）。SuperMemo 将创建一个新的 [条目](https://help.supermemo.org/wiki/Glossary:Element "Glossary:Element") ，并粘贴文章。您也可以使用 [**阅读**工具栏](https://help.supermemo.org/wiki/Read_toolbar "Read toolbar") 上的 **粘贴文章** 按钮（  [![SuperMemo: Paste article (from the clipboard) button on the learnbar](https://help.supermemo.org/images/a/a1/Paste_button.gif)](https://help.supermemo.org/wiki/File:Paste_button.gif "SuperMemo: Paste article (from the clipboard) button on the learnbar")）。
+- 在 SuperMemo 中，按下 _Ctrl+N_（这等同于主菜单上的 **[编辑](https://help.supermemo.org/wiki/Edit_menu "Edit menu")  : [添加新条目](https://help.supermemo.org/wiki/Edit_menu#Add_a_new_article "Edit menu")** ）。SuperMemo 将创建一个新的 [条目](https://help.supermemo.org/wiki/Glossary:Element "Glossary:Element") ，并粘贴文章。您也可以使用 [**阅读**工具栏](https://help.supermemo.org/wiki/Read_toolbar "Read toolbar") 上的 **粘贴文章** 按钮 ![SuperMemo: Paste article (from the clipboard) button on the learnbar](https://help.supermemo.org/images/a/a1/Paste_button.gif) 
 - 您也可以选择使用 _Alt+P_ 来定义导入文章的[优先级](https://help.supermemo.org/wiki/Glossary:Priority "Glossary:Priority") 。使用 **百分比** 字段，请记住 `0%` 是最高[优先级](https://help.supermemo.org/wiki/Glossary:Priority "Glossary:Priority") ，而 `100%` 是最低[优先级](https://help.supermemo.org/wiki/Glossary:Priority "Glossary:Priority") 。
 - 您也可以选择使用 _Ctrl+J_ 来指定第一次复习的[间隔](https://help.supermemo.org/wiki/Glossary:Interval "Glossary:Interval") 。例如：高优先级的内容为一天，低优先级的内容为 30 天。
 
@@ -672,7 +673,7 @@ _子集复习_是对部分学习材料的复习（例如，在考试前）。该
 - 你将很快发现，在同一段落中设置多个[填空题](https://help.supermemo.org/wiki/Glossary:Cloze_deletion "Glossary:Cloze deletion")并非明智之举（例如，比较[测量的遗忘指数](https://help.supermemo.org/wiki/Glossary:Measured_forgetting_index "Glossary:Measured forgetting index")与具有相同填空关键词但分开的[条目](https://help.supermemo.org/wiki/Glossary:Item "Glossary:Item") ，或者看看这样获得的知识在实践中效果如何）。
 - 您可以在 SuperMemo 中查看学习参数，以了解不同的学习方法如何影响您的进度
 
-### 2.6 渐进阅读的优势
+### 2.6 渐进式阅读的优势 {#Advantages_of_incremental_reading}
 
 在渐进学习中，你学习迅速，获取海量知识，终生记忆，几乎记住所有学过的东西，更好地理解事物，在各个方面和谐发展，提升创造力，而且这一切都充满乐趣！如果这听起来好得令人难以置信，请继续阅读下文，或者亲自尝试一下。
 
@@ -1703,7 +1704,7 @@ SuperMemo 不仅可以通过整合大脑中的各种知识来帮助你发挥创�
 
 在[渐进阅读](https://help.supermemo.org/wiki/Glossary:Incremental_reading "Glossary:Incremental reading")中，你将迅速掌握区分高质量文章与充斥着空洞、冗余内容的文章所需的技能。你将学会筛选吸引人的标题、有意义的段落、最少的跑题评论等。文章质量将决定你运用速读的能力，以及快速确定材料优先级的能力。这与从社交媒体、即时新闻和其他网络干扰中获得的即时满足感无关。
 
-### 你真的能同时阅读成千上万篇文章吗？
+### 5.15 你真的能同时阅读成千上万篇文章吗？ {#can_you_really_read_thousands_of_articles_at_the_same_time}
 
 一位访问 [super-memory.com](http://super-memory.com/) 的访客评论了关于渐进式学习的说法：
 
@@ -2534,7 +2535,7 @@ Luis Gustavo 谈论死记硬背和智慧：
 - **用户友好性** ：**[Spread priorities](https://help.supermemo.org/wiki/Subset_operations#spread_priorities "Subset operations")** 中的 **Step** 问题是 SuperMemo 的典型问题，它声称对新手不友好，以便更好地满足专业用户。此选项可能会显示一条消息：“ _您尝试将比范围大小更多的 [元素](https://help.supermemo.org/wiki/Glossary:Element "Glossary:Element") 挤入该范围_ ”。然而，这会让专业用户勃然大怒，因为输入错误数据非常容易。您不想浪费时间点击关闭消息。专业用户只想纠正输入。这个问题无法通过 **[File](https://help.supermemo.org/wiki/File_menu "File menu") : [Level](https://help.supermemo.org/wiki/File_menu#Level "File menu")** 来解决，因为 **[Spread priorities](https://help.supermemo.org/wiki/Subset_operations#spread_priorities "Subset operations")** 仅在高级级别可用。这意味着用户应该已经习惯了在 SuperMemo 中首次使用任何功能都可能很困难的事实。更复杂的解决方案，例如向导或集成在对话框中的消息，可能无法通过日益庞大的 SuperMemo 任务列表的 `Value/Time` 标准。您说得对，SuperMemo 对新手并不友好。如果您有更简单的解决方案想法，请发送邮件给我们。它们总是会被仔细阅读。
 - **编程** ：并非所有人都认为[渐进阅读](https://help.supermemo.org/wiki/Glossary:Incremental_reading "Glossary:Incremental reading")不适合程序员（例如，请参阅：[SuperMemo 作为程序员的新工具](http://super-memory.com/articles/programming.htm) ）。这种误解可能源于这样的说法：“ _计算机代码不适合作为渐进阅读处理的文本_ ”，尽管可以想象[渐进阅读](https://help.supermemo.org/wiki/Glossary:Incremental_reading "Glossary:Incremental reading")可能在代码分析中有用（例如，当需要审查大量不同优先级的、封装良好的短过程时）。
 
-## 8. 优先级队列
+## 8. 优先级队列 {#Priority_queue}
 
 ### 优先级队列：简介
 
@@ -2675,7 +2676,7 @@ SuperMemo 通过让您定义以下内容，解决了[优先级偏差](https://he
 - **[工具](https://help.supermemo.org/wiki/Toolkit_menu "Toolkit menu")  : [统计](https://help.supermemo.org/wiki/Toolkit_menu#Statistics "Toolkit menu")  : [统计](https://help.supermemo.org/wiki/Statistics "Statistics")  : [保护](https://help.supermemo.org/wiki/Statistics#Protection "Statistics")** 可用于检查用户在处理当天最高优先级材料时的进度
 - [优先级队列](https://help.supermemo.org/wiki/Glossary:Priority_queue "Glossary:Priority queue")将帮助您**增加学习量** ，同时**提高优先级最高的材料的[记忆率](https://help.supermemo.org/wiki/Glossary:Retention "Glossary:Retention")**
 
-## 9. 视觉学习
+## 9. 渐进式图像学习 {#Visual_learning}
 
 ### 增量式图片处理与学习
 
@@ -2875,7 +2876,7 @@ SuperMemo 通过让您定义以下内容，解决了[优先级偏差](https://he
 9. 使用**[编辑](https://help.supermemo.org/wiki/Element_menu#Edit "Element menu")  : 复制** （_Alt+D_）在[元素菜单](https://help.supermemo.org/wiki/Element_menu "Element menu")中生成更多带有相同图片的测试
 10. 请记住，为了获得最佳的缩放效果，您需要保持您的[模板](https://help.supermemo.org/wiki/Glossary:Template "Glossary:Template") / [元素](https://help.supermemo.org/wiki/Glossary:Element "Glossary:Element")**[已缩放](https://help.supermemo.org/wiki/Element_menu#Scaled "Element menu")** ，以及您的图片**[图像](https://help.supermemo.org/wiki/Component_menu#Image "Component menu")  : 拉伸 : 填充** （没有这两项，调整[元素](https://help.supermemo.org/wiki/Glossary:Element "Glossary:Element")的大小会使矩形相对于图像移动，从而暴露答案）
 
-## 10. 渐进视频
+## 10. 渐进式视频 {#Incremental_video}
 
 ### 什么是渐进式视频？
 
@@ -3117,9 +3118,9 @@ Sender ID: SuperMemo Research
 - [SuperMemo 19 的学习历史](https://www.youtube.com/watch?v=4ojhSl2m3bM) (YouTube)
 - [如何升级？](https://supermemopedia.com/wiki/Incremental_video._Learning_history_with_YouTube)
 
-## 11. 渐进式音频
+## 11. 渐进式音频 {#Incremental_audio}
 
-### 渐进音频：简介
+### 渐进式音频：简介
 
 渐进音频与[渐进视频](https://help.supermemo.org/wiki/Glossary:Incremental_video "Glossary:Incremental video")类似。你可以使用渐进视频来处理来自 [YouTube](https://youtube.com/) 的音频信息，或者使用声音[组件](https://help.supermemo.org/wiki/Glossary:Component "Glossary:Component")中的专用提取器栏来导入和处理声音文件（例如 MP3、WMA、WAV 等）。
 
@@ -3131,7 +3132,7 @@ Sender ID: SuperMemo Research
 
 参见：[YouTube 渐进视频：大纲](https://help.supermemo.org/wiki/Incremental_learning#Incremental_video_with_YouTube:_Outline) ，了解如何在渐进音频过程中使用 [YouTube](https://youtube.com/) 素材。
 
-## 12. 增量邮件处理
+## 12. 渐进式邮件处理 {#Incremental_mail_processing}
 
 ### SuperMemo 中的电子邮件：简介
 
@@ -3329,7 +3330,7 @@ SuperMemo 能够轻松解决邮件过载问题，同时也不会忽略最重要�
 2. [增量写作](https://help.supermemo.org/wiki/Incremental_learning#Incremental_writing) ，以及
 3. 增量式头脑风暴
 
-### 增量式问题解决
+### 13.1 渐进式问题解决 {#Incremental_problem_solving}
 
 渐进学习可以帮助你解决问题。它对于具有以下特性的问题类别尤其有用：
 
@@ -3370,7 +3371,7 @@ SuperMemo 中的许多技术问题和 bug 都通过增量式问题解决法得�
     2. 遗忘产生的“新颖性效应”，以及
     3. 睡眠中记忆优化的创造力
 
-### 渐进式写作
+### 13.2 渐进式写作 {#incremental_writing}
 
 #### 增量写作：简介
 
