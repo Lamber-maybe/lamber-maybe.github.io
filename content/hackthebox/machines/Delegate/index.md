@@ -9,6 +9,8 @@ tags:
   - targeted-kerberoasting
 ---
 
+![delegate_rank.png](delegate_rank.png)
+
 ## 00. 摘要
 
 > 关键词：信息泄露、ASREProast、LDAP侦察、Shadow Credentials、Kerberos Relay

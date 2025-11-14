@@ -6,6 +6,8 @@ tags:
   - medium
 ---
 
+![imagery_rank.png](imagery_rank.png)
+
 ## 0. 摘要
 
 > 关键词：

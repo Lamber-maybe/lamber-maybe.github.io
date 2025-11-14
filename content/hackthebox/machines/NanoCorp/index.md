@@ -101,9 +101,11 @@ dksehdgh712!@#   (web_svc)
 
 > [!note]
 > 如果遇到Kerberos认证失败，大概率是pwnbox和域控时间不同步。可以尝试：
+> ```bash
 > $ sudo timedatectl set-ntp off
 > $ sudo apt install rdate
 > $ sudo rdate -n 10.129.26.90
+> ```
 
 使用 [rusthound-ce](https://github.com/g0h4n/RustHound-CE) 收集域信息
 
@@ -117,9 +119,10 @@ rusthound-ce -d 'nanocorp.htb' -u 'web_svc' -k -no-pass -f 'DC01.nanocorp.htb'
 
 > [!note]
 > $ cat /etc/hosts
+> 
 > 10.129.26.90  DC01.nanocorp.htb DC01 nanocorp.htb hire.nanocorp.htb
 
-![[nanocorp-bloodhound.png]]
+![nanocorp-bloodhound.png](nanocorp-bloodhound.png)
 
 将 web_svc 加入 IT_Support 组，从组名推测该组成员属于IT部门应该可以管理成员账户。尝试修改 monitoring_svc 的密码，发现可以成功修改。
 
