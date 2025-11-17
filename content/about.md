@@ -23,6 +23,12 @@ toc: false
 
 [「 伤痕累累的灵魂如星光般闪耀 」](https://github.com/kelseyhightower/nocode/issues/4573)
 
+#### 打赏一杯奶茶 / Buy me a Coffee~
+
+爱发电(中国): https://afdian.com/a/Lamber-maybe
+
+Ko-fi(Global): https://ko-fi.com/lamber_maybe
+
 *---*
 
 *无人问津也好，技不如人也罢*
