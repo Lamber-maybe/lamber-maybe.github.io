@@ -61,8 +61,13 @@ menu:
       url: "https://github.com/Lamber-maybe/lamber-maybe.github.io"
       params:
         icon: github
-    - name: co-fi
+    - name: 赞助一杯奶茶~
       weight: 6
+      url: "https://afdian.com/a/Lamber-maybe"
+      params:
+        icon: afdian
+    - name: Buy me a Coffee~
+      weight: 7
       url: "https://ko-fi.com/lamber_maybe"
       params:
         icon: kofi_symbol
