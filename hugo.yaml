@@ -61,6 +61,11 @@ menu:
       url: "https://github.com/Lamber-maybe/lamber-maybe.github.io"
       params:
         icon: github
+    - name: co-fi
+      weight: 6
+      url: "https://ko-fi.com/lamber_maybe"
+      params:
+        icon: kofi_symbol
 
 params:
   navbar:
