@@ -1,6 +1,6 @@
 ---
 title: Absolute
-weight: 498
+weight: -498
 date: 2025-09-23
 tags:
   - windows

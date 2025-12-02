@@ -1,6 +1,6 @@
 ---
 title: DarkZero
-weight: 754
+weight: -754
 tags:
   - windows
   - hard

@@ -1,7 +1,7 @@
 ---
 title: RustyKey
 date: 2025-11-06
-weight: 669
+weight: -669
 tags:
   - windows
   - hard

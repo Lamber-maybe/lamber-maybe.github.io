@@ -1,6 +1,6 @@
 ---
 title: Delegate
-weight: 724
+weight: -724
 tags:
   - windows
   - medium

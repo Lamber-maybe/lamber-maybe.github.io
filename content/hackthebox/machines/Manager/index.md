@@ -1,6 +1,6 @@
 ---
 title: Manager
-weight: 572
+weight: -572
 tags:
   - medium
   - windows

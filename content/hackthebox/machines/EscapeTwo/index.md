@@ -1,6 +1,6 @@
 ---
 title: EscapeTwo
-weight: 642
+weight: -642
 tags:
   - windows
   - easy

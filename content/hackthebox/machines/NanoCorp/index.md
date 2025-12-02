@@ -1,7 +1,7 @@
 ---
 title: NanoCorp
 date: 2025-11-11
-weight: 802
+weight: -802
 tags:
   - windows
   - hard
