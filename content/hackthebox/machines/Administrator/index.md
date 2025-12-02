@@ -1,12 +1,15 @@
 ---
 title: Administrator
 weight: -634
+date: 2025-01-08
 tags:
   - windows
   - medium
   - targeted-kerberoasting
   - dcsync
 ---
+
+![administrator_rank.png](administrator_rank.png)
 
 ```bash
 PORT      STATE SERVICE          REASON

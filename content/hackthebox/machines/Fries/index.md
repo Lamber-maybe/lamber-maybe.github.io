@@ -1,13 +1,14 @@
 ---
 draft: true
 title: Fries
-date: 2024-07-09
+date: 2025-11-29
 weight: -808
 tags:
   - windows
   - hard
 ---
 
+![fries_rasnk.png](fries_rasnk.png)
 
 ```bash
 ┌──(kali㉿kali)-[~]

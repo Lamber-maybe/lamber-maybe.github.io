@@ -5,6 +5,6 @@ weight: -668
 tags:
   - linux
   - easy
-  - group-policy-preferences
-  - kerberoast
 ---
+
+![artificial_rank.png](artificial_rank.png)

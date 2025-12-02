@@ -1,11 +1,13 @@
 ---
 draft: true
 title: Signed
-date: 2024-07-09
+date: 2025-10-13
 weight: -775
 tags:
   - windows
-  - easy
+  - medium
   - group-policy-preferences
   - kerberoast
 ---
+
+![signed_rank.png](signed_rank.png)

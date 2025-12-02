@@ -1,7 +1,7 @@
 ---
 draft: true
 title: Giveback
-date: 2024-07-09
+date: 2025-11-03
 weight: -796
 tags:
   - windows
@@ -9,3 +9,6 @@ tags:
   - group-policy-preferences
   - kerberoast
 ---
+
+
+![giveback_rank.png](giveback_rank.png)

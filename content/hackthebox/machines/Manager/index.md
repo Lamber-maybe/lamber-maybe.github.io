@@ -1,6 +1,7 @@
 ---
 title: Manager
 weight: -572
+date: 2025-03-04
 tags:
   - medium
   - windows
@@ -8,6 +9,8 @@ tags:
   - adcs-esc7
   - mssql
 ---
+
+![manager_rank.png](manager_rank.png)
 
 ## 00. 摘要
 

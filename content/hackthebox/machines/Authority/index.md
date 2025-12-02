@@ -1,6 +1,7 @@
 ---
 title: Authority
 weight: -553
+date: 2025-03-03
 tags:
   - windows
   - medium
@@ -8,9 +9,11 @@ tags:
   - pass-the-certificate
 ---
 
+![authority_rank.png](authority_rank.png)
 
 ![Authority-流程图.png](Authority-流程图.png)
-# 00. 摘要
+
+## 00. 摘要
 
 > 关键词：Guest账户、LDAP、WINRM、ADCS、ESC1提权、PassTheCert
 
@@ -19,7 +22,7 @@ tags:
 3. 使用 `svc_ldap` 账户枚举ADCS服务，发现存在 ESC1 漏洞
 4. 通过 `PassTheCert` 成功提权到 `Administrator`
 
-# 01. 信息收集
+## 01. 信息收集
 
 使用 `rustscan` 进行端口扫描，发现如下开放端口
 
@@ -68,13 +71,13 @@ Open 10.10.11.222:49705
 Open 10.10.11.222:56467
 ```
 
-# 02. HTTP服务
+## 02. HTTP服务
 
 从以上端口扫描结果，可以看到有HTTP服务开放。访问 `80` 端口，只有一个IIS页面，没有其它线索。访问 `8443` 端口，发现是 PWM 的登录页面 (这是一个开源的 LDAP 密码管理应用，帮助用户通过 web 界面自行管理密码，支持密码重置、策略执行，为组织提供灵活、安全的密码管理解决方案)。相当于是 keepass 之类的密码管理工具。
 
 在这个登录页面暂时没有线索，我们先尝试枚举一下其它服务。
 
-# 03. 使用Guest账户枚举 SMB服务
+## 03. 使用Guest账户枚举 SMB服务
 
 在没有任何账户的情况下，尝试使用Windows内置的Guest账户枚举SMB文件共享
 
@@ -149,7 +152,7 @@ ldap_admin_password: !vault |
 password: pWm_@dm!N_!23
 ```
 
-# 04. 使用LDAP强制认证窃取密码
+## 04. 使用LDAP强制认证窃取密码
 
 我们回到Web页面。点击 `Configuration Editor` 使用上一步拿到的密码成功登入配置页面。我们在配置页面中，找到一处可以发起 LDAP 认证的功能。我们在此处新建一个URL，地址为攻击机responder的地址。然后我们开启攻击机的responder，再点击网页上的Test LDAP Profile。就可以捕获到受害机向攻击机发起的LDAP认证数据。
 
@@ -200,7 +203,7 @@ SMB         10.10.11.222    445    AUTHORITY        [*] Windows 10 / Server 2019
 LDAPS       10.10.11.222    636    AUTHORITY        [+] authority.htb\svc_ldap:lDaP_1n_th3_cle4r!
 ```
 
-# 05. ESC1+PassTheCert提权
+## 05. ESC1+PassTheCert提权
 
 由于该机器存在LDAPS服务，并且 `svc_ldap` 有权限访问LDAPS服务。我们尝试使用该用户枚举并寻找ADCS服务是否存在以及是否有漏洞。
 

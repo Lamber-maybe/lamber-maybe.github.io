@@ -1,6 +1,7 @@
 ---
 title: EscapeTwo
 weight: -642
+date: 2025-01-16
 tags:
   - windows
   - easy
@@ -8,9 +9,9 @@ tags:
   - adcs-esc1
 ---
 
+![escapetwo_rank.png](escapetwo_rank.png)
 
-
-# 00. 摘要
+## 00. 摘要
 
 > 关键词：Guest账户、MSSQL xp_dirtree、WINRM、ESC1提权
 
@@ -22,7 +23,7 @@ tags:
 6. 使用 `Ryan.Cooper` 账户枚举ADCS服务，发现存在 ESC1 漏洞
 7. 使用 ESC1 漏洞提权到 `Administrator`
 
-# 01. 信息收集
+## 01. 信息收集
 
 使用 `rustscan` 进行端口扫描，发现如下开放端口
 
@@ -57,7 +58,7 @@ Open 10.10.11.202:5985
 Open 10.10.11.202:9389
 ```
 
-# 02. 使用Guest账户枚举 SMB服务
+## 02. 使用Guest账户枚举 SMB服务
 
 在没有任何账户的情况下，尝试使用Windows内置的Guest账户枚举SMB文件共享
 
@@ -96,7 +97,7 @@ username: PublicUser
 password: GuestUserCantWrite1
 ```
 
-# 03. 使用PublicUser攻击MSSQL
+## 03. 使用PublicUser攻击MSSQL
 
 使用 `PublicUser` 账户登上 MSSQL 服务，通过 `xp_dirtree` 强制 MSSQL 服务向攻击机发起身份认证。并且通过 `Responder` 捕获该认证信息。
 
@@ -168,7 +169,7 @@ WINRM       10.10.11.202    5985   DC               [*] Windows 10 / Server 2019
 WINRM       10.10.11.202    5985   DC               [+] sequel.htb\sql_svc:REGGIE1234ronnie (Pwn3d!)
 ```
 
-# 04. 后信息收集
+## 04. 后信息收集
 
 我们已经通过枚举，得到 `sql_svc` 账户有WINRM服务的权限。我们使用该账户通过 `evil-winrm` 远程登录主机。经过一番信息收集，我们在 `C:\SQLServer\Logs\ERRORLOG.BAK` 这个MSSQL的日志文件里面，找到了 `Ryan.Cooper` 账户。
 
@@ -204,7 +205,7 @@ kali@kali[~]$ netexec ldap 10.10.11.202 -u 'Ryan.Cooper' -p 'NuclearMosquito3'
 SMB         10.10.11.202    445    DC               [*] Windows 10 / Server 2019 Build 17763 x64 (name:DC) (domain:sequel.htb) (signing:True) (SMBv1:False)LDAPS       10.10.11.202    636    DC               [+] sequel.htb\Ryan.Cooper:NuclearMosquito3
 ```
 
-# 05. ESC1提权
+## 05. ESC1提权
 
 由于该机器存在LDAPS服务，并且 `Ryan.Cooper` 有权限访问LDAPS服务。我们尝试使用该用户枚举并寻找ADCS服务是否存在以及是否有漏洞。
 

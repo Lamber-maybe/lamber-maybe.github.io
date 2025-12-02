@@ -1,6 +1,7 @@
 ---
 title: Escape
 weight: -531
+date: 2025-02-27
 tags:
   - windows
   - medium
@@ -8,8 +9,10 @@ tags:
   - adcs-esc1
 ---
 
+![escape_rank.png](escape_rank.png)
 
 ![Escape-流程图.png](Escape-流程图.png)
+
 # 00. 摘要
 
 > 关键词：Guest账户、MSSQL xp_dirtree、WINRM、ESC1提权

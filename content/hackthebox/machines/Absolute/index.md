@@ -1,7 +1,7 @@
 ---
 title: Absolute
 weight: -498
-date: 2025-09-23
+date: 2025-03-27
 tags:
   - windows
   - insane
@@ -9,6 +9,8 @@ tags:
   - shadow-credentials
   - kerberos-relay
 ---
+
+![absoulte_rank.png](absoulte_rank.png)
 
 ![Absolute-流程图.png](Absolute-流程图.png)
 
