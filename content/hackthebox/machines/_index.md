@@ -3,8 +3,6 @@ title: Machines
 weight: 1
 prev: /hackthebox
 next: /hackthebox/machines/granny
-sidebar:
-  open: true
 ---
 
 ## 靶机难度

