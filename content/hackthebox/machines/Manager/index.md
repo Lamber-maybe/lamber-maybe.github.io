@@ -10,7 +10,7 @@ tags:
   - mssql
 ---
 
-![manager_rank.png](manager_rank.png)
+![manager_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/572.png)
 
 ## 00. 摘要
 

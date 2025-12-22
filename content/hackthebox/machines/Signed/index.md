@@ -10,4 +10,4 @@ tags:
   - kerberoast
 ---
 
-![signed_rank.png](signed_rank.png)
+![signed_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/775.png)

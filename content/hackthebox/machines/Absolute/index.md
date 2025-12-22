@@ -10,7 +10,7 @@ tags:
   - kerberos-relay
 ---
 
-![absoulte_rank.png](absoulte_rank.png)
+![absoulte_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/498.png)
 
 ![Absolute-流程图.png](Absolute-流程图.png)
 

@@ -8,7 +8,7 @@ tags:
   - cve-2025-32463
 ---
 
-![expressway_rank.png](expressway_rank.png)
+![expressway_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/736.png)
 
 ## 00. 摘要
 

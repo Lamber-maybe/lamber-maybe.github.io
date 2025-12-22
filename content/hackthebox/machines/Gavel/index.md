@@ -9,7 +9,7 @@ tags:
   - rce
 ---
 
-![gavel_rank.png](gavel_rank.png)
+![gavel_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/811.png)
 
 ## 00. 摘要
 

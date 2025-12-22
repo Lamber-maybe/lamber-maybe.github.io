@@ -9,7 +9,7 @@ tags:
   - rid-cycling
 ---
 
-![Heist](rank.png)
+![heist_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/201.png)
 
 
 ## 00. 摘要

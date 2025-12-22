@@ -10,7 +10,7 @@ tags:
   - cve-2024-0670
 ---
 
-![eighteen_rank.png](eighteen_rank.png)
+![eighteen_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/805.png)
 
 > Machine Information
 > 

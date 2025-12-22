@@ -10,7 +10,7 @@ tags:
   - rid-cycling
 ---
 
-![hercules_rank.png](hercules_rank.png)
+![hercules_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/778.png)
 
 ## 00. 摘要
 

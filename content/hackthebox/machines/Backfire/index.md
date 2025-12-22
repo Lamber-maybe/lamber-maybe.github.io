@@ -12,7 +12,7 @@ tags:
   - sudo
 ---
 
-![backfire_rank.png](backfire_rank.png)
+![backfire_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/643.png)
 
 ## 00. 摘要
 

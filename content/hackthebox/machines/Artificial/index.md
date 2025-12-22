@@ -7,4 +7,4 @@ tags:
   - easy
 ---
 
-![artificial_rank.png](artificial_rank.png)
+![artificial_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/668.png)

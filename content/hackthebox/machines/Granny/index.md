@@ -11,7 +11,7 @@ tags:
   - ms15-051
 ---
 
-![granny_rank.png](granny_rank.png)
+![granny_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/14.png)
 
 ## 00. 摘要
 

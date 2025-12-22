@@ -21,3 +21,7 @@ cascade:
   {{< card link="/hackthebox/machines/expressway/" title="Expressway" image="/hackthebox/machines/expressway/expressway_rank.png" subtitle="Easy · Linux" >}}
   {{< card link="/hackthebox/machines/delegate/" title="Delegate" image="/hackthebox/machines/delegate/delegate_rank.png" subtitle="Medium · Windows" >}}
 {{< /cards >}}
+
+### 个人排名...
+
+![season9_rank.png](https://labs.hackthebox.com/achievement/season/preview/697550/9.png)

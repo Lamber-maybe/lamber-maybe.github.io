@@ -18,7 +18,7 @@ tags:
   - responder
 ---
 
-![nanocorp_rank.png](nanocorp_rank.png)
+![nanocorp_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/802.png)
 
 ## 00. 摘要
 

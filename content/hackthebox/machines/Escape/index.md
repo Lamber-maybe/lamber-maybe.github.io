@@ -9,7 +9,7 @@ tags:
   - adcs-esc1
 ---
 
-![escape_rank.png](escape_rank.png)
+![escape_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/531.png)
 
 ![Escape-流程图.png](Escape-流程图.png)
 

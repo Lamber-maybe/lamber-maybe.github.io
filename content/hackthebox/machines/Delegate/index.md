@@ -9,7 +9,7 @@ tags:
   - targeted-kerberoasting
 ---
 
-![delegate_rank.png](delegate_rank.png)
+![delegate_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/724.png)
 
 ## 00. 摘要
 

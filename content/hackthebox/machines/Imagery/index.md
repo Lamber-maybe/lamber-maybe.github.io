@@ -6,7 +6,7 @@ tags:
   - medium
 ---
 
-![imagery_rank.png](imagery_rank.png)
+![imagery_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/751.png)
 
 ## 0. 摘要
 

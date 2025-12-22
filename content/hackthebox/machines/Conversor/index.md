@@ -8,4 +8,4 @@ tags:
   - easy
 ---
 
-![conversor_rank.png](conversor_rank.png)
+![conversor_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/787.png)

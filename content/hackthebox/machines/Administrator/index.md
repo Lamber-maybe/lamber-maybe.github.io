@@ -9,7 +9,7 @@ tags:
   - dcsync
 ---
 
-![administrator_rank.png](administrator_rank.png)
+![administrator_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/634.png)
 
 ```bash
 PORT      STATE SERVICE          REASON

@@ -9,7 +9,7 @@ tags:
   - dcsync
 ---
 
-![forest_rank.png](forest_rank.png)
+![forest_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/212.png)
 
 ## 00. 摘要
 

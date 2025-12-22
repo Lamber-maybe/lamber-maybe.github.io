@@ -8,7 +8,7 @@ tags:
   - hard
 ---
 
-![fries_rasnk.png](fries_rasnk.png)
+![fries_rasnk.png](https://labs.hackthebox.com/achievement/machine/preview/697550/808.png)
 
 ```bash
 ┌──(kali㉿kali)-[~]

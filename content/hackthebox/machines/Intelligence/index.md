@@ -9,7 +9,7 @@ tags:
   - rbcd
 ---
 
-![intelligence_rank.png](intelligence_rank.png)
+![intelligence_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/357.png)
 
 ## 00. 摘要
 

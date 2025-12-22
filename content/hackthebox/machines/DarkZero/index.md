@@ -10,7 +10,7 @@ tags:
   - cve-2024-30088
 ---
 
-![darkzero_rank.png](darkzero_rank.png)
+![darkzero_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/754.png)
 
 ## 00. 摘要
 

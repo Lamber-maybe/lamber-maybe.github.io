@@ -10,5 +10,4 @@ tags:
   - kerberoast
 ---
 
-
-![giveback_rank.png](giveback_rank.png)
+![giveback_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/796.png)

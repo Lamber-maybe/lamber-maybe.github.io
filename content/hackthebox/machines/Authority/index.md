@@ -9,7 +9,7 @@ tags:
   - pass-the-certificate
 ---
 
-![authority_rank.png](authority_rank.png)
+![authority_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/553.png)
 
 ![Authority-流程图.png](Authority-流程图.png)
 

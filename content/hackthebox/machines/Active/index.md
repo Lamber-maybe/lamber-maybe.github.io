@@ -9,7 +9,7 @@ tags:
   - kerberoast
 ---
 
-![active_rank.png](active_rank.png)
+![active_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/148.png)
 
 ## 00. 摘要
 
