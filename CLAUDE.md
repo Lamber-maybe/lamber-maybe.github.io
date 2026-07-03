@@ -59,30 +59,65 @@ Once cached, subsequent `hugo server` runs need no network.
 
 ## Writing style (for authoring content)
 
-This blog's posts are auto-drafted by an agent from raw material the owner pastes in (terminal logs, scan output, notes). Your job is to turn that raw material into prose that reads as if the owner wrote it by hand: one consistent voice, fluent natural 简体中文, no generic-tutorial tone, no AI slop. The site has **three registers** — pick the one that fits, then follow its structure exactly.
+This blog's posts are auto-drafted by an agent from raw material the owner pastes in (terminal logs, scan output, notes). The output must read as if the owner wrote it by hand — one **consistent** voice, fluent natural 简体中文, no generic-tutorial tone, no AI slop. **The goal is not to imitate the owner's old posts:** those drift (across 22 machine writeups — three different section-numbering schemes, person ranging from none to 我们×26). You cannot fix drift by imitating drift. Stability comes from a fixed set of decisions, not the feel of the moment, so don't mimic old files — conform to the **声音基准 (Voice Charter)** below, which nails down every choice that drifts, then verify against it. The site has **three registers** (below) — pick the one that fits and follow its structure exactly. And the bar is higher than the owner's average post: match the register, beat the craft.
 
-### 通用语气与结构 (voice & structure — all registers)
+### 声音基准（Voice Charter — 每篇必须符合，逐条可判定）
 
-- **中文为主，术语用英文 (Chinese-primary, English for terms of art).** Prose is 简体中文; keep tool names, techniques, and protocol nouns in English and spelled the standard way (`bloodhound`, `netexec`, `impacket`, `Kerberoast`, `RID`, `SID`, `ForceChangePassword`, `ADCS ESC1`). Never translate a tool/technique name into Chinese, and once you name one, reuse that exact name every time — don't synonym-cycle (payload / exploit / attack vector) for variety.
-- **第一人称、动手、简洁 (first-person, operational, terse).** Write like you're telling a competent teammate what you just did: *"根据默认账户密码先走一遍 bloodhound 收集信息，简单看一眼，第一条攻击路径如下"*. Own the claims, the mistakes, and the judgments in 我/我们 — this is a research log, not a detached third-person manual.
-- **命令真实可复制 (commands are real and copy-pasteable).** Use the actual command with real lab values, never `<placeholder>` templates, and show the concrete result — credentials inline as `user:pass` (e.g. `emily:UXLCI5iETUsIBoFVTj8yQFKoHjXmb`).
-- **用钩子开头，不要铺垫 (open on a concrete hook, not a preamble).** The first 1–2 sentences state *why this post, why now*: a question someone asked (*"有师傅问我……"*), a claim you're correcting, an anomaly you noticed, or a CVE trending that day. The hook IS the introduction — never write "本文将介绍…", never open with 免责声明 or 过度谦虚的套话 ("本人水平有限，如有错误欢迎指正"); if that content must exist at all, it goes at the very end in one line.
-- **先讲为什么，再讲怎么做 (WHY before HOW — treat as a hard rule).** Before any payload or command, give the reader the mental model that makes it work: the protocol spec, the permission model, the encoding, or what a patch actually changed. Only paste the exploit once the reader could predict it. 贴命令不讲成因就是操作手册，讲清原理读者才能迁移到没见过的场景，这是分析和复制粘贴的区别。
-- **补丁—绕过叙事 (patch-then-bypass for vuln/CVE posts).** For vulnerability-history pieces, make the spine chronological by CVE/version, and for each fix say *what the vendor changed*, then *how it was defeated*, repeated per version. That turns a multi-CVE list into one continuous story.
-- **一段一个意思，首句即结论 (one idea per paragraph, topic sentence first).** Technical readers scan; the first sentence of each paragraph must carry its point so a skim still lands. Don't stuff a second idea into a paragraph.
-- **展示失败的尝试，再转折 (show the dead end, then the pivot).** In the hard sections (encoding mismatches, an exploit that didn't fire, a wrong hypothesis), narrate the elimination: *"我先怀疑是 SQL 注入，但注入点回显正常，排除；转而看 …"* / *"我尝试改成 UTF-16BE，同样的报错，Java 里其他编码也一样"*. The debugging heuristic teaches more than the clean path, and it reads as honest.
-- **具体压过抽象，show don't tell.** Replace adjective-summaries ("系统很脆弱") with the exact payload, request, or error message. Let a screenshot or captured output carry the "it worked" proof — pair one setup sentence with one evidentiary image (popped calc, secretsdump output, a shell prompt) instead of narrating the result in prose.
-- **标注适用范围 (state scope/version caveats, both ends).** Say up front what varies (*"Jenkins 版本和插件差异较大，利用时细节可能不同"*) and pin results to the tested version/environment again near the end. This builds credibility instead of eroding it.
-- **重要结论前置 (conclusion-first for analysis posts).** For technique/vuln analysis, put "这是什么漏洞、影响多大" in the first screenful so a reader decides in seconds whether to read on; expand by decreasing importance after.
-- **归属用 @handle (credit peers inline).** When you reuse or build on someone's tool or idea, name them inline (*"这里用 @rebeyond 的 JNDInjector"*) — it situates the post inside the CN security-research community rather than as solo authority.
-- **交叉链接用真实 Markdown 链接，绝不用 `[[wikilinks]]`.** Obsidian-style `[[DCSync]]` does not render here (no wikilink extension — readers see literal brackets). Link a reused technique to its tag index `[Kerberoast](/tags/kerberoast/)` or to the post page.
-- **十六进制小节编号 (hex section numbering for technique/vuln posts).** On the pentest side, number sections `0x01`, `0x02`, `0x03` — it signals genre and matches this community's convention. (HTB machine writeups keep their own fixed structure below.)
-- **结尾不硬凑总结 (don't force a wrap-up).** Many good posts end on the working PoC/screenshot or on a bare reference list with nothing after it. If a 总结 is genuinely warranted, keep it to the 2–3 core conditions/constraints for exploitation, not a full re-narration.
-- **砍初稿 (cut hard after drafting).** Filter to the details that move the argument; drop流水账 (every scan line, every dead click). After a draft, ask sentence by sentence "删掉会影响理解吗" — half usually can go.
+这些不是风格建议，是二元可判定的硬决策——每条都能对着草稿回答"符合/不符合"。文风漂移就死在这张表上。
 
-### 自然、人味的表达 (natural voice — anti-AI-slop)
+1. **人称：无人称客观。** 不出现"我/我们"。动作用主动动词直接陈述：`先用 Guest 空口令枚举 SMB，NETLOGON 可读，拿到 users.bat。` 不写"我先用…"，也不写被动的"SMB 被枚举"。无人称不等于操作手册腔——靠主动动词和第 2 条的判断保持人味。
+2. **语域：克制、专业、简练，但每个转折点补一句有信息量的主观判断。** 判断陈述成事实，不带"我觉得"：`这里用 krbrelayx 而不是 ntlmrelayx，因为要接的是转发过来的 Kerberos TGT，落 ccache。` / `这套权限组合在真实环境几乎见不到。` 判断必须携带信息，绝不为 casual 而 casual。
+3. **开头：一句洞见钩子。** 排名图后第一句点出"这台靶真正非常规的那一点"，不写"本文将介绍…"、不写摘要罗列、不拿靶机名玩双关、不写免责声明或过度谦虚的套话。
+4. **命令真实、禁占位符。** 每条命令带真实值可复制，输出贴真实回显，凭据行内写 `user:pass`（如 `emily:UXLCI5iETUsIBoFVTj8yQFKoHjXmb`）。素材里缺的（比如没给 nmap 输出）——**问博主要，绝不编、绝不留 `<...>` / "端口表贴这里" / TODO**。
+5. **术语固定不换词。** 工具/技术名用英文标准写法（`bloodhound` / `netexec` / `impacket` / `Kerberoast` / `RID` / `SID` / `ForceChangePassword` / `ADCS ESC1`），从不译成中文；一个概念认准一个词，全篇不同义替换（不 payload/exploit/attack vector 轮着换）。
+6. **WHY 在 HOW 前（硬规则）。** 每个转折先给让它成立的心智模型（协议规范/权限模型/编码/补丁改了什么），再贴命令。贴命令不讲成因就是操作手册；讲清原理读者才能迁移到没见过的场景。
+7. **解释密度分层（读者不都是老手，但 writeup 不是教程）。** 人人都懂的基础（nmap 是什么）不提。非平凡技术（Kerberos relay、ADCS ESC1、非约束委派、Kerberoast、DCSync…）在 **writeup 里**只给"点名 + 一句话原理 + 链接到该技术的专文"，不塞整段协议科普；只有"这台靶真正非显然、且它独有"的那一点才在 writeup 里展开，锚定到已贴出的工具输出（指向 certipy / bloodhound / `whoami /priv` 里那一行证据）。把原理讲透留给**专文**（Register 2/3），writeup 里用一句原理 + 一个 `[名字](/blog/Slug)` 链过去，读者想深入点链接即可。
+8. **一段一个意思，首句即结论。**
+9. **死路只写真的。** 真报错/版本坑/等待才写，简短点到（`DNS 记录约 3 分钟后才生效`）；跑得干净就一句"整条链一次打通"或什么都不说，绝不为"有人味"编弯路。
+10. **收尾不写总结。** 停在 PoC/截图或参考链接（22 篇里 0 篇写总结，这条只是把已有习惯钉死）。真要收，只留 2–3 条利用的核心条件，不整段复述。
+11. **标点与链接：直引号（`"" ''`），破折号（`—` `–`）不当逗号用**（换成逗号/句号/冒号/括号，发布前 grep 这个字符）。交叉链接用真实 Markdown 链接 `[Kerberoast](/tags/kerberoast/)`，绝不用 `[[wikilinks]]`（本站不渲染）。
+12. **章节骨架：Delegate 式图驱动。** 机器 writeup 一律：排名图 → 洞见钩子 → 简要流程图 → 文字版流程 → `### 0x01…` 正文细节 → 参考链接，难点配概念图（见 Register 1）。技术/漏洞分析类博客文同样用 `0x01`、`0x02` 十六进制编号。
 
-目标语域是**客观、专业、简练**（objective / professional / concise），不是插科打诨。反 AI 味靠的是精准和恰到好处的克制，**不是**靠俚语、玩梗、卖萌。真正的 AI 味不在词汇层，而在**结构与节奏**：解释密度平、句式一个模子、每小节同一个开头、全程一次通关无挫折。先治这些，再治词。
+### 黄金样例（gold specimen — 照这个语气、密度、节奏写，不是照内容）
+
+没有哪篇旧文完美符合基准，所以语气锚点是这段刻意写出来的样例，不是某篇旧文。
+
+**AI 腔（反面，别这么写）：**
+> 在获得初始立足点之后，我们需要进行横向移动。值得注意的是，BloodHound 作为一款强大的攻击路径分析工具，能够帮助我们清晰地识别出攻击向量——通过深入分析发现 A.Briggs 对 N.Thompson 拥有 GenericWrite 权限，这为我们的后续攻击提供了绝佳的机会。
+
+毛病：`我们`（违反 #1）、`值得注意的是` / `作为一款强大的…工具` / `绝佳的机会`（AI 高频词+意义膨胀）、解释了读者都懂的 BloodHound（违反 #7）、破折号当逗号（违反 #11）。
+
+**目标声音（照这个写）：**
+> `whoami /priv` 亮出两行平时见不到的权限：`SeMachineAccountPrivilege` 和 `SeEnableDelegationPrivilege`。后者是这台靶唯一真正非常规的地方：`是否信任委派`这个属性默认只有域管能改，这里却下放给了一个普通域用户。配合前者能凭空造机器账户，两个凑齐就能自己造一台机器并设成非约束委派。这种组合在真实环境几乎见不到。
+
+好在哪：无人称、命名技术不解释、WHY 前置、一句判断收尾、长短句交替。
+
+### 写作流程（每篇必走，别跳步）
+
+初稿一定带 AI 腔和流水账，别指望一遍到位——**稳定的产出来自第 4 步的三遍改写，不来自初稿。**
+
+1. **读素材 + 读基准。** 起草前重读上面的《声音基准》和《黄金样例》锁定语气。素材不全（缺 nmap、缺某步输出）先问博主补齐，不脑补。
+2. **列骨架 + 查专文。** 按对应 Register 搭空架子（机器 writeup = 第 12 条的 Delegate 式图驱动）。列出用到的非平凡技术：有专文的用 `[名字](/blog/Slug)` 链过去；**没有专文的，提醒博主要不要现在补一篇**，博主同意后再联网搜资料（RFC/源码/advisory）、按 Register 3 写出来，别自作主张悄悄建 stub。
+3. **写初稿。** WHY 在 HOW 前，真实命令+真实输出，一段一个意思首句即结论。
+4. **改三遍**（产出稳定的关键）：
+   - **第一遍 去味**：逐句对照下面《AI 腔自查表》——翻译腔、生造搭配、破折号、AI 高频词、公式化开头结尾、平掉的解释密度、机械编号。判断标准：一句话会让你脑子里先冒出对应英文、或读到会绊一下，就是翻译腔，换成会脱口而出的说法。
+   - **第二遍 抬工艺**：洞见前置了吗？每个转折补上 why 了吗？例行动作压成一句、难点展开成段了吗？最难的机制能不能交给一张概念图而不是一堵字？流水账（每条扫描、每次死点击）砍干净了吗？（目标是比旧文更好，不是复刻旧文。）
+   - **第三遍 对基准**：逐条过《声音基准》12 条，重点盯人称（无"我/我们"）、无占位符、术语没换词、没写总结段、破折号没当逗号。
+5. **核实。** 命令真实可复制、每个"打通了"都有输出/截图撑着；流程图/概念图的 codex prompt 填好了参数（靶机名、有序步骤、概念机制），没留空模板。
+
+### 语气与工艺（基准之外，写初稿和第 4 步第二遍时用）
+
+- **补丁—绕过叙事（vuln/CVE 文）。** 漏洞史类文章按 CVE/版本顺序做脊柱，每个修复先说厂商改了什么，再说怎么被绕过，逐版本重复——把多 CVE 列表串成一个连续故事。
+- **展示失败的尝试，再转折。** 硬骨头小节（编码不匹配、exploit 没打响、假设错了）叙述排除过程：`先怀疑是 SQL 注入，但注入点回显正常，排除；转而看 …`。调试启发比干净路径教得多，也更诚实（前提是真发生过，见基准 #9）。
+- **具体压过抽象，show don't tell。** 用确切的 payload/请求/报错替掉形容词式总结（"系统很脆弱"）。让截图或抓取的输出承担"打通了"的证明——一句铺垫配一张证据图（弹计算器、secretsdump 输出、shell 提示符），别用散文复述结果。
+- **标注适用范围（两头都标）。** 开头说清什么会变（`Jenkins 版本和插件差异较大，利用细节可能不同`），结尾把结果钉到测试的版本/环境。
+- **重要结论前置（分析类文）。** 技术/漏洞分析把"这是什么漏洞、影响多大"放进第一屏，让读者几秒内决定是否读下去，之后按重要性递减展开。
+- **归属用 @handle。** 复用或基于他人工具/思路时内联署名（`这里用 @rebeyond 的 JNDInjector`），把文章放进 CN 安全研究社区里。
+- **砍初稿。** 只留推动论证的细节，删流水账。初稿写完逐句问"删掉会影响理解吗"，一般能砍一半。
+
+### AI 腔自查表（写作流程第 4 步第一遍"去味"逐条对照）
+
+这是上面写作流程第 4 步第一遍改写要逐句比对的清单，不是泛读的背景。目标语域是**客观、专业、简练**（objective / professional / concise），不是插科打诨。反 AI 味靠的是精准和恰到好处的克制，**不是**靠俚语、玩梗、卖萌。真正的 AI 味不在词汇层，而在**结构与节奏**：解释密度平、句式一个模子、每小节同一个开头、全程一次通关无挫折。先治这些，再治词。
 
 一条主线先说清：**保留"为什么"（读者要靠它记住），复杂概念也要讲得懂，但要简练、客观——写得像专业人，不像聊天，也不像教科书；真正难讲的概念交给一张图，而不是一堵墙的字。**
 
@@ -144,18 +179,6 @@ This blog's posts are auto-drafted by an agent from raw material the owner paste
 - **标题党式排版** — 英文标题 sentence-case，标题/列表不加 emoji，不用 `**标签：** 一句话` 行内标题式 bullet，加粗只留给极少数真正的关键术语。
 - **聊天残留 / 填充短语** — 删"希望这对你有帮助""让我们深入了解一下""首先/其次/最后"脚手架；"in order to"→"to"、"为了能够"→"为了"；不叠加限定（"could potentially possibly"）。
 
-**客观专业 / AI 味自查（发布前对着自己的草稿逐条问）：**
-
-- 段落是不是都一样长、都一样的复合句式？插一两句短的进去。
-- 有没有解释了每个渗透测试者都懂的东西（Kerberoast / DCSync / 非约束委派是什么）？删掉。
-- 解释深度有没有随难度变化？例行步骤一句话，真正的难点才展开成段。
-- 是不是每个小节都用同一句式开头（先… / 第一件事是…）？换开头。
-- 有没有 '为什么…？' 自问自答、第一步/第二步 机械编号硬套在耦合链上？改成叙述。
-- 有没有为了显得接地气而硬塞口语（薅/收工/心里有底）或标题双关钩子？删。
-- 写到的 friction 是真发生的还是为了"有人味"编的？编的删。
-- 有没有某个复杂概念其实一张概念图就能讲清、却在硬堆字？能出图就出图。
-- 想象把这句话随手打进技术群跟同行说——会卡一下，或者脑子里先冒出对应英文再反应过来中文什么意思吗？那就是翻译腔或生造搭配，换成会脱口而出的版本。
-
 ### Register 1 — HTB machine writeup
 
 Path: `content/hackthebox/machines/<Box>/index.md` (page bundle: `index.md` + images). This is the most common register and has a **fixed, ordered structure**. Do not reorder it.
@@ -169,7 +192,9 @@ Body, in this exact order:
 ![<Box>_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/<N>.png)
 ```
 
-**(b) 简要流程图 — brief attack-flow diagram.** You do **not** draw it. Instead, from the box's ordered attack steps, emit a ready-to-copy codex prompt inside a fenced `text` block, immediately followed by the image placeholder `![流程图](flow.png)` where the rendered PNG will go. Add one line telling the owner what to do: *"把下面这段丢进 codex TUI（`Use $ian-xiaohei-illustrations …`）跑出 `flow.png`，放到本目录。"* Fill 【靶机名称】, 【有序攻击步骤】 (the real ordered chain, each step naming its technique/tool/CVE), and 【输出文件名】 before emitting:
+**(b) 洞见钩子 — one-sentence insight hook (Voice Charter #3).** 排名图后紧跟一句话，点出这台靶真正非常规的那一点，不是摘要、不是"本文将介绍"。例：*"Delegate 立足点在 Guest 空口令可读的 `NETLOGON`，提权的核心是一个普通域用户手里本不该出现的 `SeEnableDelegationPrivilege`。"*
+
+**(c) 简要流程图 — brief attack-flow diagram.** You do **not** draw it. Instead, from the box's ordered attack steps, emit a ready-to-copy codex prompt inside a fenced `text` block, immediately followed by the image placeholder `![流程图](flow.png)` where the rendered PNG will go. Add one line telling the owner what to do: *"把下面这段丢进 codex TUI（`Use $ian-xiaohei-illustrations …`）跑出 `flow.png`，放到本目录。"* Fill 【靶机名称】, 【有序攻击步骤】 (the real ordered chain, each step naming its technique/tool/CVE), and 【输出文件名】 before emitting:
 
 ```text
 请使用 $ian-xiaohei-illustrations 技能（github.com/helloianneo/ian-xiaohei-illustrations 的小黑 Xiaohei 风格），为下面这篇 HackTheBox 靶机 writeup 生成一张"攻击流程图"（attack-flow diagram），构图类型采用该仓库 composition-patterns 中的 "Workflow / 地图路线"。
@@ -201,7 +226,7 @@ Body, in this exact order:
 
 ![流程图](flow.png)
 
-**(c) 文字版流程 — concise ordered text walkthrough.** A numbered list of the whole chain, foothold → each pivot → root, so a reader grasps the path in ~20 seconds before any detail. Keep each item to one line naming the technique. Example:
+**(d) 文字版流程 — concise ordered text walkthrough.** A numbered list of the whole chain, foothold → each pivot → root, so a reader grasps the path in ~20 seconds before any detail. Keep each item to one line naming the technique. Example:
 ```
 1. 立足：匿名 SMB 拿到备份，读出 svc_web 凭据
 2. 横向：svc_web 对 michael 有 ForceChangePassword，改密拿下
@@ -209,7 +234,7 @@ Body, in this exact order:
 ```
 Also notate AD attack paths in BloodHound edge form in a code block where relevant: `olivia -[GenericAll]-> michael -[ForceChangePassword]-> benjamin`.
 
-**(d) 正文细节 — detailed chronological narrative.** The full walkthrough in the tight intent→command→result rhythm: one line of intent → command block → concrete result, repeated to root. Lead with the full `nmap` port output in a code block. At **each pivot** add a why-sentence — why that service/ACL/misconfig is exploitable and how it chose the next step (*"michael 在 michael 组里对 benjamin 有 ForceChangePassword，所以不用知道原密码就能直接改，这是拿下下一跳的最短路径"*) — not on every step, only the turning points. Keep code blocks short and single-purpose; let asciinema casts (`{{< asciinema file="…" >}}`) carry full-session evidence separately from prose.
+**(e) 正文细节 — detailed chronological narrative, split into `### 0x01`、`### 0x02`… subsections, one per pivot.** Each subsection: one line of intent — **impersonal** (`先枚举 SMB`, never `我先枚举`) — → command block → concrete result, to root. Lead with the **full, real** `nmap` port output pasted in a code block — never a `# 端口表贴这里` placeholder; if the raw material lacks it, ask (Voice Charter #4). At **each pivot** add a why-sentence — why that service/ACL/misconfig is exploitable and how it picked the next step (*"michael 对 benjamin 有 ForceChangePassword，不用知道原密码就能直接改，这是拿下下一跳的最短路径"*) — only at turning points, not every step. On a non-trivial technique's first mention, link it to its deep-dive post with the repo's plain-Markdown convention — `[Kerberoast](/blog/Kerberoast)`, path matching the `content/blog/<Name>.md` filename — and keep only the one-sentence principle inline. When a mechanism is genuinely hard to explain in 2–3 sentences (unconstrained delegation leaking a TGT, an encoding mismatch), hand it to a concept diagram: emit the 概念图 codex prompt from 《AI 腔自查表》above, then `![…](concept.png)` — don't pile on words. Keep code blocks short and single-purpose; let asciinema casts (`{{< asciinema file="…" >}}`) carry full-session evidence separately from prose.
 
 ### Register 2 — technique cheatsheet
 
@@ -217,7 +242,7 @@ Path: `content/blog/<Technique>.md`. Compact three-part skeleton: `## 原理` (1
 
 ### Register 3 — long-form essay / methodology
 
-Path: e.g. `content/blog/Incremental-learning.md`. Numbered headings (`## 1.`, `### 1.1`), optional blockquote epigraph with an attribution line, a `<!--more-->` summary break near the top, **bold** for key takeaways, liberal inline links. Follow the concept → mechanism → exploitation → limits/mitigation → conclusion arc: teach the legitimate mechanism to completion before any attack, and for any attack technique add a short "适用条件 / 局限" section (why it works, where it stops working, how defenders detect or block it) rather than tacking on a bullet list. Same blog front matter as Register 2.
+Path: e.g. `content/blog/Incremental-learning.md`. Numbered headings (`## 1.`, `### 1.1`), optional blockquote epigraph with an attribution line, a `<!--more-->` summary break near the top, **bold** for key takeaways, liberal inline links. Follow the concept → mechanism → exploitation → limits/mitigation → conclusion arc: teach the legitimate mechanism to completion before any attack, and for any attack technique add a short "适用条件 / 局限" section (why it works, where it stops working, how defenders detect or block it) rather than tacking on a bullet list. Same blog front matter as Register 2. Writeup 链过来的深入讲解就用这个 register；讲解的结构与深度参照 [thehacker.recipes](https://www.thehacker.recipes/)（Theory→Practice、一技术一页）、[phith0n Java 安全漫谈](https://github.com/phith0n/JavaThings)（循序渐进不居高临下）、[leavesongs](https://www.leavesongs.com/)（从困境写推导思路），学结构不搬第一人称。动笔前可联网搜集 RFC/源码/advisory 再写。
 
 ### Bilingual
 
