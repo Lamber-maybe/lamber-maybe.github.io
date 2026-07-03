@@ -2,6 +2,7 @@
 title: Lamber's Blog
 
 enableGitInfo: true
+enableRobotsTXT: true
 
 services:
   googleAnalytics:
@@ -13,6 +14,8 @@ languages:
     languageName: English
     weight: 1
     title: Lamber
+    params:
+      description: "HackTheBox writeups & Active Directory / Windows pentesting notes — Kerberoast, DCSync, ADCS ESC1/ESC7, ASREPRoast, Shadow Credentials, RID Cycling. Real thinking over copy-paste."
   zh-cn:
     languageName: 简体中文
     languageCode: zh-CN
@@ -73,6 +76,18 @@ menu:
         icon: kofi_symbol
 
 params:
+  # Site-wide SEO metadata (consumed by Hextra's opengraph/description partials
+  # and the local custom/head-end.html JSON-LD). Home pages override description
+  # via their own front matter; this is the fallback for every other page.
+  description: "记录 HackTheBox 靶机的完整通关思路与渗透学习笔记，专注 Windows 活动目录（AD）渗透：Kerberoast、DCSync、ADCS ESC1/ESC7、ASREPRoast、影子凭据、RID Cycling。放弃无意义的复制粘贴，沉淀属于自己的思考。"
+  author: Lamber
+  images:
+    - /images/og-home.png
+  social:
+    # `twitter` is consumed by the theme's twitter_cards partial as a handle
+    # (it prepends "@"), so store the bare username, not a URL.
+    twitter: "Lamber28793923"
+
   navbar:
     displayTitle: true
     displayLogo: true
