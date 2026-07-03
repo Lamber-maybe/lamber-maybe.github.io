@@ -82,24 +82,70 @@ This blog's posts are auto-drafted by an agent from raw material the owner paste
 
 ### 自然、人味的表达 (natural voice — anti-AI-slop)
 
-Write like you talk to a peer. Prefer active voice and concrete verbs ("脚本执行了 payload" / "the script executes the payload", not "payload 被执行"). Vary sentence rhythm, allow a real opinion or a dry aside — sparing self-deprecation and colloquial judgment read as more expert than uniformly neutral prose (*"这个 trick 终究比较鸡肋"*, *"这段代码比我的钱包还干净"*) — but use them to punctuate, never to pad. Give a definite conclusion where you have one; keep hedges ("可能""大概""某种程度上") only where uncertainty is real. Before publishing, reread and ask "哪里还有明显的 AI 味" and fix exactly those.
+目标语域是**客观、专业、简练**（objective / professional / concise），不是插科打诨。反 AI 味靠的是精准和恰到好处的克制，**不是**靠俚语、玩梗、卖萌。真正的 AI 味不在词汇层，而在**结构与节奏**：解释密度平、句式一个模子、每小节同一个开头、全程一次通关无挫折。先治这些，再治词。
 
-**Banned patterns — scan the finished draft and remove every instance:**
+一条主线先说清：**保留"为什么"（读者要靠它记住），复杂概念也要讲得懂，但要简练、客观——写得像专业人，不像聊天，也不像教科书；真正难讲的概念交给一张图，而不是一堵墙的字。**
 
-- **破折号 (em/en dash `—` `–`) 当逗号用** — replace with a comma, period, colon, or parentheses. Hard constraint: grep the draft for the character before publishing.
-- **弯引号 (curly quotes `“ ” ‘ ’`)** — use straight quotes.
-- **AI 高频词** — English: delve, leverage, crucial, intricate, landscape, tapestry, testament, underscore (verb), pivotal, foster, garner, showcase, robust, seamless, cutting-edge, additionally; Chinese: 值得注意的是、总的来说、综上所述、在当今…的时代、赋能、助力、生态、闭环、抓手、深度赋能. Use the plain verb/noun instead.
-- **意义膨胀 (significance inflation)** — no "stands as / serves as a testament", "plays a pivotal role", "marks a turning point", "彰显了…的重要性", "为…写下了浓墨重彩的一笔". State the fact and stop.
-- **回避系动词 (copula avoidance)** — write "the box has a WinRM service" / "靶机开了 WinRM", not "boasts / features / serves as". Use is/are/有.
-- **拼贴修辞** — no "not only… but also", no clipped tail-negations ("no guessing", "no wasted motion"), no rule-of-three list padding, no "X 是 Y 的 Z" aphorism formulas. State the real number of things once.
-- **模糊出处 (vague attribution)** — replace "researchers believe / experts argue / 业内普遍认为" with a named source (CVE ID, advisory, `@handle`) or cut the claim.
-- **-ing 尾巴填充** — delete trailing participials that restate the point ("…highlighting the risk", "…体现了其严重性").
-- **公式化结尾** — no "Despite these challenges… / Future Outlook / 展望未来 / 相信在不久的将来" closers. End when the technical content ends.
-- **标题党式排版** — sentence-case English headings (not Title Case), no emoji on headings/bullets, no `**标签：** 一句话` inline-header bullets; reserve bold for a rare true key term.
-- **聊天残留 (chatbot residue)** — cut "希望这对你有帮助", "如果还有问题欢迎告诉我", "Great question", "这是一台很棒的靶机", "让我们深入了解一下 / let's dive in", "首先/其次/最后" scaffolding.
-- **填充短语与叠加限定** — "in order to"→"to", "due to the fact that"→"because", "为了能够"→"为了"; never stack hedges ("could potentially possibly").
-- **知识截止免责与臆测填充** — no "截至撰稿时", "具体细节尚不清楚，但很可能…". If a detail (patch timeline, root cause) isn't confirmed, say so in one line or cut it — don't invent plausible filler.
-- **谓语位置连字符** — "the report is high quality", not "high-quality"; "配置就是能被滥用", not manufactured staccato drama ("没有预警。没有机会。").
+**深层 AI 味（headline tells — 这些比词表重要，逐条自查）：**
+
+- **解释密度要不均匀（explain only the non-obvious）。** 默认读者在打 HTB 中等难度靶机。**凡是渗透测试者都懂的东西一律不解释**：什么是 Kerberoast / DCSync / 非约束委派 / GenericWrite、SPN→TGS→哈希→离线爆破的链条、为什么 Guest 可读的 `NETLOGON` 值得翻——点名技术，然后往下走。把整段解释的篇幅**只留给这台靶机真正非显然的那一点**（例如"为什么一个普通域用户手里会有 `SeEnableDelegationPrivilege`"）。解释的深度必须随难度浮动：例行动作一句带过，难点才展开。每个小节都背同样重量的"论证"，节奏就被压平了——那是 AI。讲"为什么"时**锚定到已经贴出的工具输出**（指向 certipy / bloodhound / `whoami /priv` 里那一行证据），不要写一段脱离任何命令、放到哪篇 writeup 都成立的协议科普。
+
+- **节奏要有变化（rhythm，not vocabulary）。** 长短句交替，别每一拍都用连接词（所以 / 而 / 但 / 也就是说）兜成一个平衡的复合句。允许一句短的落地："整条链一次打通。" 禁掉收尾复述 tic（用"也就是说"把上一句换句话重说一遍）。禁掉 **'为什么…？'自问自答**式的段落/小节开头——把事实平铺直叙，别摆问答台。禁掉给紧耦合工具链硬套的**机械序号（第一步/第二步/第三步）**：让过渡句承接顺序（"造完机器账户，接着挂 SPN 和 DNS 记录，krbrelayx 起好监听再扔 printerbug"），**只有当顺序本身是重点时**（必须按序执行的清单）才编号。代码块是真正的结构，散文负责流动，不负责数数。别让每个小节都用同一套骨架开头（"先…/第一件事是[动作]+理由"），换开头。
+
+- **语域要客观专业（register）。** 度量衡是"测评报告 / 技术复盘"，不是朋友圈。删掉硬贴上去的口语和表演性俚语：**薅、收工、心里有底、老套路**这类零信息量的"显得接地气"补丁。不要拿靶机名玩双关当钩子（"Delegate 这名字把考点写脸上了"），不要在第一条命令之前先来个"真正的钥匙不是 X 而是 Y"的论点铺垫——**直接从第一个动作开始**（贴 nmap、跑枚举）。语域要**全程一致**：别在一句教科书腔的句子里突然塞一个网络流行词，那个落差本身就是 tell。一句**真实、有信息量的判断**是加分且显专业的（"这套权限组合在 CTF 外基本不现实"、"这里选 krbrelayx 而不是 ntlmrelayx 是因为要落 TGT 到 ccache"），但判断必须携带信息，**绝不为了casual而casual**。
+
+- **摩擦只写真的（friction）。** 真实的死路、报错、版本坑、等待——**只在真发生时**写，平铺直叙、简短点到（"DNS 记录约 3 分钟后才生效"、"krbrelayx 第一次盐值大小写不对，票解不开，翻源码才发现 REALM 要大写"）。**绝不为了'有人味'而编造**弯路。如果这次跑得很干净，要么一句话说明（"整条链一次打通，没绕路"），要么什么都不说——别硬造一个"其实没发生"的翻车。
+
+**复杂概念：讲不清就交给图（NEW）。** 用易懂的方式解释复杂概念，但**保持短**。如果一个机制**确实**没法用两三句讲清楚，**不要堆字**——把它交给一张图：按和流程图完全相同的机制（`$ian-xiaohei-illustrations`），在 fenced `text` 块里 emit 一段 codex **概念图** prompt，紧跟一个图片占位符，让插画去承担解释。一张示意图胜过一堵墙的散文。用法（附一行告诉 owner 怎么做：*"把下面这段丢进 codex TUI 跑出 `concept.png`，放到本目录。"*），填好【概念名称】和【要讲清的机制】再 emit：
+
+```text
+请使用 $ian-xiaohei-illustrations 技能（github.com/helloianneo/ian-xiaohei-illustrations 的小黑 Xiaohei 风格），为下面这个安全概念画一张"原理示意图"（concept / mechanism diagram），构图类型采用该仓库 composition-patterns 中的 "结构/原理示意"（非流程路径，而是把一个机制的关键要素和它们的关系画清楚）。
+
+【概念名称】
+<例如：非约束委派为什么会泄露 DC 的 TGT>
+
+【要讲清的机制（用最朴素的话列出关键要素与它们的关系）】
+要素1、要素2、它们之间发生了什么（如：DC 向"非约束委派机器"认证时，会把自己的 TGT 一并转发过去缓存——攻击者控制这台机器即可窃取）
+
+【构图要求】
+- 画机制本身，不画攻击步骤顺序：把关键要素画成图上的对象，用箭头/标注表达它们之间"谁把什么交给了谁"。
+- 每个要素配一句手写中文标注，2-8 字，全图 4-6 处以内。
+- 小黑（黑色实心小人、白点眼、细腿、面无表情）是真正"动手"的那个角色（接住、搬走、撬开对应机制里的关键一步），不当旁观装饰。
+- 关键风险点（被窃取/被滥用的那一环）用红色点出。
+
+【视觉风格（严格遵循 style-dna）】
+- 纯白背景，无纹理/渐变/阴影；黑色手绘线稿为主，线条带轻微手抖感，像技术人随手画的草图；不要商业插画、PPT 信息图、正式流程图、卡通风格。
+- 主体占 40%-60%，至少 35% 留白。
+- 只用黑（主体结构）、橙（关系/箭头）、红（风险点）、蓝（补充说明）四色，克制使用。
+- 左上角不放分类标题文字。
+
+【输出要求】
+- 横版 16:9，直接产出真实图片，不要只用文字描述；保存为 PNG，文件名：concept.png；完成后回复完整保存路径。
+```
+
+![概念图](concept.png)
+
+**词/标点层（surface tells — 次要，扫最终稿删干净即可）：**
+
+- **破折号 `—` `–` 当逗号用** → 换成逗号/句号/冒号/括号；发布前 grep 这个字符。**弯引号 `“ ” ‘ ’`** → 用直引号。
+- **AI 高频词** — 英文 delve、leverage、crucial、intricate、landscape、tapestry、testament、underscore、pivotal、foster、robust、seamless；中文 值得注意的是、总的来说、综上所述、在当今…的时代、赋能、助力、生态、闭环、抓手。用平实的动词/名词替换。
+- **意义膨胀 / 公式化结尾** — 不写"stands as a testament""彰显了…的重要性""为…写下浓墨重彩的一笔"，也不写"展望未来 / 相信在不久的将来 / Despite these challenges"式收尾。技术内容讲完就停。
+- **回避系动词** — 写"靶机开了 WinRM"（is/are/有），别用 boasts/features/serves as。
+- **拼贴修辞** — 不要"not only… but also"、不要凑三段排比、不要"X 是 Y 的 Z"格言体、不要制造出来的短句 staccato（"没有预警。没有机会。"）。真有几点就说几点。
+- **模糊出处** — "业内普遍认为 / researchers believe" → 换成 CVE 号、advisory、`@handle`，或删。
+- **标题党式排版** — 英文标题 sentence-case，标题/列表不加 emoji，不用 `**标签：** 一句话` 行内标题式 bullet，加粗只留给极少数真正的关键术语。
+- **聊天残留 / 填充短语** — 删"希望这对你有帮助""让我们深入了解一下""首先/其次/最后"脚手架；"in order to"→"to"、"为了能够"→"为了"；不叠加限定（"could potentially possibly"）。
+
+**客观专业 / AI 味自查（发布前对着自己的草稿逐条问）：**
+
+- 段落是不是都一样长、都一样的复合句式？插一两句短的进去。
+- 有没有解释了每个渗透测试者都懂的东西（Kerberoast / DCSync / 非约束委派是什么）？删掉。
+- 解释深度有没有随难度变化？例行步骤一句话，真正的难点才展开成段。
+- 是不是每个小节都用同一句式开头（先… / 第一件事是…）？换开头。
+- 有没有 '为什么…？' 自问自答、第一步/第二步 机械编号硬套在耦合链上？改成叙述。
+- 有没有为了显得接地气而硬塞口语（薅/收工/心里有底）或标题双关钩子？删。
+- 写到的 friction 是真发生的还是为了"有人味"编的？编的删。
+- 有没有某个复杂概念其实一张概念图就能讲清、却在硬堆字？能出图就出图。
 
 ### Register 1 — HTB machine writeup
 
