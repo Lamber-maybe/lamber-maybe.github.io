@@ -1,6 +1,5 @@
 ---
 title: EscapeTwo
-weight: -642
 date: 2025-01-16
 tags:
   - windows

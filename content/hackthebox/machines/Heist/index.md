@@ -1,7 +1,6 @@
 ---
 title: Heist
 date: 2025-10-15
-weight: -201
 tags:
   - windows
   - easy

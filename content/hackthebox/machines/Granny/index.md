@@ -1,7 +1,6 @@
 ---
 title: Granny
 date: 2024-12-26
-weight: -14
 prev: /hackthebox/machines
 tags:
   - windows

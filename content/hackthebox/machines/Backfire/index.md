@@ -1,7 +1,6 @@
 ---
 title: Backfire
 date: 2025-01-21
-weight: -643
 tags:
   - linux
   - medium

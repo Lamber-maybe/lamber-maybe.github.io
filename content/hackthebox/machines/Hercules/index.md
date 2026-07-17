@@ -2,7 +2,6 @@
 draft: true
 title: Hercules
 date: 2025-10-23
-weight: -778
 tags:
   - windows
   - insane

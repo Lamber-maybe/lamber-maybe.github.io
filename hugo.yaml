@@ -16,16 +16,23 @@ languages:
     title: Lamber
     params:
       description: "HackTheBox writeups & Active Directory / Windows pentesting notes — Kerberoast, DCSync, ADCS ESC1/ESC7, ASREPRoast, Shadow Credentials, RID Cycling. Real thinking over copy-paste."
+      homeInfoParams:
+        Title: "Lamber's Blog"
+        Content: "Ex-CTF player · half-baked bug-bounty hunter · HackTheBox operator. Focused on Windows Active Directory exploitation — turning every rabbit hole into notes for my future self."
   zh-cn:
     languageName: 简体中文
     languageCode: zh-CN
     weight: 4
     title: Lamber
+    params:
+      homeInfoParams:
+        Title: "Lamber's Blog"
+        Content: "前 CTF 选手，半吊子赏金猎人，HackTheBox 玩家。专注 Windows 活动目录（AD）渗透，把每一次踩坑与思路，沉淀成属于自己的思考。"
 
-# import hextra as module
+# import PaperMod as module
 module:
   imports:
-    - path: github.com/imfing/hextra
+    - path: github.com/adityatelange/hugo-PaperMod
 
 markup:
   # allow raw html
@@ -33,11 +40,16 @@ markup:
     renderer:
       unsafe: true
 
-  # enable hextra syntax highlight
   highlight:
     noClasses: false
 
 enableInlineShortcodes: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
 
 menu:
   main:
@@ -45,8 +57,6 @@ menu:
       name: HackTheBox
       pageRef: /hackthebox
       weight: 1
-      params:
-        type: docs
     - identifier: blog
       name: Blog
       pageRef: /blog
@@ -56,99 +66,80 @@ menu:
       pageRef: /about
       weight: 3
     - name: Search
+      url: /search/
       weight: 4
-      params:
-        type: search
     - name: GitHub
       weight: 5
       url: "https://github.com/Lamber-maybe/lamber-maybe.github.io"
-      params:
-        icon: github
     - name: 赞助一杯奶茶~
       weight: 6
       url: "https://afdian.com/a/Lamber-maybe"
-      params:
-        icon: afdian
     - name: Buy me a Coffee~
       weight: 7
       url: "https://ko-fi.com/lamber_maybe"
-      params:
-        icon: kofi_symbol
 
 params:
-  # Site-wide SEO metadata (consumed by Hextra's opengraph/description partials
-  # and the local custom/head-end.html JSON-LD). Home pages override description
-  # via their own front matter; this is the fallback for every other page.
+  env: production
+  # Site-wide SEO metadata (consumed by PaperMod's head.html and the local
+  # extend_head.html override for opengraph/twitter-card/JSON-LD). Home pages
+  # override description via their own front matter; this is the fallback
+  # for every other page.
   description: "记录 HackTheBox 靶机的完整通关思路与渗透学习笔记，专注 Windows 活动目录（AD）渗透：Kerberoast、DCSync、ADCS ESC1/ESC7、ASREPRoast、影子凭据、RID Cycling。放弃无意义的复制粘贴，沉淀属于自己的思考。"
   author: Lamber
   images:
     - /images/og-home.png
+  keywords:
+    - HackTheBox
+    - Writeup
+    - 靶机通关
+    - 域渗透
+    - Active Directory
+    - AD 渗透
+    - Kerberoast
+    - DCSync
+    - ADCS ESC1
+    - ADCS ESC7
+    - ASREPRoast
+    - Shadow Credentials
+    - RID Cycling
+    - 渗透测试
+    - 网络安全
+    - Lamber
   social:
-    # `twitter` is consumed by the theme's twitter_cards partial as a handle
+    # consumed by PaperMod's templates/twitter_cards.html as a handle
     # (it prepends "@"), so store the bare username, not a URL.
     twitter: "Lamber28793923"
 
-  navbar:
-    displayTitle: true
-    displayLogo: true
-    logo:
-      path: /images/xiaolin.jpg
-      # width: 40
-      # height: 20
-      # link: /
-    width: wide
+  schema:
+    publisherType: Person
+    sameAs:
+      - "https://github.com/Lamber-maybe/"
+      - "https://x.com/Lamber28793923"
+      - "https://hackerone.com/lamber"
+      - "https://app.hackthebox.com/profile/697550"
 
-  theme:
-    # light | dark | system
-    default: system
-    displayToggle: true
+  comments: true
 
-  footer:
-    displayCopyright: false
-    displayPoweredBy: true
+  defaultTheme: system
+  disableThemeToggle: false
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowToc: true
+  ShowPostNavLinks: true
+  ShowShareButtons: false
+  mainSections:
+    - blog
+    - hackthebox
 
   # Display the last modification date
-  displayUpdatedDate: true
-  dateFormat: "2006年1月2日"
+  DateFormat: "2006年1月2日"
 
-  editURL:
-    enable: true
-    base: "https://github.com/imfing/hextra-starter-template/edit/main/content"
+  editPost:
+    URL: "https://github.com/Lamber-maybe/lamber-maybe.github.io/edit/main/content"
+    Text: "编辑此页"
+    appendFilePath: true
 
-  blog:
-    list:
-      displayTags: true
-      # date | lastmod | publishDate | title | weight
-      sortBy: date
-      sortOrder: desc # or "asc"
-      # Pagination
-      pagerSize: 20
-
-    article:
-      displayPagination: true
-
-  toc:
-    displayTags: true
-
-  highlight:
-    copy:
-      enable: true
-      # hover | always
-      display: hover
-
-  page:
-    # full (100%), wide (90rem), normal (80rem)
-    width: wide
-    # tabs:
-    #   sync: true
-
-  comments:
-    enable: true
-    type: giscus
-
-    giscus:
-      repo: "Lamber-maybe/lamber-maybe.github.io"
-      repoId: "R_kgDOPhm0mw"
-      category: "Announcements"
-      categoryId: "DIC_kwDOPhm0m84CxAWC"
-      lang: "zh-CN"
+  assets:
+    disableHLJS: true

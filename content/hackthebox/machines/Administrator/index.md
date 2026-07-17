@@ -1,6 +1,5 @@
 ---
 title: Administrator
-weight: -634
 date: 2025-01-08
 tags:
   - windows

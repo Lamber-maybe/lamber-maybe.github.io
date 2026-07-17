@@ -1,6 +1,5 @@
 ---
 title: 渐进学习
-weight: 1
 date: 2025-11-05
 authors:
   - name: Lamber

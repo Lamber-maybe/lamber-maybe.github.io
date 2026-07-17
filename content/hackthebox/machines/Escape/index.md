@@ -1,6 +1,5 @@
 ---
 title: Escape
-weight: -531
 date: 2025-02-27
 tags:
   - windows

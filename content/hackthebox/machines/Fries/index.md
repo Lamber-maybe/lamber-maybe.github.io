@@ -2,7 +2,6 @@
 draft: true
 title: Fries
 date: 2025-11-29
-weight: -808
 tags:
   - windows
   - hard

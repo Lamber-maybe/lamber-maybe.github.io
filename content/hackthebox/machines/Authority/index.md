@@ -1,6 +1,5 @@
 ---
 title: Authority
-weight: -553
 date: 2025-03-03
 tags:
   - windows

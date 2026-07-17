@@ -1,6 +1,5 @@
 ---
 title: Delegate
-weight: -724
 date: 2025-12-22
 tags:
   - windows

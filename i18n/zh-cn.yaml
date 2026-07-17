@@ -1,8 +1,33 @@
-documentation: "文档"
-showcase: "项目展示"
-blog: "博客"
-about: "关于"
-more: "更多"
-hugoDocs: "Hugo 文档 ↗"
-versions: "版本"
-development: "最新开发版本"
+- id: prev_page
+  translation: "上一页"
+
+- id: next_page
+  translation: "下一页"
+
+- id: read_time
+  translation:
+    one: "1 分钟"
+    other: "{{ .Count }} 分钟"
+
+- id: words
+  translation:
+    one: "字"
+    other: "{{ .Count }} 字"
+
+- id: toc
+  translation: "目录"
+
+- id: translations
+  translation: "语言"
+
+- id: home
+  translation: "主页"
+
+- id: edit_post
+  translation: "编辑"
+
+- id: code_copy
+  translation: "复制"
+
+- id: code_copied
+  translation: "已复制！"

@@ -1,0 +1,19 @@
+{{- /*
+  LOCAL override of PaperMod's empty extend_head.html extension point.
+  PaperMod's own head.html already emits per-language hreflang alternates
+  plus full Open Graph / Twitter Card / schema.org JSON-LD (via its
+  templates/opengraph.html, templates/twitter_cards.html and
+  templates/schema_json.html, driven by site.Params.social / .schema set
+  in hugo.yaml) — no need to duplicate any of that here. The only gap is
+  the x-default hreflang variant, which head.html doesn't emit. Emitted
+  exactly once per page, pointing at the default-content-language (zh-CN)
+  version regardless of which translation is currently being rendered.
+*/ -}}
+{{- if .IsTranslated -}}
+  {{- range .AllTranslations -}}
+    {{- /* hardcoded: this site's defaultContentLanguage (hugo.yaml) is zh-CN */ -}}
+    {{- if eq (lower .Language.Lang) "zh-cn" -}}
+      <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

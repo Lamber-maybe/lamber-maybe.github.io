@@ -1,0 +1,22 @@
+{{- /*
+  LOCAL override of PaperMod's empty comments.html extension point.
+  Embeds giscus (https://giscus.app) directly, since PaperMod has no
+  built-in comments provider. Repo/category IDs are from the giscus app
+  config for Lamber-maybe/lamber-maybe.github.io. To revert: delete this
+  file (comments disappear, the stub takes over again).
+*/ -}}
+<script src="https://giscus.app/client.js"
+  data-repo="Lamber-maybe/lamber-maybe.github.io"
+  data-repo-id="R_kgDOPhm0mw"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOPhm0m84CxAWC"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="{{ site.Params.defaultTheme | default `system` }}"
+  data-lang="{{ .Language.LanguageCode | default .Language.Lang }}"
+  crossorigin="anonymous"
+  async>
+</script>

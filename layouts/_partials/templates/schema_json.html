@@ -1,0 +1,79 @@
+{{- /*
+  LOCAL REWRITE of PaperMod's templates/schema_json.html. Upstream builds
+  this JSON-LD by hand-interpolating strings into a literal `{ ... }`
+  block. Two real bugs surfaced on this site's content:
+    1. BreadcrumbList: for any page one level below its section (i.e.
+       every blog post and HTB writeup here), the comma-between-items and
+       "position" logic came out wrong (a missing comma between array
+       items — invalid JSON — and both items numbered "1").
+    2. BlogPosting "articleBody" piped .Content through `safeJS`, which
+       opts OUT of Go html/template's automatic escaping; any post
+       containing a raw " or \ (i.e. almost every HTB writeup, full of
+       quoted command flags and Windows paths) broke `hugo --gc --minify`'s
+       JSON parser.
+  Fix: build each block as a dict/slice and emit it with `jsonify`, which
+  handles ordering, commas and escaping correctly by construction —
+  same pattern this repo already used for JSON-LD before the PaperMod
+  migration (see the old Hextra custom/head-end.html). Ancestors-based
+  breadcrumbs also replace the fragile permalink-string-splitting the
+  original used. To revert: delete this file (the theme copy, and its
+  bugs, take over again).
+*/ -}}
+{{- if .IsHome }}
+  {{- $ld := dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "name" site.Title
+      "url" site.Home.Permalink
+      "description" (site.Params.description | plainify | truncate 180)
+      "image" (site.Params.assets.favicon | default "favicon.ico" | absURL)
+      "sameAs" (site.Params.schema.sameAs | default (slice))
+  }}
+  <script type="application/ld+json">{{ $ld | jsonify (dict "indent" "  ") | safeJS }}</script>
+
+{{- else if (or .IsPage .IsSection) }}
+  {{- $scratch := newScratch }}
+  {{- range $index, $page := .Ancestors.Reverse }}
+    {{- $scratch.Add "crumbs" (slice (dict "@type" "ListItem" "position" (add $index 1) "name" $page.Name "item" $page.Permalink)) }}
+  {{- end }}
+  {{- $scratch.Add "crumbs" (slice (dict "@type" "ListItem" "position" (add (len .Ancestors) 1) "name" .Name "item" .Permalink)) }}
+  {{- $breadcrumbLd := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" ($scratch.Get "crumbs") }}
+  <script type="application/ld+json">{{ $breadcrumbLd | jsonify (dict "indent" "  ") | safeJS }}</script>
+
+  {{- if .IsPage }}
+    {{- $author := .Params.author | default site.Params.author }}
+    {{- $authorLd := dict "@type" "Person" "name" $author }}
+    {{- if or (eq (printf "%T" $author) "[]string") (eq (printf "%T" $author) "[]interface {}") }}
+      {{- $people := slice }}
+      {{- range $author }}
+        {{- $people = $people | append (dict "@type" "Person" "name" .) }}
+      {{- end }}
+      {{- $authorLd = $people }}
+    {{- end }}
+    {{- $images := partial "templates/_funcs/get-page-images" . }}
+    {{- $postLd := dict
+        "@context" "https://schema.org"
+        "@type" "BlogPosting"
+        "headline" (.Title | plainify)
+        "name" (.Title | plainify)
+        "description" (.Description | default .Summary | plainify)
+        "keywords" (.Params.keywords | default (.Params.tags | default (slice)))
+        "articleBody" (.Content | plainify)
+        "wordCount" .WordCount
+        "inLanguage" (.Language.Lang | default "en-us")
+        "datePublished" .PublishDate
+        "dateModified" .Lastmod
+        "author" $authorLd
+        "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+        "publisher" (dict
+          "@type" "Person"
+          "name" site.Title
+          "logo" (dict "@type" "ImageObject" "url" (site.Params.assets.favicon | default "favicon.ico" | absURL))
+        )
+    }}
+    {{- with index $images 0 }}
+      {{- $postLd = merge $postLd (dict "image" .Permalink) }}
+    {{- end }}
+    <script type="application/ld+json">{{ $postLd | jsonify (dict "indent" "  ") | safeJS }}</script>
+  {{- end }}
+{{- end -}}

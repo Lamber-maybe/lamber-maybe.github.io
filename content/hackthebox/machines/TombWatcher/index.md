@@ -1,7 +1,6 @@
 ---
 title: TombWatcher
 date: 2024-07-09
-weight: -664
 tags:
   - windows
   - easy

@@ -1,0 +1,61 @@
+{{- /*
+  LOCAL override of PaperMod's empty extend_post_content.html extension
+  point. Loads the asciinema-player CDN bundle + init script, but only on
+  pages that actually used the {{< asciinema >}} shortcode (flagged via
+  Page.Store by _shortcodes/asciinema.html). Ported from Hextra v0.11.0's
+  _partials/scripts/asciinema.html, trimmed to the CDN-only path (this
+  site doesn't use the local-asset override options Hextra also supports).
+*/ -}}
+{{- if .Page.Store.Get "hasAsciinema" -}}
+{{- $asciinemaBase := "https://cdn.jsdelivr.net/npm/asciinema-player@latest/dist/bundle" -}}
+{{- $minSuffix := cond hugo.IsProduction ".min" "" -}}
+
+{{- with try (resources.GetRemote (printf "%s/asciinema-player.css" $asciinemaBase)) -}}
+  {{- with .Err -}}
+    {{- errorf "Could not retrieve Asciinema css file. Reason: %s." . -}}
+  {{- else with .Value -}}
+    {{- with resources.Copy "css/asciinema-player.css" . -}}
+      {{- $asciinemaCss := . | fingerprint -}}
+      <link rel="stylesheet" href="{{ $asciinemaCss.RelPermalink }}" integrity="{{ $asciinemaCss.Data.Integrity }}" crossorigin="anonymous" />
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with try (resources.GetRemote (printf "%s/asciinema-player%s.js" $asciinemaBase $minSuffix)) -}}
+  {{- with .Err -}}
+    {{- errorf "Could not retrieve Asciinema js file. Reason: %s." . -}}
+  {{- else with .Value -}}
+    {{- with resources.Copy (printf "js/asciinema-player%s.js" $minSuffix) . -}}
+      {{- $asciinemaJs := . | fingerprint -}}
+      <script defer src="{{ $asciinemaJs.RelPermalink }}" integrity="{{ $asciinemaJs.Data.Integrity }}" crossorigin="anonymous"></script>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".asciinema-player").forEach((el) => {
+      const castFile = el.dataset.castFile;
+      const theme = el.dataset.theme || "asciinema";
+      const speed = parseFloat(el.dataset.speed) || 1;
+      const autoplay = el.dataset.autoplay === "true";
+      const loop = el.dataset.loop === "true";
+      const poster = el.dataset.poster || "";
+      const markers = el.dataset.markers ? JSON.parse(el.dataset.markers) : [];
+
+      if (window.AsciinemaPlayer) {
+        window.AsciinemaPlayer.create(castFile, el, {
+          theme: theme,
+          speed: speed,
+          autoplay: autoplay,
+          loop: loop,
+          poster: poster || undefined,
+          markers: markers.length > 0 ? markers : undefined,
+          controls: true,
+          idleTimeLimit: 2,
+        });
+      }
+    });
+  });
+</script>
+{{- end -}}

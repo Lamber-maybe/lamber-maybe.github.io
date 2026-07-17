@@ -1,7 +1,6 @@
 ---
 title: whoami
-type: about
-toc: false
+ShowToc: false
 ---
 
 
@@ -11,8 +10,8 @@ toc: false
 
 * {{< icon "github" >}}[github](https://github.com/Lamber-maybe/)
 * {{< icon "twitter" >}}[twitter](https://x.com/Lamber28793923)
-* {{< icon "cube" >}}[HackTheBox](https://app.hackthebox.com/profile/697550)
-* {{< icon "user" >}}[Hackerone](https://hackerone.com/lamber)
+* {{< icon "hackthebox" >}}[HackTheBox](https://app.hackthebox.com/profile/697550)
+* {{< icon "hackerone" >}}[Hackerone](https://hackerone.com/lamber)
 
 <script src="https://app.hackthebox.com/profile/697550"></script>
 

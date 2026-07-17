@@ -1,7 +1,6 @@
 ---
 title: Intelligence
 date: 2025-01-08
-weight: -357
 tags:
   - windows
   - medium

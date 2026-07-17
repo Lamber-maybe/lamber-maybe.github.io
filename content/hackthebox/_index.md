@@ -1,15 +1,11 @@
 ---
 title: HackTheBox
-cascade:
-  type: docs
 ---
 
 
 ### HackTheBox靶场记录
 
-{{< cards >}}
-  {{< card link="/hackthebox/machines/" title="Machines · 分类索引" icon="wifi">}}
-{{< /cards >}}
+- [Machines · 分类索引](/hackthebox/machines/)
 
 
 ### 个人排名...
