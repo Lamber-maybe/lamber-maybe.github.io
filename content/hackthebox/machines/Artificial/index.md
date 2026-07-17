@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Artificial
 date: 2025-10-24
 tags:

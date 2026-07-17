@@ -59,7 +59,7 @@ Open 10.129.24.190:49681
 
 然后分别尝试 MS-SAMR 和 RID Cycling 进行域用户枚举，发现能够使用 MS-SAMR 枚举出域用户名。
 
-然后使用 [ASREPRoast](/blog/ASREPRoast) 攻击拿到 `svc-alfresco` 账户。
+然后使用 [ASREPRoast](/tags/asreproast/) 攻击拿到 `svc-alfresco` 账户。
 
 然后使用 bloodhound 收集域信息
 

@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Kerberos之ASREProast攻击
 date: 2025-09-23
 authors:

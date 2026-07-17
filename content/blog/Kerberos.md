@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Kerberos认证解读
 date: 2025-09-23
 authors:
